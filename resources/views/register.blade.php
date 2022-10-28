@@ -16,29 +16,33 @@
                     </ul>
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <form class="signup-form" id='Candidats'>
+                        <form class="signup-form" id='Candidats' action="/save_candidate" method="POST" >
                             @csrf
                             <div class="form-group" id="desactive">
+                                <label>Enter Name</label>
+                                <input type="text" class="form-control" id='nameCandidate' name='nameCandidate' placeholder="Enter Name" required>
+                            </div>
+                            <div class="form-group" id="desactive">
                                 <label>Enter Username</label>
-                                <input type="text" class="form-control" placeholder="Enter Username" required>
+                                <input type="text" class="form-control" id='usernameCandidate' name='usernameCandidate' placeholder="Enter Username" required>
                             </div>
 
                             <div class="form-group">
                                 <label>Enter Email</label>
-                                <input type="email" class="form-control" placeholder="Enter Your Email" required>
+                                <input type="email" class="form-control" id='emailCandidate' name='emailCandidate' placeholder="Enter Your Email" required>
                             </div>
 
                             <div class="form-group">
                                 <label>Enter Password</label>
-                                <input type="password" class="form-control" placeholder="Enter Your Password" required>
+                                <input type="password" id='passwordCandidate' name='passwordCandidate' class="form-control" placeholder="Enter Your Password" required>
                             </div>
                             <div class="form-group">
                                 <label>Confirm Password</label>
-                                <input type="password" class="form-control" placeholder="Enter Your Password" required>
+                                <input type="password" id='passwordConfirm' name='passwordConfirm' class="form-control" placeholder="Enter Your Password" required>
                             </div>
 
                             <div class="signup-btn text-center">
-                                <button type="submit">Sign Up</button>
+                                <button id="save_candidate" name="save_candidate" type="submit">Sign Up</button>
                             </div>
 
                             {{-- <div class="other-signup text-center">
@@ -80,29 +84,29 @@
                     </div>
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 
-                        <form class="signup-form" id='Company'>
+                        <form class="signup-form" id='Company' action="/save_company" method="POST">
                             @csrf             
                             <div class="form-group" >
                                 <label>Company Name</label>
-                                <input type="text" class="form-control" placeholder="Enter Username" required>
+                                <input type="text" id='nameCompany' name='nameCompany' class="form-control" placeholder="Enter Username" required>
                             </div>
     
                             <div class="form-group">
                                 <label>Company Email</label>
-                                <input type="email" class="form-control" placeholder="Enter Your Email" required>
+                                <input type="email" id='emailCompany' name='emailCompany' class="form-control" placeholder="Enter Your Email" required>
                             </div>
     
                             <div class="form-group">
                                 <label>Enter Password</label>
-                                <input type="password" class="form-control" placeholder="Enter Your Password" required>
+                                <input type="password" id='passwordCompany' name='passwordCompany' class="form-control" placeholder="Enter Your Password" required>
                             </div>
                             <div class="form-group">
                                 <label>Confirm Password</label>
-                                <input type="password" class="form-control" placeholder="Enter Your Password" required>
+                                <input type="password" id="passwordConfirm" name="passwordConfirm" class="form-control" placeholder="Enter Your Password" required>
                             </div>
     
                             <div class="signup-btn text-center">
-                                <button type="submit">Sign Up</button>
+                                <button id="save_company" name="save_company" type="submit">Sign Up</button>
                             </div>
     
                             {{-- <div class="other-signup text-center">

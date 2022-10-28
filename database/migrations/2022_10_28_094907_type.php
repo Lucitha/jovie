@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Candidacie extends Migration
+class Type extends Migration
 {
     /**
      * Run the migrations.
@@ -14,12 +14,10 @@ class Candidacie extends Migration
     public function up()
     {
         //
-        Schema::create('candidacie', function (Blueprint $table) {
+        Schema::create('types', function (Blueprint $table) {
             $table->id();
-            $table->string('resum');
-            $table->string('contact');
-            $table->foreignId('candidate_id')->references('id')->on('candidate');
-            $table->foreignId('job_id')->references('id')->on('job');
+            $table->string('title');
+            $table->string('description');
             $table->dateTime('updated_at');
             $table->dateTime('created_at');
         });

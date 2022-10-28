@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CandidateController;
+use App\Http\Controllers\CompanyController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,3 +37,6 @@ Route::get('/s', function () {
     return view('admin/settings');
 });
 
+Route::post('/save_candidate', [ CandidateController::class, 'saveCandidate' ]);
+Route::post('/save_company', [ CompanyController::class, 'saveCompany' ]);
+Route::post('/save_job', [ CompanyController::class, 'saveJob' ]);

@@ -90,126 +90,33 @@
                         <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
                             <ul class="navbar-nav m-auto">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link dropdown-toggle">Home</a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item">
-                                            <a href="index.html" class="nav-link">Home One</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="index-two.html" class="nav-link">Home Two</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="index-three.html" class="nav-link">Home Three</a>
-                                        </li>
-										<li class="nav-item">
-											<a href="index-four.html" class="nav-link">Home Four</a>
-                                        </li>
-                                        <li class="nav-item">
-											<a href="index-five.html" class="nav-link">Home Five</a>
-										</li>
-                                    </ul>
+                                    <a href="about.html" class="nav-link">Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="about.html" class="nav-link">About</a>
+                                    <a href="about.html" class="nav-link">Settings</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="#" class="nav-link dropdown-toggle">Jobs</a>
-
                                     <ul class="dropdown-menu">
-                                        <li class="nav-item">
-                                            <a href="find-job.html" class="nav-link">Find A Job</a>
-                                        </li>
                                         <li class="nav-item">
                                             <a href="post-job.html" class="nav-link">Post A Job</a>
                                         </li>
                                         <li class="nav-item">
                                             <a href="job-list.html" class="nav-link">Job List</a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a href="job-grid.html" class="nav-link">Job Grid</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="job-details.html" class="nav-link">Job Details</a>
-                                        </li>
                                     </ul>
-                                </li>                
+                                </li>     
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link dropdown-toggle">Candidates</a>
+                                    <a href="about.html" class="nav-link">Find Job</a>
+                                </li>           
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link dropdown-toggle">Settings</a>
                                     <ul class="dropdown-menu">
                                         <li class="nav-item">
-                                            <a href="candidate.html" class="nav-link">Candidates</a>
+                                            <a href="candidate.html" class="nav-link">Profil</a>
                                         </li>
                                         <li class="nav-item">
                                             <a href="candidate-details.html" class="nav-link">Candidates Details</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link dropdown-toggle active">Pages</a>
-                                        <ul class="dropdown-menu">
-                                            <li class="nav-item">
-                                                <a href="company.html" class="nav-link">Company</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="pricing.html" class="nav-link">Pricing</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="#" class="nav-link dropdown-toggle active">Profile</a>
-                                                <ul class="dropdown-menu">
-                                                    <li class="nav-item">
-                                                        <a href="account.html" class="nav-link">Account</a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a href="#" class="nav-link dropdown-toggle active">Member</a>
-
-                                                        <ul class="dropdown-menu">
-                                                            <li class="nav-item">
-                                                                <a href="sign-in.html" class="nav-link">Sign In</a>
-                                                            </li>
-                                                            <li class="nav-item">
-                                                                <a href="sign-up.html" class="nav-link active">Sign Up</a>
-                                                            </li>
-                                                            <li class="nav-item">
-                                                                <a href="reset-password.html" class="nav-link">Reset Password</a>
-                                                            </li>
-                                                        </ul>
-                                                    <li>
-                                                    <li class="nav-item">
-                                                        <a href="resume.html" class="nav-link">Resume</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        <li class="nav-item">
-                                            <a href="404.html" class="nav-link">404 Page</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="testimonial.html" class="nav-link">Testimonials</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="faq.html" class="nav-link">FAQ</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="catagories.html" class="nav-link">Catagories</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="privacy-policy.html" class="nav-link">Privacy & Policy</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="terms-condition.html" class="nav-link">Terms & Conditions</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link dropdown-toggle">Blog</a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item">
-                                            <a href="blog.html" class="nav-link">Blog</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="blog-two.html" class="nav-link">Blog Two</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="blog-details.html" class="nav-link">Blog Details</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -310,25 +217,25 @@
                                 <li>
                                     <a href="about.html">
                                         <i class='bx bx-chevrons-right bx-tada'></i>
-                                        About
+                                        Settings
                                     </a>
                                 </li>
                                 <li>
                                     <a href="faq.html">
                                         <i class='bx bx-chevrons-right bx-tada'></i>
-                                        FAQ
+                                        Job
                                     </a>
                                 </li>
                                 <li>
                                     <a href="pricing.html">
                                         <i class='bx bx-chevrons-right bx-tada'></i>
-                                        Pricing
+                                        Add Job
                                     </a>
                                 </li>
                                 <li>
                                     <a href="privacy.html">
                                         <i class='bx bx-chevrons-right bx-tada'></i>
-                                        Privacy
+                                        
                                     </a>
                                 </li>
                                 <li>

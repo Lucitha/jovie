@@ -14,17 +14,16 @@ class Company extends Migration
     public function up()
     {
         //
-        Schema::create('company', function (Blueprint $table) {
+        Schema::create('companies', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('country');
-            $table->string('city');
-            $table->string('region');
-            $table->string('post_office_box');
-            $table->string('social_link');
-            $table->dateTime('updated_at');
+            $table->string('country')->nullable();
+            $table->string('city')->nullable();
+            $table->string('region')->nullable();
+            $table->string('post_office_box')->nullable();
+            $table->string('social_link')->nullable();
+            $table->dateTime('updated_at')->nullable();
             $table->dateTime('created_at');
             $table->string('password');
         });

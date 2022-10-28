@@ -14,11 +14,11 @@ class Job extends Migration
     public function up()
     {
         //
-        Schema::create('job', function (Blueprint $table) {
+        Schema::create('jobs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('company_id')->references('id')->on('company');
+            $table->foreignId('company_id')->references('id')->on('companies');
             $table->string('title');
-            $table->string('type');
+            $table->foreignId('type_id')->references('id')->on('types');
             $table->string('category');
             $table->string('location');
             $table->string('contact');
