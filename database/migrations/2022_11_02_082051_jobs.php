@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Job extends Migration
+class Jobs extends Migration
 {
     /**
      * Run the migrations.
@@ -16,7 +16,7 @@ class Job extends Migration
         //
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('company_id')->references('id')->on('companies');
+            $table->foreignId('company_id')->references('id')->on('users');
             $table->string('title');
             $table->foreignId('type_id')->references('id')->on('types');
             $table->string('category');

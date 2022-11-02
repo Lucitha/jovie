@@ -88,9 +88,13 @@
                             @csrf             
                             <div class="form-group" >
                                 <label>Company Name</label>
-                                <input type="text" id='nameCompany' name='nameCompany' class="form-control" placeholder="Enter Username" required>
+                                <input type="text" id='nameCompany' name='nameCompany' class="form-control" placeholder="Enter Your Company Name" required>
                             </div>
     
+                            <div class="form-group">
+                                <label>Business Reference </label>
+                                <input type="text" id='business_number' name='business_number' class="form-control" placeholder="Enter Your Business Number" required>
+                            </div>
                             <div class="form-group">
                                 <label>Company Email</label>
                                 <input type="email" id='emailCompany' name='emailCompany' class="form-control" placeholder="Enter Your Email" required>
