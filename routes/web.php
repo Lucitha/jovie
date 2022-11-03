@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\JobController;
 use App\Http\Controllers\userController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,8 +37,16 @@ Route::get('/re', function () {
 Route::get('/s', function () {
     return view('admin/settings');
 });
+Route::get('/admin/settings', [ AdminController::class, 'getSettings' ]);
+Route::get('/admin/deleteC/{id}', [ AdminController::class, 'deleteCategorie' ]);
+Route::get('/admin/deleteT/{id}', [ AdminController::class, 'deleteType' ]);
+Route::post('/save_type', [ AdminController::class, 'savetype' ]);
+Route::post('/save_categorie', [ AdminController::class, 'saveCategory' ]);
+
+Route::get('/addJob',[JobController::class,'newJob']);
+Route::post('/save_job',[JobController::class,'saveJob']);
+
 
 Route::post('/save_candidate', [ userController::class, 'saveCandidate' ]);
 Route::get('/allCandidates', [ userController::class, 'showCandidate' ]);
 Route::post('/save_company', [ userController::class, 'saveCompany' ]);
-Route::post('/save_job', [ userController::class, 'saveJob' ]);

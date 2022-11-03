@@ -23,11 +23,11 @@ class Candidacies extends Migration
             $table->dateTime('start_at');             
             $table->dateTime('end_at'); 
             $table->dateTime('created_at');         
-            $table->dateTime('updated_at');             
+            $table->dateTime('updated_at')->nullable();             
         });
     }
 
-    /**
+    /** 
      * Reverse the migrations.
      *
      * @return void

@@ -13,24 +13,43 @@
                     </div>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <div class="form-group">
                         <label>Job Category</label>
-                        <select class="category" name="category" id="category">
-                            <option data-display="Category"></option>
-                            <option value="1">Web Development</option>
-                            <option value="2">Graphics Design</option>
-                            <option value="4">Data Entry</option>
-                            <option value="5">Visual Editor</option>
-                            <option value="6">Office Assistant</option>
+                        <select class="category" name="category_id" id="category_id">
+                        <option data-display="Category">Category</option>
+                        @foreach ($categories as $categorie)
+                            <option value="{{$categorie->id}}">{{$categorie->title}}</option>
+                        @endforeach
+                            
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Job Type</label>
+                        <select class="category" name="type_id" id="type_id">
+                            <option data-display="Job Type">Job Type</option>
+                            @foreach ($types as $type)
+                              <option value="{{$type->id}}">{{$type->title}}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label>Company Email</label>
-                        <input type="email" class="form-control" name="" id="" placeholder="e.g. hello@company.com" required>
+                        <label>Company Name</label>
+                        <input type="text" class="form-control" name="company_name" id="company_name" placeholder="e.g. London" required>
+                    </div>
+                </div>
+
+
+               
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Phone Contact</label>
+                        <input type="tel" class="form-control" name="contact" id="contact" placeholder="+000 0000000000" required>
                     </div>
                 </div>
 
@@ -40,38 +59,23 @@
                         <input type="text" class="form-control" name="location" id="location" placeholder="e.g. London" required>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Company Name</label>
-                        <input type="text" class="form-control" name="" id="" placeholder="e.g. London" required>
-                    </div>
-                </div>
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label>Job Type</label>
-                        <select class="category" name="type_id" id="type_id">
-                            <option data-display="Job Type">Job Type</option>
-                            <option value="1">Full Time</option>
-                            <option value="2">Part Time</option>
-                            <option value="3">Seasonal</option>
-                            <option value="4"> Temporary</option>
-                            <option value="5">Freelancer</option>
-                            <option value="6">Volunteer</option>
-
-                        </select>
+                        <label>Email Contact</label>
+                        <input type="email" class="form-control" name="company_email" id="company_email" placeholder="e.g. hello@company.com" required>
                     </div>
                 </div>
 
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label>Salary min(Optional)</label>
+                        <label>Salary min €(Optional)</label>
                         <input type="number" name="salary_min" id="salary_min"class="form-control"  placeholder="e.g. $20,000">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label>Salary max(Optional)</label>
+                        <label>Salary max €(Optional)</label>
                         <input type="number" class="form-control" name="salary_max" id="salary_max" placeholder="e.g. $20,000">
                     </div>
                 </div>
