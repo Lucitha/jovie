@@ -16,8 +16,8 @@ class Categories extends Migration
         //
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('description');
+            $table->string('category_title');
+            $table->string('category_description');
             $table->dateTime('updated_at')->nullable();
             $table->dateTime('created_at');
         });

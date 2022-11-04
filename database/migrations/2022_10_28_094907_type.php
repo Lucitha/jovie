@@ -16,8 +16,8 @@ class Type extends Migration
         //
         Schema::create('types', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('description');
+            $table->string('type_title');
+            $table->string('type_description');
             $table->dateTime('updated_at')->nullable();
             $table->dateTime('created_at');
         });

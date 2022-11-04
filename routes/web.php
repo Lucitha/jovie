@@ -34,9 +34,11 @@ Route::get('/l', function () {
 Route::get('/re', function () {
     return view('register');
 });
-Route::get('/s', function () {
-    return view('admin/settings');
-});
+Route::post('/login', [ userController::class, 'connexion' ]);
+Route::get('/jobs',[JobController::class,'showJob']);
+
+
+
 Route::get('/admin/settings', [ AdminController::class, 'getSettings' ]);
 Route::get('/admin/deleteC/{id}', [ AdminController::class, 'deleteCategorie' ]);
 Route::get('/admin/deleteT/{id}', [ AdminController::class, 'deleteType' ]);
@@ -48,5 +50,7 @@ Route::post('/save_job',[JobController::class,'saveJob']);
 
 
 Route::post('/save_candidate', [ userController::class, 'saveCandidate' ]);
-Route::get('/allCandidates', [ userController::class, 'showCandidate' ]);
 Route::post('/save_company', [ userController::class, 'saveCompany' ]);
+Route::get('/disconnect', [ userController::class, 'deconnection' ]);
+Route::get('/allCandidates', [ userController::class, 'showCandidate' ]);
+

@@ -4,49 +4,22 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-8 offset-md-2 offset-lg-3">
-                    <form class="signup-form">
+                    <form class="signup-form" method="POST" action="/login">
                         @csrf
                        
                         <div class="form-group">
                             <label>Enter Email</label>
-                            <input type="email" class="form-control" placeholder="Enter Your Email" required>
+                            <input type="email" name="email" id="email" class="form-control" placeholder="Enter Your Email" required>
                         </div>
 
                         <div class="form-group">
                             <label>Enter Password</label>
-                            <input type="password" class="form-control" placeholder="Enter Your Password" required>
+                            <input type="password"  name="password" id="password" class="form-control" placeholder="Enter Your Password" required>
                         </div>
 
                         <div class="signup-btn text-center">
                             <button type="submit">Sign Up</button>
                         </div>
-
-                        {{-- <div class="other-signup text-center">
-                            <span>Or sign up with</span>
-                            <ul>
-                                <li>
-                                    <a href="#">
-                                        <i class='bx bxl-google'></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class='bx bxl-facebook'></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class='bx bxl-twitter'></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class='bx bxl-linkedin'></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div> --}}
-
                         <div class="create-btn text-center">
                             <p>
                                 Have an Account?

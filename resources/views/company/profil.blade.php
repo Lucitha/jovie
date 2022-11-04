@@ -97,47 +97,37 @@
                         </nav>
                         <div class="tab-content" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">...
-                            <form class="basic-info">
+                            <form class="basic-info" action="" method="">
+                                @csrf
                                 <div class="row">
                                     
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Company Name</label>
-                                            <input type="text" class="form-control" placeholder="Your Name">
+                                            <input type="text" name="company_name" id="company_name" class="form-control" placeholder="Your Name">
                                         </div>
                                     </div>
         
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Company Email</label>
-                                            <input type="email" class="form-control" placeholder="Your Email">
+                                            <input type="email" name="company_email"id="company_email" class="form-control" placeholder="Your Email">
                                         </div>
                                     </div>
         
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Company Phone</label>
-                                            <input type="number" class="form-control" placeholder="Your Phone">
+                                            <input type="number" name="" id=""class="form-control" placeholder="Your Phone">
                                         </div>
                                     </div>
         
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Licence number</label>
-                                            <input type="text" class="form-control" placeholder="Job Title">
+                                            <input type="text" class="form-control" placeholder="Licence number">
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
-                                        <button type="submit" class="account-btn">Edit</button>
-                                        <button type="submit" class="account-btn">Save</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...
-                            <h3>Address</h3>
-                            <form class="-candidate-address">
-                                <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Country</label>
@@ -165,6 +155,17 @@
                                             <input type="text" class="form-control" placeholder="Your Region">
                                         </div>
                                     </div>
+                                    <div class="col-md-12">
+                                        <button type="submit" class="account-btn">Save</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...
+                            <h3>Address</h3>
+                            <form class="-candidate-address">
+                                <div class="row">
+                                    
                                     <div class="col-md-12">
                                         <button type="submit" class="account-btn">Edit</button>
                                         <button type="submit" class="account-btn">Save</button>

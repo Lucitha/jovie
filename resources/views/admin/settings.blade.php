@@ -53,10 +53,10 @@
                                         <?php if($categories){?>
                                         @foreach ($categories as $categorie)
                                             <tr>
-                                            <td>{{$categorie->title}}</td>
-                                            <td>{{$categorie->description}}</td>
+                                            <td>{{$categorie->category_title}}</td>
+                                            <td>{{$categorie->category_description}}</td>
                                             <td>
-                                                <a href="/admin/deleteC/{{$categorie->id}}">delete</a>
+                                                <a href="/admin/deleteC/{{$categorie->id}}" onclick=" return confirm('Voulez vous vraiment le supprimer ?');">delete</a>
                                                 <a href="#">edit</a>
                                             </td>
                                         </tr> 
@@ -95,11 +95,11 @@
                                             <?php if($types){?>
                                                 @foreach ($types as $type)
                                                 <tr>
-                                                    <td>{{$type->title}}</td>
-                                                    <td>{{$type->description}}</td>
+                                                    <td>{{$type->type_title}}</td>
+                                                    <td>{{$type->type_description}}</td>
                                                     <td>
-                                                        <a href="/admin/deleteT/{{$type->id}}">delete</a>
-                                                        <a href="#">edit</a>
+                                                        <a href="/admin/deleteT/{{$type->id}}" onclick=" return confirm('Voulez vous vraiment le supprimer ?');">delete</a>
+                                                        <a href="/admin/ediType/{{$type->id}}">Edit</a>
                                                     </td>
                                                 </tr> 
                                                 @endforeach

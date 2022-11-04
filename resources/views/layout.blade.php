@@ -127,7 +127,7 @@
 
                             <div class="other-option">
                                 <a href="sign-up.html" class="signup-btn">Sign Up</a>
-                                <a href="sign-in.html" class="signin-btn">Sign In</a>
+                                <a href="/disconnect" class="signin-btn">Sign out</a>
                             </div>
                         </div>
                     </nav>

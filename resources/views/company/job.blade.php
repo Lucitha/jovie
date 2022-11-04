@@ -19,7 +19,7 @@
                         <select class="category" name="category_id" id="category_id">
                         <option data-display="Category">Category</option>
                         @foreach ($categories as $categorie)
-                            <option value="{{$categorie->id}}">{{$categorie->title}}</option>
+                            <option value="{{$categorie->id}}">{{$categorie->category_title}}</option>
                         @endforeach
                             
                         </select>
@@ -31,7 +31,7 @@
                         <select class="category" name="type_id" id="type_id">
                             <option data-display="Job Type">Job Type</option>
                             @foreach ($types as $type)
-                              <option value="{{$type->id}}">{{$type->title}}</option>
+                              <option value="{{$type->id}}">{{$type->type_title}}</option>
                             @endforeach
                         </select>
                     </div>

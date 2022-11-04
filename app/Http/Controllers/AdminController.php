@@ -19,16 +19,16 @@ class AdminController extends Controller
     }
     public function saveType(Request $request){
         \DB::table('types')
-           ->insert(['title'=>$request->type_title,
-                     'description'=>$request->type_description,
+           ->insert(['type_title'=>$request->type_title,
+                     'type_description'=>$request->type_description,
                      'created_at'=>date('Y-m-d H:i:s'),
         ]);
         return back();
     }
     public function saveCategory(Request $request){
         \DB::table('categories')
-           ->insert(['title'=>$request->category_title,
-                     'description'=>$request->category_description,
+           ->insert(['category_title'=>$request->category_title,
+                     'category_description'=>$request->category_description,
                      'created_at'=>date('Y-m-d H:i:s'),
         ]);
         return back();
