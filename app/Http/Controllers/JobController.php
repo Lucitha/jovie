@@ -9,13 +9,16 @@ class JobController extends Controller
 {
     //
     public function saveJob(Request $request){
-        if( $request->end_at && $request->end_at){
-            $salary=$request->end_at.'-'.$request->end_at;
+        if( $request->salary_min && $request->salary_max){
+            $salary=$request->salary_min.'-'.$request->salary_max;
         }else{
             $salary=null;
         }
-        
+        $start=date('Y-m-d H:i:s', strtotime($request->start_at));
+        $end=date('Y-m-d H:i:s', strtotime($request->end_at));
+
         Job::create([
+            // 'posted_by'=>session()->get('id'),
             'posted_by'=>1,
             'job_title'=>$request->title,
             'type_id'=>$request->type_id,
@@ -27,8 +30,8 @@ class JobController extends Controller
             'job_description'=>$request->description,
             'job_conditions'=>$request->conditions,
             'salary_range'=>$salary,
-            'start_at'=>strtotime($request->start_at),
-            'end_at'=>strtotime($request->end_at),
+            'start_at'=>$start,
+            'end_at'=>$end,
         ]);
         return back();
         
@@ -54,18 +57,30 @@ class JobController extends Controller
             ->where('id',[$id]);
             return view('',compact('getJobs'));
     }
-
     public function showJob(Request $request){
-        $jobs= Job::select('*')
-        ->join('types','type_id','=','types.id')
-        ->join('cattegories','category_id','=','cattegories.id');
+        $jobs= Job::select('jobs.*','types.id as typeID','types.type_title','categories.id as catID','categories.category_title','users.name')
+            ->join('users','posted_by','=','users.id')
+            ->join('types','type_id','=','types.id')
+            ->join('categories','category_id','=','categories.id')
+            ->get();
+            // dd($jobs);
         return view('jobList', compact('jobs'));
+    } 
+    public function detailsJob($id){
+        $detail= Job::select('jobs.*','types.id as typeID','categories.id as catID')
+        ->join('types','type_id','=','types.id')
+        ->join('categories','category_id','=','categories.id')
+        ->where('jobs.id',$id)
+        ->first();
+        // dd($detail);
+        return view('jobDetails', compact('detail'));
     } 
     public function companyJob(Request $request){
         $jobs= Job::select('*')
         ->join('types','type_id','=','types.id')
         ->join('categories','category_id','=','categories.id')
-        ->where('companies.id',1);
+        ->where('companies.id',1)
+        ->get();
         return view('/jobList', compact('jobs'));
     } 
     public function candidateJob(Request $request){
@@ -73,7 +88,8 @@ class JobController extends Controller
         ->join('types','type_id','=','types.id')
         ->join('categories','category_id','=','categories.id')
         ->join('candidacies','id','=','candidacies.job_id')
-        ->where('candidacies.candidate_id',1);
+        ->where('candidacies.candidate_id',1)
+        ;
         return view('/jobList', compact('jobs'));
     } 
 }

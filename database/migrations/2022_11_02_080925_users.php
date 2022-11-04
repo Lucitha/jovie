@@ -19,7 +19,8 @@ class Users extends Migration
             $table->string('name');
             $table->string('username')->nullable();
             $table->string('email')->unique();
-            $table->string('business_number')->nullable();;
+            $table->string('phone_number')->nullable();
+            $table->string('business_number')->nullable();
             $table->string('country')->nullable();
             $table->string('city')->nullable();
             $table->string('region')->nullable();

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CandidacyController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\userController;
 use Illuminate\Support\Facades\Route;
@@ -17,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('candidats/profils');
+    return view('jobDetails');
 });
 Route::get('/c', function () {
     return view('company/profil');
@@ -36,6 +37,7 @@ Route::get('/re', function () {
 });
 Route::post('/login', [ userController::class, 'connexion' ]);
 Route::get('/jobs',[JobController::class,'showJob']);
+Route::get('/details/{id}',[JobController::class,'detailsJob']);
 
 
 
@@ -48,9 +50,14 @@ Route::post('/save_categorie', [ AdminController::class, 'saveCategory' ]);
 Route::get('/addJob',[JobController::class,'newJob']);
 Route::post('/save_job',[JobController::class,'saveJob']);
 
+Route::post('/apply/{id}',[CandidacyController::class,'saveCandidacy']);
+
 
 Route::post('/save_candidate', [ userController::class, 'saveCandidate' ]);
 Route::post('/save_company', [ userController::class, 'saveCompany' ]);
 Route::get('/disconnect', [ userController::class, 'deconnection' ]);
 Route::get('/allCandidates', [ userController::class, 'showCandidate' ]);
+Route::get('/profil', [ userController::class, 'showProfil' ]);
+Route::post('/save_profil', [ userController::class, 'updateProfil' ]);
+Route::post('/update_password', [ userController::class, 'updatePass' ]);
 

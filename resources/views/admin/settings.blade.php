@@ -56,8 +56,8 @@
                                             <td>{{$categorie->category_title}}</td>
                                             <td>{{$categorie->category_description}}</td>
                                             <td>
-                                                <a href="/admin/deleteC/{{$categorie->id}}" onclick=" return confirm('Voulez vous vraiment le supprimer ?');">delete</a>
-                                                <a href="#">edit</a>
+                                                <a class="account-btn"  style="color: red" href="/admin/deleteC/{{$categorie->id}}" onclick=" return confirm('Voulez vous vraiment le supprimer ?');">Delete</a>
+                                                <a class="account-btn" href="/admin/editC/{{$categorie->id}}">Edit</a>
                                             </td>
                                         </tr> 
                                         @endforeach
@@ -98,8 +98,8 @@
                                                     <td>{{$type->type_title}}</td>
                                                     <td>{{$type->type_description}}</td>
                                                     <td>
-                                                        <a href="/admin/deleteT/{{$type->id}}" onclick=" return confirm('Voulez vous vraiment le supprimer ?');">delete</a>
-                                                        <a href="/admin/ediType/{{$type->id}}">Edit</a>
+                                                        <a  style="color: red" href="/admin/deleteT/{{$type->id}}" onclick=" return confirm('Voulez vous vraiment le supprimer ?');">Delete</a>
+                                                        <a  href="/admin/ediT/{{$type->id}}">Edit</a>
                                                     </td>
                                                 </tr> 
                                                 @endforeach

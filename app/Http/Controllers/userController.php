@@ -50,23 +50,57 @@ class userController extends Controller
                 session()->put($key,$value);
                 session()->save();
             }
-            if($user->tag==0){
-                return redirect('/c');
-            }elseif($user->tag==1){
-                return redirect('/j');
-            }else{
+            
+            if($user->tag !=0 && $user->tag!=1){
                 return redirect('/admin/settings');
+            }else{
+                return redirect('/profil');
             }
         }
     }
     public function showProfil(Request $request){
         // $infos= Users::where('id',session()->get('id'))->first();
-        $infos= Users::where('id',1)->first();
-        return view('/company/profil', compact('infos'));
+        $info= Users::where('id',1)->first();
+        if($info->tag==0){
+            return view('/candidats/profils', compact('info'));
+        }else{
+            return view('/company/profil', compact('info'));
+        }  
     }
     public function updateProfil(Request $request){
         // $infos= Users::where('id',session()->get('id'))->first();
         $infos= Users::where('id',1)->first();
+        if($infos->tag==1){
+            $infos->username=$request->username;
+            $infos->email=$request->company_email;
+            $infos->business_number=$request->business_number;
+            $infos->post_office_box=$request->post_office_box;
+            $infos->country=$request->country;
+            $infos->city=$request->city;
+            $infos->region=$request->region;
+            $infos->save();
+        }else{
+            $infos->name=$request->name;
+            $infos->username=$request->username;
+            $infos->email=$request->email;
+            $infos->country=$request->country;
+            $infos->city=$request->city;
+            $infos->region=$request->region;
+            $infos->save();
+        }
+        return back();
+    }
+    public function updatePass(Request $request){
+        // $infos= Users::where('id',session()->get('id'))->first();
+        $infos= Users::where('id',1)->first();
+        if(!password_verify($request->old_password,$infos->password)){
+           
+        }else{
+            $password=password_hash($request->password, PASSWORD_DEFAULT);
+            $infos->password=$password;
+            $infos->save();
+        }
+ 
         return back();
     }
     public function deconnection(){

@@ -8,7 +8,7 @@
                 <div class="account-information">
                     <div class="profile-thumb">
                         <img src="assets/img/account.jpg" alt="account holder image">
-                        <h3>Company</h3>
+                        <h3>{{$info->username}}</h3>
                         <p>Web Developer</p>
                     </div>
                     <div class="d-flex align-items-start">
@@ -64,7 +64,7 @@
 
             <div class="col-md-8">
                 <div class="account-details">
-                    <h3>Basic Information</h3>
+
                         <nav>
                             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                             <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Home</button>
@@ -74,77 +74,118 @@
                             </div>
                         </nav>
                         <div class="tab-content" id="nav-tabContent">
-                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">...
-                                <form class="basic-info">
+                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                <br/>
+                                <h3>Basic Information</h3>
+                                <form class="basic-info" action="/save_profil" method="POST">
+                                    @csrf
                                     <div class="row">
-                                        
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Company Name</label>
-                                                <input type="text" class="form-control" placeholder="Your Name">
+                                                <label>Name</label>
+                                                <input type="text" name="name" value="{{$info->name}}" id="name" class="form-control" placeholder="Your Name">
                                             </div>
                                         </div>
             
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Company Email</label>
-                                                <input type="email" class="form-control" placeholder="Your Email">
+                                                <label>Username</label>
+                                                <input type="text" name="username" id="username" value="{{$info->username}}" class="form-control" placeholder="Your Email">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Email</label>
+                                                <input type="email" name="email" id="email" value="{{$info->email}}" class="form-control" placeholder="Your Username">
                                             </div>
                                         </div>
             
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Company Phone</label>
-                                                <input type="number" class="form-control" placeholder="Your Phone">
+                                                <label>Phone</label>
+                                                <input type="number" name="phone_number" id="phone_number" value="" class="form-control" placeholder="Your Phone">
                                             </div>
                                         </div>
-            
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Licence number</label>
-                                                <input type="text" class="form-control" placeholder="Job Title">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <button type="submit" class="account-btn">Edit</button>
-                                            <button type="submit" class="account-btn">Save</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...
-                                <h3>Address</h3>
-                                <form class="-candidate-address">
-                                    <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Country</label>
-                                                <input type="text" class="form-control" placeholder="Your Country">
+                                                <input type="text" name="country" id="contry" value="{{$info->contry}}" class="form-control" placeholder="Your Country">
                                             </div>
                                         </div>
             
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>City</label>
-                                                <input type="text" class="form-control" placeholder="Your City">
+                                                <input type="text" name="city" id="city" value="{{$info->city}}" class="form-control" placeholder="Your City">
                                             </div>
                                         </div>
             
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Zip Code</label>
-                                                <input type="number" class="form-control" placeholder="City Zip">
+                                                <label>Post Office Box</label>
+                                                <input type="text" name="post_office_box" id="post_office_box" value="{{$info->post_office_box}}" class="form-control" placeholder="Your Post office Box Here">
                                             </div>
                                         </div>
             
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Region</label>
+                                                <input type="text" name="region" id="region" value="{{$info->region}}"class="form-control" placeholder="Your Region">
+                                            </div>
+                                        </div>
+                                       
+                                        
+                                        <div class="col-md-12">
+                                            <button type="submit" class="account-btn">Save</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                <br/>
+                                <h3>Social link</h3>
+                                <form class="-candidate-address">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Web site</label>
+                                                <input type="text" class="form-control" placeholder="Your Country">
+                                            </div>
+                                        </div>
+            
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Facebook</label>
+                                                <input type="text" class="form-control" placeholder="Your City">
+                                            </div>
+                                        </div>
+            
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Twitter</label>
+                                                <input type="number" class="form-control" placeholder="City Zip">
+                                            </div>
+                                        </div>
+            
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Linkedin</label>
+                                                <input type="text" class="form-control" placeholder="Your Region">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Github</label>
+                                                <input type="text" class="form-control" placeholder="Your Region">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Other</label>
                                                 <input type="text" class="form-control" placeholder="Your Region">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
-                                            <button type="submit" class="account-btn">Edit</button>
                                             <button type="submit" class="account-btn">Save</button>
                                         </div>
                                     </div>
@@ -156,51 +197,46 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label>Company description</label>
+                                                <label>Describe Yourself</label>
                                                 <textarea class="form-control" name="" id="" cols="60" rows="20"></textarea>
                                             </div>
                                         </div>
 
                                         <div class="col-md-12">
-                                            <button type="submit" class="account-btn">Edit</button>
                                             <button type="submit" class="account-btn">Save</button>
                                         </div>
                                     </div>
                                 </form>
                             </div>
-                            <div class="tab-pane fade" id="nav-v" role="tabpanel" aria-labelledby="nav-v-tab">...
-                                <h3>Social links</h3>
-                                <form class="candidates-sociak">
+                            <div class="tab-pane fade" id="nav-v" role="tabpanel" aria-labelledby="nav-v-tab">
+                                <br/>
+                                <h3>Change your password</h3>
+                                <form class="candidates-sociak" action="/update_password" method="POST">
+                                    @csrf
                                     <div class="row">
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-8">
                                             <div class="form-group">
-                                                <label>Facebook</label>
-                                                <input type="text" class="form-control" placeholder="www.facebook.com/user">
+                                                <label>Old password</label>
+                                                <input type="password" name="old_password" id="old_password" class="form-control" placeholder="Your old password here">
                                             </div>
                                         </div>
 
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <label>Twitter</label>
-                                                <input type="number" class="form-control" placeholder="www.twitter.com/user">
+                                                <label>New Password</label>
+                                                <input type="password" name="password" id="password" class="form-control" placeholder="Enter your new password">
                                             </div>
                                         </div>
 
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <label>Linkedin</label>
-                                                <input type="text" class="form-control" placeholder="www.Linkedin.com/user">
+                                                <label>Confirm new password</label>
+                                                <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Confirm your new password">
                                             </div>
                                         </div>
 
-                                        <div class="col-lg-6">
-                                            <div class="form-group">
-                                                <label>Web Site</label>
-                                                <input type="text" class="form-control" placeholder="www.Github.com/user">
-                                            </div>
-                                        </div>
+                                        
                                         <div class="col-md-12">
-                                            <button type="submit" class="account-btn">Edit</button>
                                             <button type="submit" class="account-btn">Save</button>
                                         </div>
                                     </div>

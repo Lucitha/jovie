@@ -16,7 +16,7 @@
                             <div class="col-lg-3">
                                 <div class="thumb-img">
                                     <a href="job-details.html">
-                                        <img src="'{{asset('assets/img/company-logo/1.png')}}'" alt="company logo">
+                                        <img src="{{asset('assets/img/company-logo/1.png')}}" alt="company logo">
                                     </a>
                                 </div>
                             </div>
@@ -35,7 +35,7 @@
                                             <i class='bx bx-filter-alt'></i> {{$job->category_title}}
                                         </li>
                                         <li>
-                                            <i class='bx bx-briefcase'></i> {{$job->type_title}}
+                                            <i class='bx bx-briefcase'></i> {{$job->salary_range}} €
                                         </li>
                                     </ul>
                                 </div>
@@ -43,12 +43,9 @@
 
                             <div class="col-lg-3">
                                 <div class="job-save">
-                                    <span>Full Time</span>
-                                    <a href="#">
-                                        <i class='bx bx-heart'></i>
-                                    </a>
+                                    <span>{{$job->type_title}}</span>
                                     <p>
-                                        <i class='bx bx-stopwatch'></i> 1 Hr Ago
+                                        <i class='bx bx-stopwatch'></i> 
                                     </p>
                                 </div>
                             </div>
