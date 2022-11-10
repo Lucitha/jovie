@@ -29,8 +29,6 @@ class CandidacyController extends Controller
         return back();
     }
     public function showCandidacies($id){
-
-    
         $candidacies=Candidacy::select('*','users.*','jobs.*','users.id as uID','jobs.id as jID')
         ->join('jobs','job_id','=','jobs.id')
         ->join('users','jobs.company_id','=','users.id')
@@ -38,7 +36,7 @@ class CandidacyController extends Controller
         ->where('company_id',1)
         ->where('jID',$id)
         ->get();
-        return view('',compact($candidacies));
+        return view('company/candidacies',compact($candidacies));
     }
     public function showApply() {
         $candidacies=Candidacy::select('*','users.*','jobs.*','users.id as uID','jobs.id as jID')

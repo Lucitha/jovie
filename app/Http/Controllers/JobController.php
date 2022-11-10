@@ -88,7 +88,7 @@ class JobController extends Controller
         // ->where('companies.id',session()->get('id'))
         ->where('companies.id',1)
         ->get();
-        return view('/jobList', compact('jobs'));
+        return view('company/listJob', compact('jobs'));
     } 
     public function candidateJob(Request $request){
         $jobs= Job::select('*')
