@@ -107,7 +107,7 @@
                                     </ul>
                                 </li>     
                                 <li class="nav-item">
-                                    <a href="about.html" class="nav-link">Find Job</a>
+                                    <a href="/candidacies" class="nav-link">Find Job</a>
                                 </li>           
                                 <li class="nav-item">
                                     <a href="#" class="nav-link dropdown-toggle">Settings</a>

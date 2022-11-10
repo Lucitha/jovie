@@ -24,32 +24,31 @@ class CandidacyController extends Controller
                 'job_id'=>$id,
                 'apply_date'=>$date,            
             ]);
-        // }else{
-
         // }
        
         return back();
     }
-    public function showJobCandidacies(Request $request,$id){
-        $list=Candidacy::select('*','users.*','jobs.*','users.id as uID','jobs.id as jID')
+    public function showCandidacies($id){
+
+    
+        $candidacies=Candidacy::select('*','users.*','jobs.*','users.id as uID','jobs.id as jID')
         ->join('jobs','job_id','=','jobs.id')
         ->join('users','jobs.company_id','=','users.id')
         // ->where('company_id',session()->get('id'))
-        ->where('id',1)
+        ->where('company_id',1)
+        ->where('jID',$id)
         ->get();
-       
-       
-        return view('', compact('list',));
+        return view('',compact($candidacies));
     }
-    public function showMyApply(Request $request,$id){
-        $list=Candidacy::select('*','users.*','jobs.*','users.id as uID','jobs.id as jID')
+    public function showApply() {
+        $candidacies=Candidacy::select('*','users.*','jobs.*','users.id as uID','jobs.id as jID')
         ->join('jobs','job_id','=','jobs.id')
         ->join('users','candidate_id','=','users.id')
         // ->where('candidate_id',session()->get('id'))
-        ->where('id',1)
+        ->where('candidate_id',1)
         ->get();
-       
-       
-        return view('', compact('list',));
+        return view('',compact($candidacies));
     }
+    
+  
 }

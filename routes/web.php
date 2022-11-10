@@ -50,6 +50,7 @@ Route::post('/save_categorie', [ AdminController::class, 'saveCategory' ]);
 Route::get('/addJob',[JobController::class,'newJob']);
 Route::post('/save_job',[JobController::class,'saveJob']);
 
+Route::get('/candidacies',[CandidacyController::class,'showCandidacies']);
 Route::post('/apply/{id}',[CandidacyController::class,'saveCandidacy']);
 
 

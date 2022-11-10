@@ -85,6 +85,7 @@ class JobController extends Controller
         $jobs= Job::select('*')
         ->join('types','type_id','=','types.id')
         ->join('categories','category_id','=','categories.id')
+        // ->where('companies.id',session()->get('id'))
         ->where('companies.id',1)
         ->get();
         return view('/jobList', compact('jobs'));
