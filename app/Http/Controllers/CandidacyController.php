@@ -47,7 +47,8 @@ class CandidacyController extends Controller
         // ->where('candidate_id',session()->get('id'))
         ->where('candidate_id',1)
         ->get();
-        return view('',compact($candidacies));
+        // dd($candidacies);
+        return view('candidats/myApply',compact('candidacies'));
     }
     
   

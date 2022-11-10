@@ -20,6 +20,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return redirect('jobs');
 });
+Route::get('/can', function () {
+    return view('/company/candidacies');
+});
 Route::get('/c', function () {
     return view('company/profil');
 });
@@ -34,6 +37,9 @@ Route::get('/l', function () {
 });
 Route::get('/re', function () {
     return view('register');
+});
+Route::get('/ap', function () {
+    return view('candidats/myApply');
 });
 Route::post('/login', [ userController::class, 'connexion' ]);
 Route::get('/jobs',[JobController::class,'showJob']);
@@ -50,7 +56,8 @@ Route::post('/save_categorie', [ AdminController::class, 'saveCategory' ]);
 Route::get('/addJob',[JobController::class,'newJob']);
 Route::post('/save_job',[JobController::class,'saveJob']);
 
-Route::get('/candidacies',[CandidacyController::class,'showCandidacies']);
+Route::get('/candidacies/{id}',[CandidacyController::class,'showCandidacies']);
+Route::get('/applications',[CandidacyController::class,'showApply']);
 Route::post('/apply/{id}',[CandidacyController::class,'saveCandidacy']);
 
 
