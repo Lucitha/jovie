@@ -47,15 +47,21 @@ class JobController extends Controller
         ->get();
         return view('company/job', compact('categories','types'));
     }
-    public function updateJob(Request $request, $id){
-
-
-    }
     public function editJob($id){
-        $getId='';
+        $update='';
         $getJobs=Job::select('*')
-            ->where('id',[$id]);
-            return view('',compact('getJobs'));
+        ->where('id',[$id])
+        ->first();
+        return view('settings',compact('getJobs'));
+    }
+    public function updateJob(Request $request, $id){
+        $update='';
+        $getJobs=Job::select('*')
+        ->where('id',[$id])
+        ->first();
+        return view('',compact('getJobs'));
+
+
     }
     public function showJob(Request $request){
         $jobs= Job::select('jobs.*','types.id as typeID','types.type_title','categories.id as catID','categories.category_title','users.name')
@@ -67,7 +73,7 @@ class JobController extends Controller
         return view('jobList', compact('jobs'));
     } 
     public function detailsJob($id){
-        $detail= Job::select('jobs.*','types.id as typeID','categories.id as catID')
+        $detail= Job::select('jobs.*','types.id as typeID','categories.id as catID','types.type_title','categories.category_title')
         ->join('types','type_id','=','types.id')
         ->join('categories','category_id','=','categories.id')
         ->where('jobs.id',$id)

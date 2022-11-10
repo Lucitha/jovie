@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('jobDetails');
+    return redirect('jobs');
 });
 Route::get('/c', function () {
     return view('company/profil');

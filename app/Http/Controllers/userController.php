@@ -9,6 +9,9 @@ class userController extends Controller
 {
     //
     public function saveCompany(Request $request){
+        $this->validate($request, [
+            'password' => "required|min:6'",
+        ]);
         $password=password_hash($request->passwordCompany, PASSWORD_DEFAULT);
         Users::create([
             'name'=>$request->nameCompany,
@@ -19,6 +22,9 @@ class userController extends Controller
         return redirect('/l');
     }
     public function saveCandidate(Request $request){
+        $this->validate($request, [
+            'password' => "required|min:6'",
+        ]);
         $password=password_hash($request->passwordCandidate, PASSWORD_DEFAULT);
         Users::create([
             'name'=>$request->nameCandidate,

@@ -90,16 +90,16 @@
                         <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
                             <ul class="navbar-nav m-auto">
                                 <li class="nav-item">
-                                    <a href="about.html" class="nav-link">Home</a>
+                                    <a href="/" class="nav-link">Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="about.html" class="nav-link">Settings</a>
+                                    <a href="/admin/settings" class="nav-link">Settings</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="#" class="nav-link dropdown-toggle">Jobs</a>
                                     <ul class="dropdown-menu">
                                         <li class="nav-item">
-                                            <a href="post-job.html" class="nav-link">Post A Job</a>
+                                            <a href="addJob" class="nav-link">Post A Job</a>
                                         </li>
                                         <li class="nav-item">
                                             <a href="job-list.html" class="nav-link">Job List</a>
@@ -126,7 +126,12 @@
                             </ul>
 
                             <div class="other-option">
-                                <a href="sign-up.html" class="signup-btn">Sign Up</a>
+                                @php
+                                  if(!session()->get('i')){
+                                    echo '<a href="sign-up.html" class="signup-btn">Sign-in</a>';
+                                  }  
+                                @endphp
+                                
                                 <a href="/disconnect" class="signin-btn">Sign out</a>
                             </div>
                         </div>

@@ -47,7 +47,7 @@
                             </div>
 
                             <div class="theme-btn">
-                                <a href="#apply" class="default-btn">
+                                <a href="#here" class="default-btn">
                                     Apply Now
                                 </a>
                             </div>
@@ -74,7 +74,7 @@
                                 <tbody>
                                     <tr>
                                         <td><span>Job Type</span></td>
-                                        <td>{{$detail->location}}</td>
+                                        <td>{{$detail->type_title}}</td>
                                     </tr>
                                     <tr>
                                         <td><span>Salary range</span></td>
@@ -82,7 +82,7 @@
                                     </tr>
                                     <tr>
                                         <td><span>Job Catategory</span></td>
-                                        <td>{{$detail->location}}</td>
+                                        <td>{{$detail->category_title}}</td>
                                     </tr>
                                     <tr>
                                         <td><span>Validity period</span></td>
@@ -110,7 +110,7 @@
                                             <td>{{$detail->location}}</td>
                                         </tr>
                                         <tr>
-                                            <td><span>Phone Nulmber</span></td>
+                                            <td><span>Phone Number</span></td>
                                             <td>{{$detail->job_contact}}</td>
                                         </tr>
                                         <tr>
@@ -124,19 +124,19 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-8" style="border-block-start-color: blue " id="apply">
+            <div class="col-lg-8" style="border-block-start-color: blue " id="here">
                 <div class="job-sidebar">
                     <div class="details-text">
                         <div class="row">
-                            <form class="" method="Post" action="/apply/{{$detail->id}}"> 
+                            <form class="col-lg-6 col-md-8 offset-md-2 offset-lg-3" enctype="multipart/form-data" method="Post" action="/apply/{{$detail->id}}" > 
                                 @csrf
                                 <div class="form-group col-md-8">
                                     <label for="">Your contact</label>
                                     <input name="phone" id="phone" class="form-control" type="tel" placeholder="000000000">
                                 </div>
                                 <div class="form-group col-md-8">
-                                    <label for="">Your Resume</label>
-                                    <input name="resum" id="resum" class="form-control" type="file" placeholder="upload file">
+                                    <label for="">Your Resum</label>
+                                    <input name="cv" id="cv" class="form-control" type="file">
                                 </div>
                                 <div class="account-btn">
                                     <button class="nav-link" type="submit" style="color: blueviolet">Save</button>
