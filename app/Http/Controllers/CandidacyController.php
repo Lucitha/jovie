@@ -33,7 +33,7 @@ class CandidacyController extends Controller
         ->join('jobs','job_id','=','jobs.id')
         ->join('users','jobs.company_id','=','users.id')
         // ->where('company_id',session()->get('id'))
-        ->where('company_id',1)
+        ->where('posted_by',1)
         ->where('jID',$id)
         ->get();
         return view('company/candidacies',compact($candidacies));

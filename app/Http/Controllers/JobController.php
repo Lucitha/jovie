@@ -82,11 +82,11 @@ class JobController extends Controller
         return view('jobDetails', compact('detail'));
     } 
     public function companyJob(Request $request){
-        $jobs= Job::select('*')
+        $jobs= Job::select('jobs.*')
         ->join('types','type_id','=','types.id')
         ->join('categories','category_id','=','categories.id')
         // ->where('companies.id',session()->get('id'))
-        ->where('companies.id',1)
+        ->where('posted_by',1)
         ->get();
         return view('company/listJob', compact('jobs'));
     } 
