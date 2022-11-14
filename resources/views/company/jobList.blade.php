@@ -150,7 +150,7 @@
                         <div class="col-lg-3">
                             <div class="thumb-img">
                                 <a href="job-details.html">
-                                    <img src="assets/img/company-logo/4.png" alt="company logo">
+                                    <img src="{{asset('assets/img/company-logo/4.png')}}" alt="company logo">
                                 </a>
                             </div>
                         </div>
@@ -195,7 +195,7 @@
                         <div class="col-lg-3">
                             <div class="thumb-img">
                                 <a href="job-details.html">
-                                    <img src="assets/img/company-logo/5.png" alt="company logo">
+                                    <img src="{{asset('assets/img/company-logo/5.png')}}" alt="company logo">
                                 </a>
                             </div>
                         </div>
@@ -240,7 +240,7 @@
                         <div class="col-lg-3">
                             <div class="thumb-img">
                                 <a href="job-details.html">
-                                    <img src="assets/img/company-logo/6.png" alt="company logo">
+                                    <img src="{{asset('assets/img/company-logo/6.png')}}" alt="company logo">
                                 </a>
                             </div>
                         </div>
@@ -285,7 +285,7 @@
                         <div class="col-lg-3">
                             <div class="thumb-img">
                                 <a href="job-details.html">
-                                    <img src="assets/img/company-logo/1.png" alt="company logo">
+                                    <img src="{{asset('assets/img/company-logo/1.png')}}" alt="company logo">
                                 </a>
                             </div>
                         </div>
@@ -331,7 +331,7 @@
                         <div class="col-lg-3">
                             <div class="thumb-img">
                                 <a href="job-details.html">
-                                    <img src="assets/img/company-logo/2.png" alt="company logo">
+                                    <img src="{{asset('assets/img/company-logo/2.png')}}" alt="company logo">
                                 </a>
                             </div>
                         </div>

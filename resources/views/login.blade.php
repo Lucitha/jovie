@@ -23,8 +23,8 @@
                         <div class="create-btn text-center">
                             <p>
                                 Have an Account?
-                                <a href="signin.html">
-                                    Sign In
+                                <a href="/register">
+                                    Create an Account
                                     <i class='bx bx-chevrons-right bx-fade-right'></i>
                                 </a>
                             </p>

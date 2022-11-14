@@ -92,31 +92,34 @@
                                 <li class="nav-item">
                                     <a href="/" class="nav-link">Home</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="/admin/settings" class="nav-link">Settings</a>
-                                </li>
+                                
                                 <li class="nav-item">
                                     <a href="#" class="nav-link dropdown-toggle">Jobs</a>
                                     <ul class="dropdown-menu">
                                         <li class="nav-item">
-                                            <a href="addJob" class="nav-link">Post A Job</a>
+                                            <a href="/addJob" class="nav-link">Post A Job</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="job-list.html" class="nav-link">Job List</a>
+                                            <a href="/jobList" class="nav-link">Job List</a>
                                         </li>
                                     </ul>
                                 </li>     
                                 <li class="nav-item">
-                                    <a href="/candidacies" class="nav-link">Find Job</a>
-                                </li>           
+                                    <a href="/jobs" class="nav-link">Find Job</a>
+                                </li>   
+                                {{-- admin setting --}}
+                                <li class="nav-item">
+                                    <a href="/admin/settings" class="nav-link">Settings</a>
+                                </li>  
+                                {{-- user setting --}}
                                 <li class="nav-item">
                                     <a href="#" class="nav-link dropdown-toggle">Settings</a>
                                     <ul class="dropdown-menu">
                                         <li class="nav-item">
-                                            <a href="candidate.html" class="nav-link">Profil</a>
+                                            <a href="/profil" class="nav-link">Profil</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="candidate-details.html" class="nav-link">Candidates Details</a>
+                                            <a href="#" class="nav-link">Candidates Details</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -128,7 +131,7 @@
                             <div class="other-option">
                                 @php
                                   if(!session()->get('i')){
-                                    echo '<a href="sign-up.html" class="signup-btn">Sign-in</a>';
+                                    echo '<a href="/connexion" class="signup-btn">Sign-in</a>';
                                   }  
                                 @endphp
                                 

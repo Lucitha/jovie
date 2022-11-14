@@ -74,7 +74,7 @@
                             <div class="create-btn text-center">
                                 <p>
                                     Have an Account?
-                                    <a href="signin.html">
+                                    <a href="/connexion">
                                         Sign In
                                         <i class='bx bx-chevrons-right bx-fade-right'></i>
                                     </a>
@@ -142,7 +142,7 @@
                             <div class="create-btn text-center">
                                 <p>
                                     Have an Account?
-                                    <a href="signin.html">
+                                    <a href="/connexion">
                                         Sign In
                                         <i class='bx bx-chevrons-right bx-fade-right'></i>
                                     </a>

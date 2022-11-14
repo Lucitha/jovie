@@ -29,14 +29,25 @@ class CandidacyController extends Controller
         return back();
     }
     public function showCandidacies($id){
+        $infos='';
         $candidacies=Candidacy::select('*','users.*','jobs.*','users.id as uID','jobs.id as jID')
         ->join('jobs','job_id','=','jobs.id')
-        ->join('users','jobs.company_id','=','users.id')
+        ->join('users','candidate_id','=','users.id')
         // ->where('company_id',session()->get('id'))
         ->where('posted_by',1)
-        ->where('jID',$id)
+        ->where('jobs.id',$id)
         ->get();
-        return view('company/candidacies',compact($candidacies));
+        return view('company/candidacies',compact('candidacies','infos'));
+        // $r='poi'.$id;
+        //         return view('company/candidacies');
+    }
+    public function candidacie($id){
+        $infos= Candidacy::select('users.*', 'jobs.*','candidacies.*')
+                        ->join('users', 'candidate_id','users.id')
+                        ->join('jobs','job_id','jobs.id')
+                        ->where()
+                        ->get();
+        return view('company/candidacies',compact('infos'));
     }
     public function showApply() {
         $candidacies=Candidacy::select('*','users.*','jobs.*','users.id as uID','jobs.id as jID')
