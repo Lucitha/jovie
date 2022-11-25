@@ -92,18 +92,22 @@
                                 <li class="nav-item">
                                     <a href="/" class="nav-link">Home</a>
                                 </li>
-                                
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link dropdown-toggle">Jobs</a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item">
-                                            <a href="/addJob" class="nav-link">Post A Job</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="/jobList" class="nav-link">Job List</a>
-                                        </li>
-                                    </ul>
-                                </li>     
+                                @php
+                                    if(!session()->get('tag')==0){
+                                    echo'<li class="nav-item">
+                                        <a href="#" class="nav-link dropdown-toggle">Jobs</a>
+                                        <ul class="dropdown-menu">
+                                            <li class="nav-item">
+                                                <a href="/addJob" class="nav-link">Post A Job</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="/jobList" class="nav-link">Job List</a>
+                                            </li>
+                                        </ul>
+                                    </li>';
+                                    } 
+                                @endphp
+                                 
                                 <li class="nav-item">
                                     <a href="/jobs" class="nav-link">Find Job</a>
                                 </li>   
@@ -130,7 +134,7 @@
 
                             <div class="other-option">
                                 @php
-                                  if(!session()->get('i')){
+                                  if(!session()->get('id')){
                                     echo '<a href="/connexion" class="signup-btn">Sign-in</a>';
                                   }  
                                 @endphp

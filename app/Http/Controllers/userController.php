@@ -52,9 +52,6 @@ class userController extends Controller
 
         $user=Users::where('email',$request->email)
             ->first();
-            // ->get();
-            // dd($user);
-
         if(!$user){
             return redirect('/register');
         } elseif (!password_verify($request->password,$user->password)) {
@@ -63,15 +60,12 @@ class userController extends Controller
             $tab=[];
             
             // foreach ($user as $key=> $value) {
-            //    $p='je suis '.$key.' ma valeur est '.$value;
-                // session()->put($key,$value);
                 session()->put('id',$user->id);
                 session()->put('email',$user->email);
                 session()->put('name',$user->name);
                 session()->put('tag',$user->tag);
                 session()->save();
             // }
-            // dd($p);
             if($user->tag == 0 || $user->tag == 1){
               return redirect('/profil') ;
             }else{
@@ -80,11 +74,7 @@ class userController extends Controller
         }
     }
     public function showProfil(){
-        // dd(session());
-        ;
         $info=Users::where('id',session()->get('id'))->first();
-        // $info= Users::where('id',4)->first();
-        // dd(session()->get('name'));
         if($info->tag==0){
             return view('/candidats/profils', compact('info'));
         }else{
@@ -93,7 +83,6 @@ class userController extends Controller
     }
     public function updateProfil(Request $request){
         $infos= Users::where('id',session()->get('id'))->first();
-        // $infos= Users::where('id',1)->first();
         if($infos->tag==1){
             $infos->username=$request->username;
             $infos->email=$request->company_email;
@@ -146,7 +135,6 @@ class userController extends Controller
     }
     public function updatePass(Request $request){
         $infos= Users::where('id',session()->get('id'))->first();
-        // $infos= Users::where('id',1)->first();
         if(!password_verify($request->old_password,$infos->password)){
            
         }elseif(password_verify($request->old_password,$infos->password) && ($infos->confirm_password ==  $infos->password)){

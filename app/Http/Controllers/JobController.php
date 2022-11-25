@@ -19,7 +19,6 @@ class JobController extends Controller
 
         Job::create([
             'posted_by'=>session()->get('id'),
-            // 'posted_by'=>1,
             'job_title'=>$request->title,
             'type_id'=>$request->type_id,
             'category_id'=>$request->category_id,
@@ -86,7 +85,6 @@ class JobController extends Controller
         ->join('types','type_id','=','types.id')
         ->join('categories','category_id','=','categories.id')
         ->where('posted_by',session()->get('id'))
-        // ->where('posted_by',1)
         ->get();
         return view('company/listJob', compact('jobs'));
     } 
@@ -95,7 +93,7 @@ class JobController extends Controller
         ->join('types','type_id','=','types.id')
         ->join('categories','category_id','=','categories.id')
         ->join('candidacies','id','=','candidacies.job_id')
-        ->where('candidacies.candidate_id',1)
+        ->where('candidacies.candidate_id',session()->get('id'))
         ;
         return view('/jobList', compact('jobs'));
     } 
