@@ -18,8 +18,8 @@ class JobController extends Controller
         $end=date('Y-m-d H:i:s', strtotime($request->end_at));
 
         Job::create([
-            // 'posted_by'=>session()->get('id'),
-            'posted_by'=>1,
+            'posted_by'=>session()->get('id'),
+            // 'posted_by'=>1,
             'job_title'=>$request->title,
             'type_id'=>$request->type_id,
             'category_id'=>$request->category_id,
@@ -85,8 +85,8 @@ class JobController extends Controller
         $jobs= Job::select('jobs.*','types.type_title','jobs.id as jID')
         ->join('types','type_id','=','types.id')
         ->join('categories','category_id','=','categories.id')
-        // ->where('posted_by',session()->get('id'))
-        ->where('posted_by',1)
+        ->where('posted_by',session()->get('id'))
+        // ->where('posted_by',1)
         ->get();
         return view('company/listJob', compact('jobs'));
     } 

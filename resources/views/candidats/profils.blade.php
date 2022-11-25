@@ -4,63 +4,7 @@
 <section class="account-section ptb-100">
     <div class="container">
         <div class="row">
-            <div class="col-md-4">
-                <div class="account-information">
-                    <div class="profile-thumb">
-                        <img src="assets/img/account.jpg" alt="account holder image">
-                        <h3>{{$info->username}}</h3>
-                        <p>Web Developer</p>
-                    </div>
-                    <div class="d-flex align-items-start">
-                        <div class="nav flex-column nav-pills me-3 col-md-12" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                            <ul>
-                                <li>
-                                    <a href="#" class="active" >
-                                        <i class='bx bx-user'></i>
-                                        My Profile
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#v-pills-messages" id="v-pills-messages-tab" role="tab" aria-controls="v-pills-messages"  aria-selected="false">
-                                        <i class='bx bxs-file-doc'></i>
-                                        My Resume
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class='bx bx-briefcase'></i>
-                                        Jobs
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class='bx bx-envelope'></i>
-                                        Candidacies
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class='bx bx-heart'></i>
-                                         Jobs
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class='bx bx-coffee-togo'></i>
-                                        Delete Account
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class='bx bx-log-out'></i>
-                                        Log Out
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                      </div>
-                </div>
-            </div>
+            {{-- @extends('candidats/candidats_menu') --}}
 
             <div class="col-md-8">
                 <div class="account-details">
@@ -144,7 +88,7 @@
                             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                                 <br/>
                                 <h3>Social link</h3>
-                                <form class="-candidate-address">
+                                <form class="-candidate-address" action="/socialLink" method="POST">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -156,33 +100,33 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Facebook</label>
-                                                <input type="text" class="form-control" placeholder="Your City">
+                                                <input type="text" id="facebook" name="facebook" class="form-control" placeholder="Your Linkedin account">
                                             </div>
                                         </div>
             
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Twitter</label>
-                                                <input type="number" class="form-control" placeholder="City Zip">
+                                                <input type="text" id="twitter" name="twitter" class="form-control" placeholder="Your Twitter account">
                                             </div>
                                         </div>
             
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Linkedin</label>
-                                                <input type="text" class="form-control" placeholder="Your Region">
+                                                <input type="text" id="linkedin" name="linkedin" class="form-control" placeholder="Your Linkedin account">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Github</label>
-                                                <input type="text" class="form-control" placeholder="Your Region">
+                                                <input type="text" id="github" name="github" class="form-control" placeholder="Your Github account">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Other</label>
-                                                <input type="text" class="form-control" placeholder="Your Region">
+                                                <input type="text" id="other" name="other" class="form-control" placeholder="Describe yourself">
                                             </div>
                                         </div>
                                         <div class="col-md-12">

@@ -8,39 +8,41 @@ use Illuminate\Http\UploadedFile;
 
 class CandidacyController extends Controller
 {
-    //
+    //apply a Job
     public function saveCandidacy(Request $request,$id){
         $date=date('Y-m-d H:i:s');
         $verify=Candidacy::where('id',session()->get('id'))->first();
         $path = $request->file('cv')->store('resum', 'public');
         $file = explode('/',$path)[sizeof(explode('/',$path))-1];
         // dd($path);
-        // if(!$verify){
+        if(!$verify){
             Candidacy::create([
                 'resum'=>$file,
                 'contact'=>$request->phone,
-                // 'candidate_id'=>session()->get('id'),
-                'candidate_id'=>1,
+                'candidate_id'=>session()->get('id'),
+                // 'candidate_id'=>1,
                 'job_id'=>$id,
                 'apply_date'=>$date,            
             ]);
-        // }
+        }
        
         return back();
     }
+        //All candidacies by job
     public function showCandidacies($id){
         $infos='';
         $candidacies=Candidacy::select('*','users.*','jobs.*','users.id as uID','jobs.id as jID')
         ->join('jobs','job_id','=','jobs.id')
         ->join('users','candidate_id','=','users.id')
-        // ->where('company_id',session()->get('id'))
-        ->where('posted_by',1)
+        ->where('posted_by',session()->get('id'))
+        // ->where('posted_by',1)
         ->where('jobs.id',$id)
         ->get();
         return view('company/candidacies',compact('candidacies','infos'));
         // $r='poi'.$id;
         //         return view('company/candidacies');
     }
+        //
     public function candidacie($id){
         $infos= Candidacy::select('users.*', 'jobs.*','candidacies.*')
                         ->join('users', 'candidate_id','users.id')
@@ -49,12 +51,13 @@ class CandidacyController extends Controller
                         ->get();
         return view('company/candidacies',compact('infos'));
     }
+        //show all job applying by candidate
     public function showApply() {
         $candidacies=Candidacy::select('*','users.*','jobs.*','users.id as uID','jobs.id as jID')
         ->join('jobs','job_id','=','jobs.id')
         ->join('users','candidate_id','=','users.id')
-        // ->where('candidate_id',session()->get('id'))
-        ->where('candidate_id',1)
+        ->where('candidate_id',session()->get('id'))
+        // ->where('candidate_id',1)
         ->get();
         // dd($candidacies);
         return view('candidats/myApply',compact('candidacies'));
