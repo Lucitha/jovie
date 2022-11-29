@@ -82,6 +82,7 @@ class userController extends Controller
         }  
     }
     public function updateProfil(Request $request){
+        dd($request);
         $infos= Users::where('id',session()->get('id'))->first();
         if($infos->tag==1){
             $infos->username=$request->username;

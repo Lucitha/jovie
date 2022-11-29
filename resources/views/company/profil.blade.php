@@ -119,7 +119,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Company Phone</label>
-                                            <input type="number" name="phone_number" id="phone_number" value="" class="form-control" placeholder="Your Phone">
+                                            <input type="number" name="phone_number" id="phone_number" value=" class="form-control" placeholder="Your Phone">
                                         </div>
                                     </div>
         
