@@ -25,7 +25,7 @@ Route::get('/can', function () {
     return view('/company/candidacies');
 });
 Route::get('/c', function () {
-    return view('company/profil');
+    return view('company/jobList');
 });
 Route::get('/j', function () {
     return view('company/candidacies');

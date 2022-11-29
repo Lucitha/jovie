@@ -35,8 +35,7 @@ class JobController extends Controller
         return back();
         
 
-    }
-     
+    }   
     public function newJob(Request $request){
         $categories=\DB::table('categories')
         ->select('*')
@@ -63,6 +62,7 @@ class JobController extends Controller
 
     }
     public function showJob(Request $request){
+        $date=date('Y-m-d H:i:s');
         $jobs= Job::select('jobs.*','types.id as typeID','types.type_title','categories.id as catID','categories.category_title','users.name')
             ->join('users','posted_by','=','users.id')
             ->join('types','type_id','=','types.id')
@@ -77,7 +77,7 @@ class JobController extends Controller
         ->join('categories','category_id','=','categories.id')
         ->where('jobs.id',$id)
         ->first();
-        // dd($detail);
+        // dd(session()->get('id'));
         return view('jobDetails', compact('detail'));
     } 
     public function companyJob(Request $request){
@@ -93,8 +93,25 @@ class JobController extends Controller
         ->join('types','type_id','=','types.id')
         ->join('categories','category_id','=','categories.id')
         ->join('candidacies','id','=','candidacies.job_id')
-        ->where('candidacies.candidate_id',session()->get('id'))
-        ;
+        ->where('candidacies.candidate_id',session()->get('id'));
+        return view('/jobList', compact('jobs'));
+    } 
+    public function jobByType($id){
+        $filters= Job::select('jobs.*')
+        ->join('types','type_id','=','types.id')
+        ->where('type_id',$id);
+        return view('/jobList', compact('filters'));
+    } 
+    public function jobByCategory($id){
+        $filtres= Job::select('jobs.*')
+        ->join('categories','category_id','=','categories.id')
+        ->where('category_id',$id);
+        return view('/jobList', compact('filtres'));
+    } 
+    public function jobByTypeCategory($type,$category){
+        $jobs= Job::select('jobs.*')
+        ->where('category_id',$type)
+        ->where('category_id',$category);
         return view('/jobList', compact('jobs'));
     } 
 }

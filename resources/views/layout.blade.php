@@ -112,21 +112,43 @@
                                     <a href="/jobs" class="nav-link">Find Job</a>
                                 </li>   
                                 {{-- admin setting --}}
-                                <li class="nav-item">
-                                    <a href="/admin/settings" class="nav-link">Settings</a>
-                                </li>  
+                                @php
+                                if(session()->get('tag')==1 || session()->get('tag')==0 && session()->get('id') ){
+                                  echo '<li class="nav-item"><a href="/admin/settings" class="nav-link">Settings</a>
+                                        </li>';
+                                }  
+                              @endphp
+                              
+                                 
                                 {{-- user setting --}}
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link dropdown-toggle">Settings</a>
-                                    <ul class="dropdown-menu">
+                                @php
+                                if(session()->get('tag')){
+                                echo'<li class="nav-item">';
+                                   
+                                        if(!session()->get('tag')){
+                                            echo '<a href="#" class="nav-link dropdown-toggle">Settings</a>';
+                                        }
+                                    
+                                    echo'<ul class="dropdown-menu">
                                         <li class="nav-item">
                                             <a href="/profil" class="nav-link">Profil</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="#" class="nav-link">Candidates Details</a>
-                                        </li>
-                                    </ul>
-                                </li>
+                                        </li>';
+                                        
+                                        if(session()->get('tag')==1){
+                                           echo '<li class="nav-item">
+                                                <a href="#" class="nav-link">Candidates Details</a>
+                                            </li> ';
+                                        } 
+                                        if(session()->get('tag')==0){
+                                           echo '<li class="nav-item">
+                                                <a href="#" class="nav-link">Candidates Details</a>
+                                            </li> ';
+                                        } 
+                                        
+                                        
+                                    echo '</ul>
+                                </li>';}
+                                @endphp
                                 <li class="nav-item">
                                     <a href="contact.html" class="nav-link">Contact Us</a>
                                 </li>
@@ -135,11 +157,13 @@
                             <div class="other-option">
                                 @php
                                   if(!session()->get('id')){
-                                    echo '<a href="/connexion" class="signup-btn">Sign-in</a>';
+                                    echo '<a href="/connexion" class="signin-btn">Sign-in</a>';
+                                  }else{
+                                    echo '<a href="/disconnect" class="signup-btn">Sign out</a>';
                                   }  
                                 @endphp
+               
                                 
-                                <a href="/disconnect" class="signin-btn">Sign out</a>
                             </div>
                         </div>
                     </nav>
