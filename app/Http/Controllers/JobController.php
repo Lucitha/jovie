@@ -52,14 +52,35 @@ class JobController extends Controller
         ->first();
         return view('settings',compact('getJobs'));
     }
-    public function updateJob(Request $request, $id){
-        $update='';
-        $getJobs=Job::select('*')
+    public function updatePost(Request $request, $id){
+        $get=Job::select('*')
         ->where('id',[$id])
         ->first();
-        return view('',compact('getJobs'));
 
+        $start=date('Y-m-d H:i:s', strtotime($request->start_at));
+        $end=date('Y-m-d H:i:s', strtotime($request->end_at));
 
+        if( $request->salary_min && $request->salary_max){
+            $salary=$request->salary_min.'-'.$request->salary_max;
+        }else{
+            $salary=null;
+        }  
+
+        $get->job_title=$request->title;
+        $get->type_id=$request->type_id;
+        $get->category_id=$request->category_id;
+        $get->location=$request->location;
+        $get->job_contact = $request->contact;
+        $get->company_name = $request->company_name;
+        $get->company_email = $request->company_email;
+        $get->job_description = $request->description;
+        $get->job_conditions = $request->conditions;
+        $get->salary_range=$salary;
+        $get->start_at=$start;
+        $get->end_at=$end;
+        $get->save();
+
+        return redirect('/jobList');
     }
     public function showJob(Request $request){
         $date=date('Y-m-d H:i:s');
@@ -67,8 +88,9 @@ class JobController extends Controller
             ->join('users','posted_by','=','users.id')
             ->join('types','type_id','=','types.id')
             ->join('categories','category_id','=','categories.id')
+            ->where('jobs.start_at','>=',date('Y-m-d H:i:s') )
+            ->where('jobs.end_at', '=<',date('Y-m-d H:i:s') )
             ->get();
-            // dd($jobs);
         return view('jobList', compact('jobs'));
     } 
     public function detailsJob($id){
@@ -88,6 +110,31 @@ class JobController extends Controller
         ->get();
         return view('company/listJob', compact('jobs'));
     } 
+    public function editPost($id){
+        // $output = '';
+        $categories=\DB::table('categories')
+                        ->select('*')
+                        ->get();
+        $types=\DB::table('types') 
+                   ->select('*')
+                   ->get();
+        $edit = Job::where('id', $id)
+                    ->first();
+        $money= explode( '-',$edit->salary_range);
+        $min = trim($money[0]);
+        $max = trim($money[1]);
+        $date=strtotime(date('Y-m-d H:i:s'));
+        $start=strtotime($edit->start_at);
+        $end=strtotime($edit->end_at);
+        if($date>$start){
+            $output =  '<div class="col-md-12 text-center">
+                            <button type="submit" name="updateJob" id="updateJob" class="post-btn">
+                                Post A Job
+                            </button>
+                        </div>';
+        }
+        return view('company/jobEdit', compact('edit','categories','types','money'));        
+    }
     public function candidateJob(Request $request){
         $jobs= Job::select('*')
         ->join('types','type_id','=','types.id')
@@ -114,4 +161,5 @@ class JobController extends Controller
         ->where('category_id',$category);
         return view('/jobList', compact('jobs'));
     } 
+
 }

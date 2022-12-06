@@ -47,7 +47,7 @@
                                         <i class='bx bx-stopwatch'></i>
                                     </p>
                                     <a href="/editPost/{{$job->jID}}">Edit</a>
-                                    <a href="/postDelete">Delete</a>
+                                    <a href="/postDelete/{{$job->jID}}">Delete</a>
                                 </div>
                             </div>
                         </div>
