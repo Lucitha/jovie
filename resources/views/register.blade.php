@@ -22,10 +22,6 @@
                                 <label>Enter Name</label>
                                 <input type="text" class="form-control" id='nameCandidate' name='nameCandidate' placeholder="Enter Name" required>
                             </div>
-                            <div class="form-group" id="desactive">
-                                <label>Enter Username</label>
-                                <input type="text" class="form-control" id='usernameCandidate' name='usernameCandidate' placeholder="Enter Username" required>
-                            </div>
 
                             <div class="form-group">
                                 <label>Enter Email</label>

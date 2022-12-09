@@ -34,7 +34,6 @@ class userController extends Controller
             $password=password_hash($request->passwordCandidate, PASSWORD_DEFAULT);
             Users::create([
                 'name'=>$request->nameCandidate,
-                'username'=>$request->usernameCandidate,
                 'email'=>$request->emailCandidate,
                 'password'=>$password,
                 'tag'=>0,
@@ -82,10 +81,11 @@ class userController extends Controller
         }  
     }
     public function updateProfil(Request $request){
-        dd($request);
+        // dd($request);
         $infos= Users::where('id',session()->get('id'))->first();
         if($infos->tag==1){
-            $infos->username=$request->username;
+            $infos->username=$request->job;
+            $infos->name=$request->name;
             $infos->email=$request->company_email;
             $infos->business_number=$request->business_number;
             $infos->post_office_box=$request->post_office_box;
@@ -95,8 +95,9 @@ class userController extends Controller
             $infos->save();
         }else{
             $infos->name=$request->name;
-            $infos->username=$request->username;
+            $infos->username=$request->job;
             $infos->email=$request->email;
+            $infos->post_office_box=$request->post_office_box;
             $infos->country=$request->country;
             $infos->city=$request->city;
             $infos->region=$request->region;
@@ -145,6 +146,14 @@ class userController extends Controller
         }
  
         return back();
+    }
+    public function showCandidates(){
+        $candidates= Users::where('tag',0)->get();
+        return view('candidates', compact('candidates'));
+    }
+    public function showCompanies(){
+        $companies= Users::where('tag',1)->get();
+        return view('companies', compact('companies'));
     }
     public function deconnection(){
         session()->flush();

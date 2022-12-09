@@ -143,6 +143,14 @@ class JobController extends Controller
         ->where('candidacies.candidate_id',session()->get('id'));
         return view('/jobList', compact('jobs'));
     } 
+    public function jobByCompa($id){
+        $jobs= Job::select('jobs.*','types.type_title','jobs.id as jID')
+        ->join('types','type_id','=','types.id')
+        ->join('categories','category_id','=','categories.id')
+        ->where('posted_by',$id)
+        ->get();
+        return view('company/listJob', compact('jobs'));
+    } 
     public function jobByType($id){
         $filters= Job::select('jobs.*')
         ->join('types','type_id','=','types.id')

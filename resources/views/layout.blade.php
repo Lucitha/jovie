@@ -113,7 +113,7 @@
                                 </li>   
                                 {{-- admin setting --}}
                                 @php
-                                if(session()->get('tag')==1 || session()->get('tag')==0 && session()->get('id') ){
+                                if(!session()->get('tag')==1 && !session()->get('tag')==0  && session()->get('id')){
                                   echo '<li class="nav-item"><a href="/admin/settings" class="nav-link">Settings</a>
                                         </li>';
                                 }  
@@ -122,32 +122,19 @@
                                  
                                 {{-- user setting --}}
                                 @php
-                                if(session()->get('tag')){
-                                echo'<li class="nav-item">';
-                                   
-                                        if(!session()->get('tag')){
-                                            echo '<a href="#" class="nav-link dropdown-toggle">Settings</a>';
-                                        }
-                                    
-                                    echo'<ul class="dropdown-menu">
-                                        <li class="nav-item">
-                                            <a href="/profil" class="nav-link">Profil</a>
-                                        </li>';
-                                        
-                                        if(session()->get('tag')==1){
-                                           echo '<li class="nav-item">
-                                                <a href="#" class="nav-link">Candidates Details</a>
-                                            </li> ';
-                                        } 
-                                        if(session()->get('tag')==0){
-                                           echo '<li class="nav-item">
-                                                <a href="#" class="nav-link">Candidates Details</a>
-                                            </li> ';
-                                        } 
-                                        
-                                        
-                                    echo '</ul>
-                                </li>';}
+                                    if(session()->get('tag') && session()->get('tag')==1 || session()->get('tag')==0  ){
+                                        echo '
+                                            <li class="nav-item">
+                                                     <a href="#" class="nav-link dropdown-toggle">Settings</a>
+                                                     <ul class="dropdown-menu">
+                                                <li class="nav-item">
+                                                    <a href="/profil" class="nav-link">Profil</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="/candidates" class="nav-link">Candidates</a>
+                                                </li> 
+                                                </ul>
+                                            </li>';}
                                 @endphp
                                 <li class="nav-item">
                                     <a href="contact.html" class="nav-link">Contact Us</a>

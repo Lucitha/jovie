@@ -132,7 +132,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Country</label>
-                                            <input type="text" name="country" id="contry" value="{{$info->contry}}" class="form-control" placeholder="Your Country">
+                                            <input type="text" name="country" id="contry" value="{{$info->country}}" class="form-control" placeholder="Your Country">
                                         </div>
                                     </div>
         

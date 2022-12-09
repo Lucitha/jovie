@@ -28,7 +28,7 @@ Route::get('/c', function () {
     return view('company/jobList');
 });
 Route::get('/j', function () {
-    return view('company/candidacies');
+    return view('companies');
 });
 Route::get('/r', function () {
     return view('resetPassword');
@@ -59,6 +59,7 @@ Route::post('/save_job',[JobController::class,'saveJob']);
 Route::get('/jobList',[JobController::class,'companyJob']);
 Route::get('/postDelete/{id}',[JobController::class,'deletePost']);
 Route::get('/editPost/{id}',[JobController::class,'editPost']);
+Route::get('/{name}/{id}',[JobController::class,'jobByCompany']);
 Route::post('/updateJob/{id}',[JobController::class,'updatePost']);
 
 Route::get('/{id}/candidacies',[CandidacyController::class,'showCandidacies'])->name('candidate');
@@ -76,4 +77,6 @@ Route::get('/profil', [userController::class, 'showProfil']);
 Route::post('/save_profil', [userController::class, 'updateProfil']);
 Route::post('/socialLink', [userController::class, 'socialLink']);
 Route::post('/update_password', [userController::class, 'updatePass']);
+Route::get('/candidates', [userController::class, 'showCandidates']);
+Route::get('/companies', [userController::class, 'showCompanies']);
 

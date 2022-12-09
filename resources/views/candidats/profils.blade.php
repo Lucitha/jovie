@@ -4,8 +4,6 @@
 <section class="account-section ptb-100">
     <div class="container">
         <div class="row">
-            {{-- @extends('candidats/candidats_menu') --}}
-
             <div class="col-md-8">
                 <div class="account-details">
 
@@ -33,8 +31,8 @@
             
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Username</label>
-                                                <input type="text" name="username" id="username" value="{{$info->username}}" class="form-control" placeholder="Your Email">
+                                                <label>Job</label>
+                                                <input type="text" name="job" id="job" value="{{$info->username}}" class="form-control" placeholder="Your Job">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -53,7 +51,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Country</label>
-                                                <input type="text" name="country" id="contry" value="{{$info->contry}}" class="form-control" placeholder="Your Country">
+                                                <input type="text" name="country" id="country" value="{{$info->country}}" class="form-control" placeholder="Your Country">
                                             </div>
                                         </div>
             
@@ -93,7 +91,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Web site</label>
-                                                <input type="text" class="form-control" placeholder="Your Country">
+                                                <input type="text" class="form-control" placeholder="Your portfolio web site here">
                                             </div>
                                         </div>
             
