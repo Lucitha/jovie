@@ -59,7 +59,7 @@ Route::post('/save_job',[JobController::class,'saveJob']);
 Route::get('/jobList',[JobController::class,'companyJob']);
 Route::get('/postDelete/{id}',[JobController::class,'deletePost']);
 Route::get('/editPost/{id}',[JobController::class,'editPost']);
-Route::get('/{name}/{id}',[JobController::class,'jobByCompany']);
+Route::get('/company/{id}',[JobController::class,'jobByCompany']);
 Route::post('/updateJob/{id}',[JobController::class,'updatePost']);
 
 Route::get('/{id}/candidacies',[CandidacyController::class,'showCandidacies'])->name('candidate');

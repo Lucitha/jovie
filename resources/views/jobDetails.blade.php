@@ -3,7 +3,7 @@
 <section class="job-details ptb-100">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8">
+            <div class="col-lg-6">
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="job-details-text">
@@ -27,7 +27,6 @@
                                                 </li>
                                                 <li>
                                                     <i class='bx bx-paper-plane' ></i>
-                                                    {{-- {{$detail->}} --}}
                                                 </li>
                                             </ul>
                                         </div>
@@ -46,17 +45,25 @@
                                <p>{{$detail->job_description}}</p>
                             </div>
 
-                            <div class="theme-btn">
-                                <a href="#here" class="default-btn">
-                                    Apply Now
-                                </a>
-                            </div>
+                            @php
+                                $date=strtotime(date('Y-m-d H:i:s'));
+                                $start=strtotime($detail->start_at);
+                                $end=strtotime($detail->end_at);
+                                if($date >= $start && $date <= $end){
+                                    echo'
+                                    <div class="theme-btn">
+                                        <a href="#here" class="default-btn">
+                                            Apply Now
+                                        </a>
+                                    </div>';
+                                }
+                            @endphp 
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-lg-4">
+            <div class="col-lg-6">
                 <div class="job-sidebar">
                     <h3>Posted By</h3>
                     <div class="posted-by">
@@ -93,54 +100,72 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="job-sidebar">
                     <div class="details-text">
                         <h3>About company</h3>
-                        <div class="row"> 
-                            <div class="col-md-6">
-                                <table class="table">
-                                    <tbody>
-                                        <tr>
-                                            <td><span>Company Name</span></td>
-                                            <td>{{$detail->company_name}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td><span>Location</span></td>
-                                            <td>{{$detail->location}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td><span>Phone Number</span></td>
-                                            <td>{{$detail->job_contact}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td><span>Email</span></td>
-                                            <td>{{$detail->company_email}}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                        <div class="row">
+                           <table class="table m-3">
+                                <tbody>
+                                    <tr>
+                                        <td><span>Company Name</span></td>
+                                        <td>{{$detail->company_name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>Location</span></td>
+                                        <td>{{$detail->location}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>Phone Number</span></td>
+                                        <td>{{$detail->job_contact}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>Email</span></td>
+                                        <td>{{$detail->company_email}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
+       
             <div class="col-lg-8" style="border-block-start-color: blue " id="here">
                 <div class="job-sidebar">
                     <div class="details-text">
                         <div class="row">
                             <form class="col-lg-6 col-md-8 offset-md-2 offset-lg-3" enctype="multipart/form-data" method="Post" action="/apply/{{$detail->id}}" > 
                                 @csrf
-                                <div class="form-group col-md-8">
-                                    <label for="">Your contact</label>
-                                    <input name="phone" id="phone" class="form-control" type="tel" placeholder="000000000">
-                                </div>
-                                <div class="form-group col-md-8">
-                                    <label for="">Your Resum</label>
-                                    <input name="cv" id="cv" class="form-control" type="file">
-                                </div>
-                                <div class="account-btn">
-                                    <button class="nav-link" type="submit" style="color: blueviolet">Save</button>
-                                </div>
+
+                                @php
+                                $date=strtotime(date('Y-m-d H:i:s'));
+                                $start=strtotime($detail->start_at);
+                                $end=strtotime($detail->end_at);
+                                if($date>= $start && $date <= $end ){
+                                    if(session()->get('tag')){
+                                            echo'
+                                        <div class="form-group col-md-8">
+                                            <label for="">Your contact</label>
+                                            <input name="phone" id="phone" class="form-control" type="tel" placeholder="000000000">
+                                        </div>
+                                        <div class="form-group col-md-8">
+                                            <label for="">Your Resume</label>
+                                            <input name="cv" id="cv" class="form-control" type="file">
+                                        </div>
+                                        <div class="account-btn">
+                                            <button class="create-btn text-center" type="submit" style="color: blueviolet">Save</button>
+                                        </div>';
+                                    } else{
+                                        echo'<div class="form-group col-md-8">
+                                                <label>Veuillez vous connecter pour postuler à cette offre</label>
+                                            </div> ';
+                                    }
+                                    
+                                }else{
+                                    echo'<div class="form-group col-md-8">
+                                            <label>Cette offre est expiré</label> 
+                                        </div> ';
+                                }
+                            @endphp
                             </form>  
                         </div>
                     </div>

@@ -110,6 +110,12 @@
                                  
                                 <li class="nav-item">
                                     <a href="/jobs" class="nav-link">Find Job</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/candidates" class="nav-link">Candidates</a>
+                                </li> 
+                                <li class="nav-item">
+                                    <a href="/companies" class="nav-link">Companies</a>
                                 </li>   
                                 {{-- admin setting --}}
                                 @php
@@ -122,19 +128,11 @@
                                  
                                 {{-- user setting --}}
                                 @php
-                                    if(session()->get('tag') && session()->get('tag')==1 || session()->get('tag')==0  ){
-                                        echo '
-                                            <li class="nav-item">
-                                                     <a href="#" class="nav-link dropdown-toggle">Settings</a>
-                                                     <ul class="dropdown-menu">
-                                                <li class="nav-item">
+                                
+                                    if(!is_null(session()->get('tag'))){
+                                        echo ' <li class="nav-item">
                                                     <a href="/profil" class="nav-link">Profil</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="/candidates" class="nav-link">Candidates</a>
-                                                </li> 
-                                                </ul>
-                                            </li>';}
+                                                </li>';}
                                 @endphp
                                 <li class="nav-item">
                                     <a href="contact.html" class="nav-link">Contact Us</a>
@@ -211,18 +209,6 @@
                                         Resume
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="job-list.html">
-                                        <i class='bx bx-chevrons-right bx-tada'></i>
-                                        Job List
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="sign-up.html">
-                                        <i class='bx bx-chevrons-right bx-tada'></i>
-                                        Sign Up
-                                    </a>
-                                </li>
                             </ul>
                         </div>
                     </div>
@@ -253,18 +239,6 @@
                                     <a href="pricing.html">
                                         <i class='bx bx-chevrons-right bx-tada'></i>
                                         Add Job
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="privacy.html">
-                                        <i class='bx bx-chevrons-right bx-tada'></i>
-                                        
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="contact.html">
-                                        <i class='bx bx-chevrons-right bx-tada'></i>
-                                        Contact
                                     </a>
                                 </li>
                             </ul>

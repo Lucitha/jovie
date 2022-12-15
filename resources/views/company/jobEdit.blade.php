@@ -107,7 +107,7 @@
                 $date=strtotime(date('Y-m-d H:i:s'));
                 $start=strtotime($edit->start_at);
                 $end=strtotime($edit->end_at);
-                if($date =>$start && $date <= $end){
+                if($date>= $start && $date <= $end){
                     echo 'En cours de publication';
 
                 }else {

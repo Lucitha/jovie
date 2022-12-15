@@ -113,25 +113,7 @@ class userController extends Controller
         $link['linkedin']=$request->linkedin;
         $link['github']=$request->github;
         $link['other']=$request->other;
-        dd(session()->all());
-        // $infos= Users::where('id',1)->first();
-        // if($infos->tag==1){
-        //     $infos->username=$request->username;
-        //     $infos->email=$request->company_email;
-        //     $infos->business_number=$request->business_number;
-        //     $infos->post_office_box=$request->post_office_box;
-        //     $infos->country=$request->country;
-        //     $infos->city=$request->city;
-        //     $infos->region=$request->region;
-        //     $infos->save();
-        // }else{
-        //     $infos->name=$request->name;
-        //     $infos->username=$request->username;
-        //     $infos->email=$request->email;
-        //     $infos->country=$request->country;
-        //     $infos->city=$request->city;
-        //     $infos->region=$request->region;
-        //     $infos->save();
+        //     $link->save();
         // }
         return back();
     }

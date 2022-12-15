@@ -83,13 +83,14 @@ class JobController extends Controller
         return redirect('/jobList');
     }
     public function showJob(Request $request){
+        
         $date=date('Y-m-d H:i:s');
+        $where = [['jobs.start_at', '<=', date('Y-m-d H:i:s')], ['jobs.end_at', '>=', date('Y-m-d H:i:s')]];
         $jobs= Job::select('jobs.*','types.id as typeID','types.type_title','categories.id as catID','categories.category_title','users.name')
             ->join('users','posted_by','=','users.id')
             ->join('types','type_id','=','types.id')
             ->join('categories','category_id','=','categories.id')
-            ->where('jobs.start_at','>=',date('Y-m-d H:i:s') )
-            ->where('jobs.end_at', '=<',date('Y-m-d H:i:s') )
+            ->where($where)
             ->get();
         return view('jobList', compact('jobs'));
     } 
@@ -99,13 +100,13 @@ class JobController extends Controller
         ->join('categories','category_id','=','categories.id')
         ->where('jobs.id',$id)
         ->first();
-        // dd(session()->get('id'));
         return view('jobDetails', compact('detail'));
     } 
     public function companyJob(Request $request){
-        $jobs= Job::select('jobs.*','types.type_title','jobs.id as jID')
+        $jobs= Job::select('jobs.*','types.type_title','jobs.id as jID','users.name as posted')
         ->join('types','type_id','=','types.id')
         ->join('categories','category_id','=','categories.id')
+        ->join('users','posted_by','=','users.id')
         ->where('posted_by',session()->get('id'))
         ->get();
         return view('company/listJob', compact('jobs'));
@@ -143,13 +144,19 @@ class JobController extends Controller
         ->where('candidacies.candidate_id',session()->get('id'));
         return view('/jobList', compact('jobs'));
     } 
-    public function jobByCompa($id){
-        $jobs= Job::select('jobs.*','types.type_title','jobs.id as jID')
+    public function jobByCompany($id){
+        $company = \DB::table('users')
+                    ->select('*')
+                    ->where('id',$id)
+                    ->first();
+        // dd($id);
+        $jobs= Job::select('*','jobs.id as jID')
         ->join('types','type_id','=','types.id')
         ->join('categories','category_id','=','categories.id')
+        ->join('users','posted_by','=','users.id')
         ->where('posted_by',$id)
         ->get();
-        return view('company/listJob', compact('jobs'));
+        return view('listJob', compact('jobs','company'));
     } 
     public function jobByType($id){
         $filters= Job::select('jobs.*')

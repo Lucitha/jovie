@@ -176,8 +176,6 @@
                                                 <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Confirm your new password">
                                             </div>
                                         </div>
-
-                                        
                                         <div class="col-md-12">
                                             <button type="submit" class="account-btn">Save</button>
                                         </div>

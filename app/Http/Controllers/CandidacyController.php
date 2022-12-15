@@ -11,10 +11,15 @@ class CandidacyController extends Controller
     //apply a Job
     public function saveCandidacy(Request $request,$id){
         $date=date('Y-m-d H:i:s');
+        $me = \DB::table('jobs')
+        ->select('*')
+        ->where('job_id',$id)
+        ->where('posted_by',session()->get('id'))
+        ->first();
         $verify=Candidacy::where('id',session()->get('id'))->first();
         $path = $request->file('cv')->store('resum', 'public');
         $file = explode('/',$path)[sizeof(explode('/',$path))-1];
-        if(!$verify){
+        if(!$verify && !$me){
             Candidacy::create([
                 'resum'=>$file,
                 'contact'=>$request->phone,
@@ -38,7 +43,6 @@ class CandidacyController extends Controller
         return view('company/candidacies',compact('candidacies','infos'));
        
     }
-        //
     public function candidacie($id){
         $infos= Candidacy::select('users.*', 'jobs.*','candidacies.*')
                         ->join('users', 'candidate_id','users.id')

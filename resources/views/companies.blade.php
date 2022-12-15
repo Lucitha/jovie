@@ -22,7 +22,7 @@
                                 <i class='bx bx-location-plus'></i>
                                 {{$company->country}}
                             </p>
-                            <a href="job-list.html" class="company-btn">
+                            <a href="/company/{{$company->id}}" class="company-btn">
                                 Voir les offres
                             </a>
                         </div>

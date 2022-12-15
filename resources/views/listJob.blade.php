@@ -3,7 +3,7 @@
 <section class="job-section jobs-grid-section pt-100 pb-70">
     <div class="container">
         <div class="section-title text-center">
-            <h2>All job you posted</h2>
+            <h2>All job posted by {{$company->name}}</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus</p>
         </div>
 
@@ -23,10 +23,10 @@
                             <div class="col-lg-6">
                                 <div class="job-info">
                                     <h3>
-                                        <a href="/{{$job->jID}}/candidacies">{{$job->job_title}}</a>
+                                        <a href="/details/{{$job->jID}}">{{$job->job_title}}</a>
                                     </h3>
                                     <ul>
-                                        <li>Via <a href="#">{{$job->posted}}</a></li>
+                                        <li>Via <a href="#">{{$job->name}}</a></li>
                                         <li>
                                             <i class='bx bx-location-plus'></i> {{$job->location}}
                                         </li>
@@ -46,8 +46,8 @@
                                     <p>
                                         <i class='bx bx-stopwatch'></i>
                                     </p>
-                                    <a href="/editPost/{{$job->jID}}">Edit</a>
-                                    {{-- <a href="/postDelete/{{$job->jID}}">Delete</a> --}}
+                                    {{-- {{-- <a href="/editPost/{{$job->jID}}">Edit</a> --}}
+                                    {{-- <a href={{$job->jID}}">View</a>  --}}
                                 </div>
                             </div>
                         </div>
