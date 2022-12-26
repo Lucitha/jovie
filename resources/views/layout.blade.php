@@ -134,9 +134,7 @@
                                                     <a href="/profil" class="nav-link">Profil</a>
                                                 </li>';}
                                 @endphp
-                                <li class="nav-item">
-                                    <a href="contact.html" class="nav-link">Contact Us</a>
-                                </li>
+                              
                             </ul>
 
                             <div class="other-option">
@@ -146,9 +144,7 @@
                                   }else{
                                     echo '<a href="/disconnect" class="signup-btn">Sign out</a>';
                                   }  
-                                @endphp
-               
-                                
+                                @endphp 
                             </div>
                         </div>
                     </nav>

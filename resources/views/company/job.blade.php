@@ -40,7 +40,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Company Name</label>
-                        <input type="text" class="form-control" name="company_name" id="company_name" placeholder="e.g. London" required>
+                        <input type="text" class="form-control" value="{{$company->name}}" name="company_name" id="company_name" placeholder="e.g. London" required>
                     </div>
                 </div>
 
@@ -63,7 +63,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Email Contact</label>
-                        <input type="email" class="form-control" name="company_email" id="company_email" placeholder="e.g. hello@company.com" required>
+                        <input type="email" class="form-control" value="{{$company->email}}"  name="company_email" id="company_email" placeholder="e.g. hello@company.com" required>
                     </div>
                 </div>
 

@@ -43,7 +43,11 @@ class JobController extends Controller
         $types=\DB::table('types')
         ->select('*')
         ->get();
-        return view('company/job', compact('categories','types'));
+        $company=\DB::table('users')
+        ->select('*')
+        ->where('id', session()->get('id'))
+        ->first();
+        return view('company/job', compact('categories','types','company'));
     }
     public function editJob($id){
         $update='';
