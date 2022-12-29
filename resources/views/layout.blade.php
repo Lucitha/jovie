@@ -104,8 +104,14 @@
                                                 <a href="/jobList" class="nav-link">Job List</a>
                                             </li>
                                         </ul>
-                                    </li>';
-                                    } 
+                                    </li>';}
+                                    if(session()->get('tag')==0 && session()->get('id') ){
+                                    echo'
+                                        <li class="nav-item">
+                                            <a href="/applications" class="nav-link">My Apply</a>
+                                        </li>
+                                           ';}
+                                    
                                 @endphp
                                  
                                 <li class="nav-item">

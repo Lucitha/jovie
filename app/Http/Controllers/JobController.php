@@ -99,12 +99,20 @@ class JobController extends Controller
         return view('jobList', compact('jobs'));
     } 
     public function detailsJob($id){
+
         $detail= Job::select('jobs.*','types.id as typeID','categories.id as catID','types.type_title','categories.category_title')
         ->join('types','type_id','=','types.id')
         ->join('categories','category_id','=','categories.id')
         ->where('jobs.id',$id)
         ->first();
-        return view('jobDetails', compact('detail'));
+        $where = [['candidacies.candidate_id', session()->get('id')],['users.tag',0], ['jobs.id', $id]];
+        $candidacy = \DB::table('candidacies')
+        ->select('users.*', 'candidacies.*','jobs.*')
+        ->join('jobs','job_id','=','job.id' )
+        ->join('users','candidate_id','=','users.id' )
+        ->where($where);
+
+        return view('jobDetails', compact('detail','candidacy'));
     } 
     public function companyJob(Request $request){
         $jobs= Job::select('jobs.*','types.type_title','jobs.id as jID','users.name as posted')
@@ -180,5 +188,21 @@ class JobController extends Controller
         ->where('category_id',$category);
         return view('/jobList', compact('jobs'));
     } 
+    public function searching(){
+        $categories=\DB::table('categories')
+        ->select('*')
+        ->get();
+        
+        $types=\DB::table('types')
+        ->select('*')
+        ->get();
+
+        $jobs= Job::select('jobs.*')
+        -> limit(5)
+        ->get();
+        return view('/search', compact('categories','types','jobs'));
+    }
+
+
 
 }

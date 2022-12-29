@@ -28,11 +28,8 @@
                         </div>
                     </div>
                 </div>
-            @endforeach
-            
+            @endforeach   
         </div>
-
-           
         
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">

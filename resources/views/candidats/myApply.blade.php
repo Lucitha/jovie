@@ -4,19 +4,20 @@
 <section class="account-section ptb-100">
     <div class="container">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-6">
             @foreach ($candidacies as $candidacie)
                 <div class="account-details">  
                     <article class="popular-post">
-                        <a href="blog-details.html" class="blog-thumb">
-                            <img src="{{asset('assets/img/blog/popular-post1.jpg')}}" alt="blog image">
-                        </a>
-
                         <div class="info">
-                            <label for="">{{$candidacie->job_title}}</label>
                             <h4>
                                 <a href="/details/{{$candidacie->jID}}">{{$candidacie->job_title}}</a>
                             </h4>                                
+                            <ul>
+                                <i class='bx bx-location-plus'></i>
+                                {{$candidacie->location}}
+                                <i class='bx bx-briefcase' ></i>
+                                {{$candidacie->type_title}}
+                            </ul>
                         </div>
                     </article>
                 </div>

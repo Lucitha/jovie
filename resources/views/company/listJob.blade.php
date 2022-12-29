@@ -12,15 +12,15 @@
                 <div class="col-md-6">
                     <div class="job-card">
                         <div class="row align-items-center">
-                            <div class="col-lg-3">
+                            {{-- <div class="col-lg-3">
                                 <div class="thumb-img">
                                     <a href="job-details.html">
                                         <img src="{{asset('assets/img/company-logo/2.png')}}" alt="company logo">
                                     </a>
                                 </div>
-                            </div>
+                            </div> --}}
 
-                            <div class="col-lg-6">
+                            <div class="col-lg-8">
                                 <div class="job-info">
                                     <h3>
                                         <a href="/{{$job->jID}}/candidacies">{{$job->job_title}}</a>
@@ -40,14 +40,9 @@
                                 </div>
                             </div>
 
-                            <div class="col-lg-3">
-                                <div class="job-save">
-                                    <span>{{$job->type_title}}</span>
-                                    <p>
-                                        <i class='bx bx-stopwatch'></i>
-                                    </p>
-                                    <a href="/editPost/{{$job->jID}}">Edit</a>
-                                    {{-- <a href="/postDelete/{{$job->jID}}">Delete</a> --}}
+                            <div class="col-lg-4">
+                                <div class="job-save" style="margin-buttom= ;position:absolute">
+                                    <a  href="/editPost/{{$job->jID}}"><span style="background-color: black; color:white; ">Edit</span></a>
                                 </div>
                             </div>
                         </div>

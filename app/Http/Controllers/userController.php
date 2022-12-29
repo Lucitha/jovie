@@ -58,13 +58,12 @@ class userController extends Controller
         }else{
             $tab=[];
             
-            // foreach ($user as $key=> $value) {
-                session()->put('id',$user->id);
-                session()->put('email',$user->email);
-                session()->put('name',$user->name);
-                session()->put('tag',$user->tag);
-                session()->save();
-            // }
+            session()->put('id',$user->id);
+            session()->put('email',$user->email);
+            session()->put('name',$user->name);
+            session()->put('tag',$user->tag);
+            session()->save();
+
             if($user->tag == 0 || $user->tag == 1){
               return redirect('/profil') ;
             }else{
@@ -85,7 +84,7 @@ class userController extends Controller
         $infos= Users::where('id',session()->get('id'))->first();
         if($infos->tag==1){
             $infos->username=$request->job;
-            $infos->name=$request->name;
+            $infos->name=$request->company_name;
             $infos->email=$request->company_email;
             $infos->business_number=$request->business_number;
             $infos->post_office_box=$request->post_office_box;
@@ -136,6 +135,10 @@ class userController extends Controller
     public function showCompanies(){
         $companies= Users::where('tag',1)->get();
         return view('companies', compact('companies'));
+    }
+    public function resetPassword(){
+        $reset =generatePassword();
+        return view();
     }
     public function deconnection(){
         session()->flush();

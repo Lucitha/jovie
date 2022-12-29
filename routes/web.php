@@ -19,16 +19,10 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-    return redirect('jobs');
+    return redirect('search');
 });
-Route::get('/can', function () {
-    return view('/company/candidacies');
-});
-Route::get('/c', function () {
-    return view('company/jobList');
-});
-Route::get('/j', function () {
-    return view('companies');
+Route::get('/s', function () {
+    return view('search');
 });
 Route::get('/r', function () {
     return view('resetPassword');
@@ -42,11 +36,10 @@ Route::get('/register', function () {
 Route::get('/ap', function () {
     return view('candidats/myApply');
 });
+
 Route::post('/login', [ userController::class, 'connexion' ]);
 Route::get('/jobs',[JobController::class,'showJob']);
 Route::get('/details/{id}',[JobController::class,'detailsJob']);
-
-
 
 Route::get('/admin/settings', [AdminController::class, 'getSettings']);
 Route::get('/admin/deleteC/{id}', [AdminController::class, 'deleteCategorie']);
@@ -60,14 +53,15 @@ Route::get('/jobList',[JobController::class,'companyJob']);
 Route::get('/postDelete/{id}',[JobController::class,'deletePost']);
 Route::get('/editPost/{id}',[JobController::class,'editPost']);
 Route::get('/company/{id}',[JobController::class,'jobByCompany']);
+Route::get('/search',[JobController::class,'searching']);
+Route::get('/typeJob/{id}',[JobController::class,'jobtype']);
 Route::post('/updateJob/{id}',[JobController::class,'updatePost']);
 
 Route::get('/{id}/candidacies',[CandidacyController::class,'showCandidacies'])->name('candidate');
 
-
 Route::get('/applications',[CandidacyController::class,'showApply']);
+Route::post('/resum/{id}',[CandidacyController::class,'resum']);
 Route::post('/apply/{id}',[CandidacyController::class,'saveCandidacy']);
-
 
 Route::post('/save_candidate', [userController::class, 'saveCandidate']);
 Route::post('/save_company', [userController::class, 'saveCompany']);

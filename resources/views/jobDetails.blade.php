@@ -141,20 +141,27 @@
                                 $start=strtotime($detail->start_at);
                                 $end=strtotime($detail->end_at);
                                 if($date>= $start && $date <= $end ){
-                                    if(session()->get('tag')==0){
-                                            echo'
-                                        <div class="form-group col-md-12">
-                                            <label for="">Your contact</label>
-                                            <input name="phone" id="phone" class="form-control" type="tel" placeholder="000000000">
-                                        </div>
-                                        <div class="form-group col-md-12">
-                                            <label for="">Your Resume</label>
-                                            <input name="cv" id="cv" class="form-control" type="file">
-                                        </div>
+                                    if(session()->get('id') && session()->get('tag')==0){
+                                        if(!is_null($candidacy)){
+                                              echo'
+                                            <div class="form-group col-md-12">
+                                                <label for="">Your contact</label>
+                                                <input name="phone" id="phone" class="form-control" type="tel" placeholder="000000000">
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <label for="">Your Resume</label>
+                                                <input name="cv" id="cv" class="form-control" type="file">
+                                            </div>
                                         
                                             <button type="submit" class="post-btn" style="background-color: #010c29; border-solid:2px;border-radius:6px;color:white; padding:0.3rem" >
                                                Save 
                                             </button>';
+                                        }else{
+                                            echo'<div class="form-group col-md-12">
+                                                <label>Vous avez déjà postulé à cette offre</label>
+                                            </div> ';
+                                        }
+                                          
                                     } else{
                                         echo'<div class="form-group col-md-12">
                                                 <label>Veuillez vous connecter pour postuler à cette offre</label>
@@ -164,7 +171,7 @@
                                 }else{
 
                                     echo'<div class="form-group col-md-8">
-                                            <label>Cette offre est expiré</label> 
+                                            <label>Cette offre est expirée</label> 
                                         </div> ';
                                 }
                             @endphp
