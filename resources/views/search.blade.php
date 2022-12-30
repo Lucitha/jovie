@@ -4,7 +4,7 @@
 <section class="job-details ptb-100">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8">
+            <div class="col-lg-9">
                 @foreach ($jobs as $job)
                     <div class="account-details">  
                         <article class="popular-post">
@@ -23,32 +23,51 @@
                     </div>
                 @endforeach  
             </div>
+            <div class="col-lg-9" id="result">
+            </div>
 
-            <div class="col-lg-4">
+            <div class="col-lg-3">
                 
                 <div class="job-sidebar">
                     <div>
-                        <form >
-                            <h3>Categories</h3>
-                            <ul>
-                                @foreach ($categories as $categorie)
-                                <li>
-                                    <a href="/job_categories/{{$categorie->id}}">{{$categorie->category_title}}</a>
-                                </li>  
-                                @endforeach
-                            </ul>
-                        </form>
-                    </div>
-                    <div>
                         <form>
-                            <h3 style='border: none; border-top: 1px dotted black;'>Type</h3>
-                            <ul>
-                                @foreach ($types as $type)
-                                    <li>
-                                    <a href="/job_type/{{$type->id}}">{{$type->type_title}}</a>
-                                </li>
-                                @endforeach
-                            </ul>
+                            <div style="margin-bottom: 1rem"> 
+                                
+                                <h3 style='border: 1px dotted black; text-align:center;padding:0.3rem; margin'>Job</h3>
+                                <input class="form-control" type="text" id="job_title" name="job_title" placeholder="Search" >
+                                   
+                            </div>
+                            
+                            <div style="margin-bottom: 0.6rem">
+                                <ul>
+                                    <h3 style='border: 1px dotted black; text-align:center;padding:0.3rem'>Category</h3>
+                                    @foreach ($categories as $categorie)
+                                    <input type="checkbox" id="category" name="category" value="{{$categorie->id}}">&nbsp;{{$categorie->category_title}}<br>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            
+                            <div style="margin-bottom: 0.6rem">
+                                <ul>
+                                    <h3 style='border: 1px dotted black; text-align:center;padding:0.3rem'>Type</h3>
+                                    @foreach ($types as $type)
+                                    <input id="category" name="category" type="checkbox" value="{{$type->id}}">&nbsp;{{$type->type_title}}<br>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            <div style="margin-bottom: 0.6rem"> 
+                                {{-- <div class="row">
+                                    <div class="col-lg-3 col-md-4">Job</div>
+                                    <div class="col-lg-3 col-md-4"><input type="text" id="job_title" name="job_title" > </div>
+                                </div> --}}
+                                
+                                {{-- <h3 style='border: 1px dotted black; text-align:center;padding:0.3rem'>Job</h3>--}}
+                                {{-- <input type="text" id="job_title" name="job_title" > --}}
+                                                          
+                            </div>
+                            <div class="signup-btn text-center">
+                                <button id="search" name="search" type="submit"  class="btn btn-block"style="background-color: #fd1616;color:white;font-size:16px;text-align:center;  border-radius:5px; margin-top:0.8rem; padding:0.2rem">Search</button>
+                            </div>
                         </form>
                     </div>  
                 </div>  
@@ -57,3 +76,8 @@
     </div>
 </section>
 @endsection
+<script>
+    function research() {
+        
+    }
+</script>
