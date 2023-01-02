@@ -53,7 +53,8 @@ Route::get('/jobList',[JobController::class,'companyJob']);
 Route::get('/postDelete/{id}',[JobController::class,'deletePost']);
 Route::get('/editPost/{id}',[JobController::class,'editPost']);
 Route::get('/company/{id}',[JobController::class,'jobByCompany']);
-Route::get('/search',[JobController::class,'searching']);
+Route::get('/search',[JobController::class,'search']);
+Route::post('/searching',[JobController::class,'searching']);
 Route::get('/typeJob/{id}',[JobController::class,'jobtype']);
 Route::post('/updateJob/{id}',[JobController::class,'updatePost']);
 

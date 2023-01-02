@@ -139,13 +139,6 @@ class JobController extends Controller
         $date=strtotime(date('Y-m-d H:i:s'));
         $start=strtotime($edit->start_at);
         $end=strtotime($edit->end_at);
-        if($date>$start){
-            $output =  '<div class="col-md-12 text-center">
-                            <button type="submit" name="updateJob" id="updateJob" class="post-btn">
-                                Post A Job
-                            </button>
-                        </div>';
-        }
         return view('company/jobEdit', compact('edit','categories','types','money'));        
     }
     public function candidateJob(Request $request){
@@ -161,7 +154,7 @@ class JobController extends Controller
                     ->select('*')
                     ->where('id',$id)
                     ->first();
-        // dd($id);
+
         $jobs= Job::select('*','jobs.id as jID')
         ->join('types','type_id','=','types.id')
         ->join('categories','category_id','=','categories.id')
@@ -170,25 +163,81 @@ class JobController extends Controller
         ->get();
         return view('listJob', compact('jobs','company'));
     } 
-    public function jobByType($id){
-        $filters= Job::select('jobs.*')
-        ->join('types','type_id','=','types.id')
-        ->where('type_id',$id);
-        return view('/jobList', compact('filters'));
-    } 
-    public function jobByCategory($id){
-        $filtres= Job::select('jobs.*')
-        ->join('categories','category_id','=','categories.id')
-        ->where('category_id',$id);
-        return view('/jobList', compact('filtres'));
-    } 
-    public function jobByTypeCategory($type,$category){
-        $jobs= Job::select('jobs.*')
-        ->where('category_id',$type)
-        ->where('category_id',$category);
-        return view('/jobList', compact('jobs'));
-    } 
     public function searching(){
+        $output = '';
+        if(!request()){
+
+        }elseif (request('job_title') && !request('type') && !request('category')) {
+
+            $where = [['jobs.job_title',request('job_title')]];
+
+        }elseif (!request('job_title') && request('type') && !request('category')) {
+
+            $where = [['types.id', request('type')]];
+
+        }elseif (!request('job_title') && !request('type') && request('category')) {
+
+            $where = [['categories.id', request('category')]];
+
+        }elseif (!request('job_title') && request('type') && request('category')) {
+
+            $where = [['types.id', request('type')], ['categories.id', request('category')]];
+
+        }elseif (request('job_title') && !request('type') && request('category')) {  
+
+            $where = [['jobs.job_title', request('job_title')], ['categories.id', request('category')]]; 
+
+        }elseif ( request('job_title') && !request('type') && !request('category')) {
+
+            $where = [['jobs.job_title', request('job_title')], ['categories.id', request('category')]];
+
+        }else{
+
+            $where = [['jobs.job_title', request('job_title')], ['types.id', request('type')], ['categories.id', request('category')]];
+        }
+        // dd(request('category'));
+            $filters= Job::select('jobs.*')
+            ->join('types','type_id','=','types.id')
+            ->join('categories','category_id','=','categories.id')
+            ->where($where)
+            ->get();
+        if (count($filters) > 0) {
+            foreach ($filters as $filter) {
+                $output .= ' <div class="account-details">  
+                            <article class="popular-post">
+                                <div class="info">
+                                    <h4>
+                                        <a href="/details/' . $filter->id . '">' . $filter->job_title . '</a>
+                                    </h4>                                
+                                    <ul>
+                                        <i class="bx bx-location-plus"></i>
+                                        ' . $filter->location . '
+                                        <i class="bx bx-briefcase"></i>
+                                        ' . $filter->type_title . '
+                                    </ul>
+                                </div>
+                            </article>
+                        </div>';
+
+            }
+        }else{
+            $output .= ' <div class="account-details">  
+                            <article class="popular-post">
+                                <div class="info">
+                                    <h4>
+                                       Aucun poste ne correspond aux informations situées
+                                    </h4>                                
+                                   
+                                </div>
+                            </article>
+                        </div>';
+        }
+        return json_encode($output);
+    //    return(compact('output'));
+    
+   
+    } 
+    public function search(){
         $categories=\DB::table('categories')
         ->select('*')
         ->get();

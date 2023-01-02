@@ -30,7 +30,8 @@
                 
                 <div class="job-sidebar">
                     <div>
-                        <form>
+                        <form id="recherche" name="recherche">
+                            @csrf
                             <div style="margin-bottom: 1rem"> 
                                 
                                 <h3 style='border: 1px dotted black; text-align:center;padding:0.3rem; margin'>Job</h3>
@@ -42,7 +43,7 @@
                                 <ul>
                                     <h3 style='border: 1px dotted black; text-align:center;padding:0.3rem'>Category</h3>
                                     @foreach ($categories as $categorie)
-                                    <input type="checkbox" id="category" name="category" value="{{$categorie->id}}">&nbsp;{{$categorie->category_title}}<br>
+                                    <input type="radio" id="category" name="category" value="{{$categorie->id}}">&nbsp;{{$categorie->category_title}}<br>
                                     @endforeach
                                 </ul>
                             </div>
@@ -51,7 +52,7 @@
                                 <ul>
                                     <h3 style='border: 1px dotted black; text-align:center;padding:0.3rem'>Type</h3>
                                     @foreach ($types as $type)
-                                    <input id="category" name="category" type="checkbox" value="{{$type->id}}">&nbsp;{{$type->type_title}}<br>
+                                    <input id="type" name="type" type="radio" value="{{$type->id}}">&nbsp;{{$type->type_title}}<br>
                                     @endforeach
                                 </ul>
                             </div>
@@ -66,7 +67,7 @@
                                                           
                             </div>
                             <div class="signup-btn text-center">
-                                <button id="search" name="search" type="submit"  class="btn btn-block"style="background-color: #fd1616;color:white;font-size:16px;text-align:center;  border-radius:5px; margin-top:0.8rem; padding:0.2rem">Search</button>
+                                <button class="btn btn-block" style="background-color: #fd1616;color:white;font-size:16px;text-align:center; border-radius:5px; margin-top:0.8rem; padding:0.2rem" id="search" name="search" type="button" onclick="research()">Search</button>
                             </div>
                         </form>
                     </div>  
@@ -78,6 +79,20 @@
 @endsection
 <script>
     function research() {
-        
+        var form =$('#recherche')[0]
+        var formData= new FormData(form);
+
+        $.ajax({
+            type: "post",
+            url: "/searching",
+            enctype: 'multipart/form-data',
+            processData: false,
+            contentType: false,
+            data: formData,
+            success: function (response) {
+                // $('#result').JSON parse(response);
+                console.log(response);
+            }
+        });
     }
 </script>
