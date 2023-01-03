@@ -169,55 +169,57 @@ class JobController extends Controller
 
         }elseif (request('job_title') && !request('type') && !request('category')) {
 
-            $where = [['jobs.job_title',request('job_title')]];
+                $where = [['jobs.job_title','LIKE', '%'.request('job_title').'%']];
 
         }elseif (!request('job_title') && request('type') && !request('category')) {
 
-            $where = [['types.id', request('type')]];
+            $where = [['jobs.type_id','!=', request('type')]];
 
         }elseif (!request('job_title') && !request('type') && request('category')) {
 
-            $where = [['categories.id', request('category')]];
+            $where = [['jobs.category_id', request('category')]];
 
         }elseif (!request('job_title') && request('type') && request('category')) {
 
-            $where = [['types.id', request('type')], ['categories.id', request('category')]];
+            $where = [['jobs.type_id', request('type')], ['jobs.category_id', request('category')]];
 
         }elseif (request('job_title') && !request('type') && request('category')) {  
 
-            $where = [['jobs.job_title', request('job_title')], ['categories.id', request('category')]]; 
+            $where = [['jobs.job_title','LIKE', '%'.request('job_title').'%'], ['jobs.category_id', request('category')]]; 
 
         }elseif ( request('job_title') && !request('type') && !request('category')) {
 
-            $where = [['jobs.job_title', request('job_title')], ['categories.id', request('category')]];
+            $where = [['jobs.job_title', 'LIKE', '%'.request('job_title').'%'], ['jobs.category_id', request('category')]];
 
         }else{
 
-            $where = [['jobs.job_title', request('job_title')], ['types.id', request('type')], ['categories.id', request('category')]];
+            $where = [['jobs.job_title', request('job_title')], ['jobs.type_id', request('type')], ['categories.id', request('category')]];
         }
-        // dd(request('category'));
-            $filters= Job::select('jobs.*')
+        // dd($where);
+            $filters= \DB::table('jobs')
+            ->select('jobs.*','types.*')
             ->join('types','type_id','=','types.id')
             ->join('categories','category_id','=','categories.id')
             ->where($where)
             ->get();
+        // dd($filters);
         if (count($filters) > 0) {
             foreach ($filters as $filter) {
-                $output .= ' <div class="account-details">  
-                            <article class="popular-post">
-                                <div class="info">
-                                    <h4>
-                                        <a href="/details/' . $filter->id . '">' . $filter->job_title . '</a>
-                                    </h4>                                
-                                    <ul>
-                                        <i class="bx bx-location-plus"></i>
-                                        ' . $filter->location . '
-                                        <i class="bx bx-briefcase"></i>
-                                        ' . $filter->type_title . '
-                                    </ul>
-                                </div>
-                            </article>
-                        </div>';
+                $output .= '<div class="account-details">  
+                                <article class="popular-post">
+                                    <div class="info">
+                                        <h4>
+                                            <a href="/details/' . $filter->id . '">' . $filter->job_title . '</a>
+                                        </h4>                                
+                                        <ul>
+                                            <i class="bx bx-location-plus"></i>
+                                              ' . $filter->location . '
+                                            <i class="bx bx-briefcase"></i>
+                                            ' . $filter->type_title . '
+                                        </ul>
+                                    </div>
+                                </article>
+                            </div>';
 
             }
         }else{
@@ -225,9 +227,8 @@ class JobController extends Controller
                             <article class="popular-post">
                                 <div class="info">
                                     <h4>
-                                       Aucun poste ne correspond aux informations situées
-                                    </h4>                                
-                                   
+                                       Aucun poste disponible
+                                    </h4> 
                                 </div>
                             </article>
                         </div>';
@@ -247,8 +248,7 @@ class JobController extends Controller
         ->get();
 
         $jobs= Job::select('jobs.*')
-        -> limit(5)
-        ->get();
+        ->paginate(1);
         return view('/search', compact('categories','types','jobs'));
     }
 

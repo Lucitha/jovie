@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
+        
         <!-- Owl Carousel CSS -->
         <link rel="stylesheet" href="{{asset('assets/css/owl.carousel.min.css')}}">
         <!-- Owl Carousel Theme Default CSS -->
@@ -29,6 +30,7 @@
         <!-- Favicon -->
         <link rel="icon" type="image/png" href="{{asset('assets/img/favicon.png')}}">  
         <link href="{{asset('assets/bootstrap/bootstrap.min.css')}}">
+        
         <style>
    .backend{
             box-shadow: 0 10px 30px rgb(0 0 0 / 7%);
