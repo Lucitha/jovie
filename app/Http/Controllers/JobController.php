@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class JobController extends Controller
 {
-    //
+
     public function saveJob(Request $request){
         if( $request->salary_min && $request->salary_max){
             $salary=$request->salary_min.'-'.$request->salary_max;
@@ -173,7 +173,7 @@ class JobController extends Controller
 
         }elseif (!request('job_title') && request('type') && !request('category')) {
 
-            $where = [['jobs.type_id','!=', request('type')]];
+            $where = [['jobs.type_id','=', request('type')]];
 
         }elseif (!request('job_title') && !request('type') && request('category')) {
 
@@ -223,7 +223,7 @@ class JobController extends Controller
 
             }
         }else{
-            $output .= ' <div class="account-details">  
+            $output .= ' <div class="account-details" style="text-align:center;">  
                             <article class="popular-post">
                                 <div class="info">
                                     <h4>

@@ -9,10 +9,16 @@ class userController extends Controller
 {
     //
     public function saveCompany(Request $request){
+        session()->put('currentTab', 'company');
+        session()->save();
         $this->validate($request, [
-            'passwordCompany' => "required|min:6'",
-            'passwordConfirm' => "required|min:6'",
+            'name'=> "required",
+            'email' => "required|email",
+            'business_number' => "required",
+            'passwordCompany' => "min:6|required_with:passwordConfirm|same:passwordConfirm",
+            'passwordConfirm' => "required|min:6",
         ]);
+        
         if($request->passwordCompany == $request->passwordConfirm){
             $password=password_hash($request->passwordCompany, PASSWORD_DEFAULT);
             Users::create([
@@ -26,9 +32,13 @@ class userController extends Controller
         return redirect('/connexion');
     }
     public function saveCandidate(Request $request){
-        $this->validate($request, [
-            'passwordCandidate' => "required|min:6'",
-            'passwordConfirm' => "required|min:6'",
+        session()->put('currentTab', '');
+        session()->save();
+        $validate= $this->validate($request, [
+            'nameCandidate'=> "required",
+            'emailCandidate' => "required|email",
+            'passwordCandidate' => "min:6|required_with:passwordConfirm|same:passwordConfirm",
+            'passwordConfirm' => "required|min:6",
         ]);
         if($request->passwordCandidate == $request->passwordConfirm){
             $password=password_hash($request->passwordCandidate, PASSWORD_DEFAULT);

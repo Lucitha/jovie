@@ -255,30 +255,24 @@
                             <ul>
                                 <li>
                                     <span>
-                                        <i class='bx bxs-phone'></i>
-                                        Phone:
+                                        
+                                        <a href="tel:882569756"> <i class='bx bxs-phone'></i> +101 984 754 </a>
                                     </span>
-                                    <a href="tel:882569756">
-                                        +101 984 754
-                                    </a>
+                                    
                                 </li>
 
                                 <li>
                                     <span>
-                                        <i class='bx bxs-envelope'></i>
-                                        Email:
+                                        
+                                        <a href="mailto:info@jovie.com"><i class='bx bxs-envelope'></i> info@jovie.com </a>
                                     </span>
-                                    <a href="mailto:info@jovie.com">
-                                        info@jovie.com
-                                    </a>
+                                    
                                 </li>
 
                                 <li>
                                     <span>
-                                        <i class='bx bx-location-plus'></i>
-                                        Address:
+                                        <i class='bx bx-location-plus'></i>123, Denver, USA
                                     </span>
-                                    123, Denver, USA
                                 </li>
                             </ul>
                         </div>
@@ -288,7 +282,7 @@
 
         </footer>
         <div class="copyright-text text-center">
-            <p>Copyright @2022 Jovie. All Rights Reserved By <a href="https://hibootstrap.com/" target="_blank">HiBootstrp.com</a></p>
+            <p>Copyright @php echo  '@'.date('Y'); @endphp Jovie. All Rights Reserved By <a href="https://hibootstrap.com/" target="_blank">HiBootstrp.com</a></p>
         </div>
         <!-- Footer Section End -->
 

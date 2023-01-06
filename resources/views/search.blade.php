@@ -25,7 +25,21 @@
                         </article>
                     </div>
                 @endforeach  
-                <div style="display: flex">{{ $jobs->links() }}</div>
+                {{-- <div style="display: flex"></div> --}}
+                <div style="align-content: center; margin:50px 0px 0px;">
+
+                    <nav aria-label="Page navigation example">
+                        {{-- <ul class="pagination justify-content-center">
+                            <li class="page-item"><a class="page-link" href="#"></a></li>
+                            <li class="page-item"><a class="page-link active" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                {{ $jobs->links() }}
+                            </li>
+                        </ul> --}}
+                        {{$jobs->links("pagination::bootstrap-4")}}
+                    </nav>  
+                </div>
                 
             </div>
 
@@ -59,39 +73,13 @@
                                     @endforeach
                                 </ul>
                             </div>
-                            <div style="margin-bottom: 0.6rem"> 
-                                {{-- <div class="row">
-                                    <div class="col-lg-3 col-md-4">Job</div>
-                                    <div class="col-lg-3 col-md-4"><input type="text" id="job_title" name="job_title" > </div>
-                                </div> --}}
-                                
-                                {{-- <h3 style='border: 1px dotted black; text-align:center;padding:0.3rem'>Job</h3>--}}
-                                {{-- <input type="text" id="job_title" name="job_title" > --}}
-                                                          
-                            </div>
+                            
                             <div class="signup-btn text-center">
                                 <button class="btn btn-block" style="background-color: #fd1616;color:white;font-size:16px;text-align:center; border-radius:5px; margin-top:0.8rem; padding:0.2rem" id="search" name="search" type="button" onclick="research()">Search</button>
                             </div>
                         </form>
                     </div>  
-                </div>
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
-                                <i class='bx bx-chevrons-left bx-fade-left'></i>
-                            </a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link active" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">
-                                <i class='bx bx-chevrons-right bx-fade-right'></i>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>  
+                </div> 
             </div>
         </div>
     </div>
