@@ -1,13 +1,13 @@
 @extends('layout')
 @section('content')
-    <section class="job-section jobs-grid-section pt-100 pb-70">
+    <section class="job-section jobs-grid-section pt-100 pb-70">:
         <div class="container">
             <div class="section-title text-center">
                 <h2>Jobs You May Be Interested In</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus</p>
             </div>
 
-            <div class="row">
+            {{-- <div class="row"> --}}
                 
                 @foreach ($jobs as $job)
                 <div class="col-md-6">
@@ -53,7 +53,7 @@
                     </div>
                 </div>
                 @endforeach   
-            </div>
+            {{-- </div> --}}
         </div>
     </section>
 @endsection

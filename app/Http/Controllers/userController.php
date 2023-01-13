@@ -2,27 +2,41 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\Notif;
 use App\Models\Users;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
+//Import PHPMailer classes into the global namespace
+//These must be at the top of your script, not inside a function
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+//Load Composer's autoloader
+// require 'vendor/autoload.php';
+
 
 class userController extends Controller
 {
     //
     public function saveCompany(Request $request){
+        // dd($request);
         session()->put('currentTab', 'company');
         session()->save();
         $this->validate($request, [
-            'name'=> "required",
-            'email' => "required|email",
+            'nameCompany'=> "required",
+            'emailCompany' => "required|email",
             'business_number' => "required",
             'passwordCompany' => "min:6|required_with:passwordConfirm|same:passwordConfirm",
-            'passwordConfirm' => "required|min:6",
+            'pConfirm' => "required|min:6",
         ]);
-        
-        if($request->passwordCompany == $request->passwordConfirm){
+        if($request->passwordCompany == $request->pConfirm){
             $password=password_hash($request->passwordCompany, PASSWORD_DEFAULT);
+            $table = ['email' => $request->emailCompany, 'name' => $request->nameCompany];
+            
             Users::create([
-                'name'=>$request->nameCompany,
+                'name'=>json_encode($table),
                 'email'=>$request->emailCompany,
                 'password'=>$password,
                 'tag'=>1,
@@ -62,10 +76,11 @@ class userController extends Controller
         $user=Users::where('email',$request->email)
             ->first();
         if(!$user){
-            return redirect('/register');
+            return back()->with('warning','Veuillez créer un compte pour avoir accès à cette plateforme');
         } elseif (!password_verify($request->password,$user->password)) {
-            return redirect('/connexion');
+            return back()->with('error','Veuillez vérifier vos identifiants de connexion');
         }else{
+            // dd(json_decode($user->name)->email );
             $tab=[];
             
             session()->put('id',$user->id);
@@ -75,12 +90,13 @@ class userController extends Controller
             session()->save();
 
             if($user->tag == 0 || $user->tag == 1){
-              return redirect('/profil') ;
+              return redirect('/profil')->with('info','Connexion établie avec succès'); ;
             }else{
                  return redirect('/admin/settings');
             }
         }
     }
+
     public function showProfil(){
         $info=Users::where('id',session()->get('id'))->first();
         if($info->tag==0){
@@ -115,7 +131,6 @@ class userController extends Controller
         return back();
     }
     public function socialLink(Request $request){
-        // $infos= Users::where('id',session()->get('id'))->first();
         $link=[];
         $link['facebook']=$request->facebook;
         $link['twitter']=$request->twitter;
@@ -139,20 +154,107 @@ class userController extends Controller
         return back();
     }
     public function showCandidates(){
-        $candidates= Users::where('tag',0)->get();
+        $candidates= Users::where('tag',0)->paginate(1);
         return view('candidates', compact('candidates'));
     }
     public function showCompanies(){
-        $companies= Users::where('tag',1)->get();
+        $companies= Users::where('tag',1)->paginate(1);
         return view('companies', compact('companies'));
     }
-    public function resetPassword(){
-        $reset =generatePassword();
-        return view();
+    public function resetView($id,$link){
+        $user=Users::where('id',$id)->first();
+        return view('reset',compact('id','link','user'));
+    }
+    public function reset(Request $request){
+        $this->validate($request, [
+            'password' => "min:6|required_with:passwordConfirm|same:passwordConfirm",
+            'passwordConfirm' => "required|min:6",
+        ]);
+        $user=Users::where('id',$request->token)
+        ->first();
+        // Hash::check($request->token, $user->email, []);
+
+        $password=password_hash($request->password, PASSWORD_DEFAULT);
+        $user->password=$password;
+        $user->save();
+        return redirect('/connexion')->with('info','Mot de passe réinitialisé avec succès. Utilisez vos nouveaux identifiants pour vous connecter !');
+    }
+    public function resetPassword(Request $request){
+        $this->validate($request, [
+            'email' => "required|email",
+        ]);
+        $user=Users::where('email',$request->email)
+        ->first();
+        
+        $info = [];
+
+        // $hash=hash('md5', $request->email);
+        $hash=Crypt::encryptString($request->email);
+
+        $info = [
+                'NAME' => $user->name,
+                'LINK' => $user->id.'/'.$hash,
+                ];
+
+        
+        if($user){
+            \Mail::to($user->email)->send(new Notif($info));
+            // dd("Email is Sent.");
+        }
+        
+        return back()->with('info','Veuillez consulter vos mails pour réinitialiser votre mot de passe. Merci !');
     }
     public function deconnection(){
         session()->flush();
         return redirect('/');
     }
+
+
+
+    // $mail = new PHPMailer(true);
+
+    // try {
+    //     //Server settings
+    //     $mail->SMTPDebug = 0;                      //Enable verbose debug output
+    //     $mail->isSMTP();                                            //Send using SMTP
+    //     $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+    //     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+    //     $mail->Username   = 'koukeprince@gmail.com';                     //SMTP username
+    //     $mail->Password   = 'axlofgzaanrcnoop';                               //SMTP password
+    //     $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
+    //     $mail->Port       = 587;                                //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+    //     $info = [
+    //     'NAME' => $user->name,
+    //     'LINK' => $user->id.'/'.$hash,
+    //     ];
+
+       
+
+        //Recipients
+        // $mail->setFrom('koukeprince@gmail.com' , 'JOVIE');
+        // $mail->addAddress($user->email);     //Add a recipient
+        // $mail->addAddress('ellen@example.com');               //Name is optional
+        // $mail->addReplyTo('info@example.com', 'Information');
+        // $mail->addCC('cc@example.com');
+        // $mail->addBCC('bcc@example.com');
+
+        //Attachments
+        // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+        // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+
+        //Content
+        // $mail->isHTML(true);                                  //Set email format to HTML
+        // $mail->Subject = 'Password Reset';
+        // $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
+        // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+        // $mail->send(Notif($info));
+    //     echo 'Message has been sent';
+    // } catch (Exception $e) {
+    //     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    //     dd($e);
+    //     die;
+    // }
 
 }

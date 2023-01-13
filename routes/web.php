@@ -24,14 +24,17 @@ Route::get('/', function () {
 Route::get('/s', function () {
     return view('search');
 });
-Route::get('/r', function () {
-    return view('resetPassword');
-});
+// Route::get('/reset/', function () {
+//     return view('reset');
+// });
 Route::get('/connexion', function () {
     return view('login');
 });
 Route::get('/register', function () {
     return view('register');
+});
+Route::get('/reset', function () {
+    return view('resetAsking');
 });
 Route::get('/ap', function () {
     return view('candidats/myApply');
@@ -66,12 +69,15 @@ Route::post('/apply/{id}',[CandidacyController::class,'saveCandidacy']);
 
 Route::post('/save_candidate', [userController::class, 'saveCandidate']);
 Route::post('/save_company', [userController::class, 'saveCompany']);
+Route::get('/reset/{id}/{link}', [userController::class, 'resetView']);
 Route::get('/disconnect', [userController::class, 'deconnection']);
 Route::get('/allCandidates', [userController::class, 'showCandidate' ]);
 Route::get('/profil', [userController::class, 'showProfil']);
 Route::post('/save_profil', [userController::class, 'updateProfil']);
 Route::post('/socialLink', [userController::class, 'socialLink']);
 Route::post('/update_password', [userController::class, 'updatePass']);
+Route::post('/newPassword', [userController::class, 'reset']);
+Route::post('/resetAsk', [userController::class, 'resetPassword']);
 Route::get('/candidates', [userController::class, 'showCandidates']);
 Route::get('/companies', [userController::class, 'showCompanies']);
 

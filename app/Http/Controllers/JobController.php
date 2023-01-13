@@ -169,40 +169,42 @@ class JobController extends Controller
 
         }elseif (request('job_title') && !request('type') && !request('category')) {
 
-                $where = [['jobs.job_title','LIKE', '%'.request('job_title').'%']];
+            $where1 = [['jobs.job_title','LIKE', '%'.request('job_title').'%']];
 
         }elseif (!request('job_title') && request('type') && !request('category')) {
 
-            $where = [['jobs.type_id','=', request('type')]];
+            $where1 = [['jobs.type_id','=', request('type')]];
 
         }elseif (!request('job_title') && !request('type') && request('category')) {
 
-            $where = [['jobs.category_id', request('category')]];
+            $where1 = [['jobs.category_id', request('category')]];
 
         }elseif (!request('job_title') && request('type') && request('category')) {
 
-            $where = [['jobs.type_id', request('type')], ['jobs.category_id', request('category')]];
+            $where1 = [['jobs.type_id', request('type')], ['jobs.category_id', request('category')]];
 
         }elseif (request('job_title') && !request('type') && request('category')) {  
 
-            $where = [['jobs.job_title','LIKE', '%'.request('job_title').'%'], ['jobs.category_id', request('category')]]; 
+            $where1 = [['jobs.job_title','LIKE', '%'.request('job_title').'%'], ['jobs.category_id', request('category')]]; 
 
         }elseif ( request('job_title') && !request('type') && !request('category')) {
 
-            $where = [['jobs.job_title', 'LIKE', '%'.request('job_title').'%'], ['jobs.category_id', request('category')]];
+            $where1 = [['jobs.job_title', 'LIKE', '%'.request('job_title').'%'], ['jobs.category_id', request('category')]];
 
         }else{
 
-            $where = [['jobs.job_title', request('job_title')], ['jobs.type_id', request('type')], ['categories.id', request('category')]];
+            $where1 = [['jobs.job_title', request('job_title')], ['jobs.type_id', request('type')], ['categories.id', request('category')]];
         }
+        $where2 = [['jobs.start_at', '<=', date('Y-m-d H:i:s')], ['jobs.end_at', '>=', date('Y-m-d H:i:s')]];
+        $where = array_merge($where1,$where2);
         // dd($where);
             $filters= \DB::table('jobs')
             ->select('jobs.*','types.*')
             ->join('types','type_id','=','types.id')
             ->join('categories','category_id','=','categories.id')
             ->where($where)
-            ->get();
-        // dd($filters);
+            ->paginate(2);
+ 
         if (count($filters) > 0) {
             foreach ($filters as $filter) {
                 $output .= '<div class="account-details">  
@@ -222,12 +224,15 @@ class JobController extends Controller
                             </div>';
 
             }
+            $output.='<div style="align-content: center; margin:50px 0px 0px;">
+                        '.$filters->links("pagination::bootstrap-4").'
+                    </div>';
         }else{
             $output .= ' <div class="account-details" style="text-align:center;">  
                             <article class="popular-post">
                                 <div class="info">
                                     <h4>
-                                       Aucun poste disponible
+                                       Aucun poste correspondant
                                     </h4> 
                                 </div>
                             </article>
@@ -239,6 +244,7 @@ class JobController extends Controller
    
     } 
     public function search(){
+        $where = [['jobs.start_at', '<=', date('Y-m-d H:i:s')], ['jobs.end_at', '>=', date('Y-m-d H:i:s')]];
         $categories=\DB::table('categories')
         ->select('*')
         ->get();
@@ -247,8 +253,12 @@ class JobController extends Controller
         ->select('*')
         ->get();
 
-        $jobs= Job::select('jobs.*')
-        ->paginate(1);
+        $jobs= Job::select('jobs.*','types.*')
+            ->join('types','type_id','=','types.id')
+            ->join('categories','category_id','=','categories.id')
+            ->where($where)
+            ->paginate(1);
+        // dd($jobs);
         return view('/search', compact('categories','types','jobs'));
     }
 

@@ -43,9 +43,7 @@
                         <input type="text" class="form-control" value="{{$company->name}}" name="company_name" id="company_name" placeholder="e.g. London" required>
                     </div>
                 </div>
-
-
-               
+  
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Phone Contact</label>

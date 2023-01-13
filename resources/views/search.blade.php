@@ -7,39 +7,48 @@
             {{-- <div class="col-lg-9">
             </div> --}}
             <div class="col-lg-9" id="result">
-                
-                @foreach ($jobs as $job)
-                    <div class="account-details">  
-                        <article class="popular-post">
-                            <div class="info">
-                                <h4>
-                                    <a href="/details/{{$job->id}}">{{$job->job_title}}</a>
-                                </h4>                                
-                                <ul>
-                                    <i class='bx bx-location-plus'></i>
-                                    {{$job->location}}
-                                    <i class='bx bx-briefcase' ></i>
-                                    {{$job->type_title}}
-                                </ul>
-                            </div>
-                        </article>
-                    </div>
-                @endforeach  
-                {{-- <div style="display: flex"></div> --}}
-                <div style="align-content: center; margin:50px 0px 0px;">
+                @php
+                    if ($jobs) {
 
-                    <nav aria-label="Page navigation example">
-                        {{-- <ul class="pagination justify-content-center">
-                            <li class="page-item"><a class="page-link" href="#"></a></li>
-                            <li class="page-item"><a class="page-link active" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                {{ $jobs->links() }}
-                            </li>
-                        </ul> --}}
-                        {{$jobs->links("pagination::bootstrap-4")}}
-                    </nav>  
-                </div>
+                        foreach ($jobs as $job){
+                            echo 
+                            '<div class="account-details">  
+                                <article class="popular-post">
+                                    <div class="info">
+                                        <h4>
+                                            <a href="/details/'.$job->id.'">'.$job->job_title.'</a>
+                                        </h4>                                
+                                        <ul>
+                                            <i class="bx bx-location-plus"></i>
+                                            '.$job->location.'
+                                            <i class="bx bx-briefcase" ></i>
+                                            '.$job->type_title.'
+                                        </ul>
+                                    </div>
+                                </article>
+                            </div>';
+                        }
+                        echo
+                        '<div style="align-content: center; margin:50px 0px 0px;">
+                            '.$jobs->links("pagination::bootstrap-4").'
+                        </div>';
+                    }else{
+                           echo
+                           '<div class="account-details" style="text-align:center;">  
+                                <article class="popular-post">
+                                    <div class="info">
+                                        <h4>
+                                            Aucune offre disponible
+                                        </h4> 
+                                    </div>
+                                </article>
+                            </div>';
+                            
+                        } 
+                @endphp
+                
+                {{-- <div style="display: flex"></div> --}}
+               
                 
             </div>
 

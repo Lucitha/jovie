@@ -58,8 +58,9 @@ class CandidacyController extends Controller
         ->join('users','candidate_id','=','users.id')
         ->where('candidate_id',session()->get('id'))
         ->get();
-        $apply_date=date('d-m-Y H:i:s',$candidacies->apply_date);
-        return view('candidats/myApply',compact('candidacies','apply_date'));
+        // dd($candidacies->apply_date);
+        // $apply_date=$candidacies->apply_date;
+        return view('candidats/myApply',compact('candidacies',));
     }
     public function resum($id){
         $candidacy = Candidacy::select('*')

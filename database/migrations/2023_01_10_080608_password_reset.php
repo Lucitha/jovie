@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Categories extends Migration
+class PasswordReset extends Migration
 {
     /**
      * Run the migrations.
@@ -14,12 +14,10 @@ class Categories extends Migration
     public function up()
     {
         //
-        Schema::create('categories', function (Blueprint $table) {
-            $table->id();
-            $table->string('category_title');
-            $table->string('category_description');
-            $table->dateTime('updated_at')->nullable();
-            $table->dateTime('created_at');
+        Schema::create('password_resets', function (Blueprint $table) {
+            $table->string('email')->index();
+            $table->string('token');
+            $table->timestamp('created_at')->nullable();
         });
     }
 

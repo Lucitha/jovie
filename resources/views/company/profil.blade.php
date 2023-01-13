@@ -4,37 +4,15 @@
 <section class="account-section ptb-100">
     <div class="container">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-lg-4 col-md-4">
                 <div class="account-information">
                     <div class="profile-thumb">
                         <img src="assets/img/account.jpg" alt="account holder image">
-                        <h3>{{$info->name}}</h3>
+                        <h3>{{json_decode($info->name)->name}}</h3>
                         <p>Web Developer</p>
                     </div>
                     <div class="d-flex align-items-start">
                         <div class="nav flex-column nav-pills me-3 col-md-12" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-
-                            {{-- <div class="d-flex align-items-start">
-                                <div class="nav flex-column nav-pills me-3 col-md-12" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                    <ul>
-                                        <li>
-                                            <button class=" active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true"><i class='bx bx-user'>Home</i></button>
-                                        </li>
-                                        <li>
-                                            <button class=" " id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false"><i class='bx bxs-file-doc'>Profile</i></button>
-                                        </li>
-                                        <li>
-                                            <button class=" " id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false"><i class='bx bx-briefcase'>Jobs</i></button>                                   
-                                        </li>
-                                        <li>  
-                                            <button class="" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false"> <i class='bx bx-envelope'>Candidacies</i></button>
-                                        </li>
-                                        <li>
-                                            <button class="" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false"><i class='bx bx-heart'>Saved Jobs</i></button>
-                                        </li>
-                                    </ul>  
-                                </div>
-                            </div> --}}
                             <ul>
                                 <li>
                                     <a href="#" class="active" >
@@ -84,7 +62,10 @@
                 </div>
             </div>
 
-            <div class="col-md-8">
+            <div class="col-lg-8 col-md-8">
+                <div class="" style="margin-bottom:-20px;">
+                    @include('flashMessage')
+                </div>
                 <div class="account-details">
                     
                         <nav>
@@ -105,7 +86,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Company Name</label>
-                                            <input type="text" name="company_name" value="{{$info->name}}" id="company_name" class="form-control" placeholder="Your Name">
+                                            <input type="text" name="company_name" value="{{json_decode($info->name)->name}}" id="company_name" class="form-control" placeholder="Your Name">
                                         </div>
                                     </div>
         
@@ -156,8 +137,7 @@
                                             <input type="text" name="region" id="region" value="{{$info->region}}"class="form-control" placeholder="Your Region">
                                         </div>
                                     </div>
-                                   
-                                    
+
                                     <div class="col-md-12">
                                         <button type="submit" class="account-btn">Save</button>
                                     </div>
@@ -219,8 +199,6 @@
                                             <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Confirm your new password">
                                         </div>
                                     </div>
-
-                                    
                                     <div class="col-md-12">
                                         <button type="submit" class="account-btn">Save</button>
                                     </div>

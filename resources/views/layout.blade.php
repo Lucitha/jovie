@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
-        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
         <!-- Owl Carousel CSS -->
         <link rel="stylesheet" href="{{asset('assets/css/owl.carousel.min.css')}}">
         <!-- Owl Carousel Theme Default CSS -->
@@ -32,19 +32,19 @@
         <link href="{{asset('assets/bootstrap/bootstrap.min.css')}}">
         
         <style>
-   .backend{
-            box-shadow: 0 10px 30px rgb(0 0 0 / 7%);
-            padding: 50px;
-            padding-top: 50px;
-            padding-right: 50px;
-            padding-bottom: 50px;
-            padding-left: 50px;
-            border-radius: 30px;
-            border-top-left-radius: 30px;
-            border-top-right-radius: 30px;
-            border-bottom-right-radius: 30px;
-            border-bottom-left-radius: 30px;
-        }
+            .backend{
+                box-shadow: 0 10px 30px rgb(0 0 0 / 7%);
+                padding: 50px;
+                padding-top: 50px;
+                padding-right: 50px;
+                padding-bottom: 50px;
+                padding-left: 50px;
+                border-radius: 30px;
+                border-top-left-radius: 30px;
+                border-top-right-radius: 30px;
+                border-bottom-right-radius: 30px;
+                border-bottom-left-radius: 30px;
+            }
         </style>
     </head>
 

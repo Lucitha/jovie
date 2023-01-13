@@ -5,8 +5,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-            @foreach ($candidacies as $candidacie)
                 <div class="account-details">  
+                    @foreach ($candidacies as $candidacie)
                     <article class="popular-post">
                         <div class="info">
                             <h4>
@@ -20,8 +20,8 @@
                             </ul>
                         </div>
                     </article>
+                    @endforeach
                 </div>
-            @endforeach
             </div>
         </div>
     </div>

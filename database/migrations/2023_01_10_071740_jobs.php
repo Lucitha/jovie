@@ -16,19 +16,19 @@ class Jobs extends Migration
         //
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('posted_by')->references('id')->on('users');
-            $table->string('job_title');
+            $table->string('jobs_name');
+            $table->string('jobs_description');
+            $table->string('jobs_conditions');
+            $table->string('jobs_salary')->nullable();
+            $table->string('jobs_contacts');
+            $table->string('jobs_location');
+            $table->string('jobs_company_name');
+            $table->string('jobs_status');
+            $table->dateTime('jobs_start_at');
+            $table->dateTime('jobs_end_at');
             $table->foreignId('type_id')->references('id')->on('types');
-            $table->string('category_id')->reference('id')->on('categories');
-            $table->string('location');
-            $table->string('job_contact');
-            $table->string('company_name');
-            $table->string('company_email');
-            $table->string('job_description');
-            $table->string('job_conditions');
-            $table->string('salary_range')->nullable();
-            $table->dateTime('start_at');
-            $table->dateTime('end_at');
+            $table->foreignId('category_id')->reference('id')->on('categories');
+            $table->foreignId('posted_by')->references('id')->on('users');
             $table->dateTime('updated_at')->nullable();
             $table->dateTime('created_at');
         });
