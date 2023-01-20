@@ -8,7 +8,8 @@
                 <div class="account-information">
                     <div class="profile-thumb">
                         <img src="assets/img/account.jpg" alt="account holder image">
-                        <h3>{{json_decode($info->name)->name}}</h3>
+                        <h3>{{$info->name}}</h3>
+                        {{-- <h3>{{json_decode($info->name)->name}}</h3> --}}
                         <p>Web Developer</p>
                     </div>
                     <div class="d-flex align-items-start">
@@ -86,7 +87,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Company Name</label>
-                                            <input type="text" name="company_name" value="{{json_decode($info->name)->name}}" id="company_name" class="form-control" placeholder="Your Name">
+                                            <input type="text" name="company_name" value="{{$info->name}}" id="company_name" class="form-control" placeholder="Your Name">
+                                            {{-- <input type="text" name="company_name" value="{{json_decode($info->name)->name}}" id="company_name" class="form-control" placeholder="Your Name"> --}}
                                         </div>
                                     </div>
         

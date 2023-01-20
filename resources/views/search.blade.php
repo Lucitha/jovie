@@ -9,29 +9,28 @@
             <div class="col-lg-9" id="result">
                 @php
                     if ($jobs) {
-
                         foreach ($jobs as $job){
                             echo 
                             '<div class="account-details">  
                                 <article class="popular-post">
                                     <div class="info">
                                         <h4>
-                                            <a href="/details/'.$job->id.'">'.$job->job_title.'</a>
+                                            <a href="/details/'.$job->id.'">'.$job->jobs_name.'</a>
                                         </h4>                                
                                         <ul>
                                             <i class="bx bx-location-plus"></i>
-                                            '.$job->location.'
+                                            '.$job->jobs_location.'
                                             <i class="bx bx-briefcase" ></i>
-                                            '.$job->type_title.'
+                                            '.$job->types_name.'
                                         </ul>
                                     </div>
                                 </article>
                             </div>';
                         }
-                        echo
-                        '<div style="align-content: center; margin:50px 0px 0px;">
-                            '.$jobs->links("pagination::bootstrap-4").'
-                        </div>';
+                        // echo
+                        // '<div style="align-content: center; margin:50px 0px 0px;">
+                        //     '.$jobs->links("pagination::bootstrap-4").'
+                        // </div>';
                     }else{
                            echo
                            '<div class="account-details" style="text-align:center;">  
@@ -69,7 +68,7 @@
                                 <ul>
                                     <h3 style='border: 1px dotted black; text-align:center;padding:0.3rem'>Category</h3>
                                     @foreach ($categories as $categorie)
-                                    <input type="radio" id="category" name="category" value="{{$categorie->id}}">&nbsp;{{$categorie->category_title}}<br>
+                                    <input type="radio" id="category" name="category" value="{{$categorie->id}}">&nbsp;{{$categorie->categories_name}}<br>
                                     @endforeach
                                 </ul>
                             </div>
@@ -78,7 +77,7 @@
                                 <ul>
                                     <h3 style='border: 1px dotted black; text-align:center;padding:0.3rem'>Type</h3>
                                     @foreach ($types as $type)
-                                    <input id="type" name="type" type="radio" value="{{$type->id}}">&nbsp;{{$type->type_title}}<br>
+                                    <input id="type" name="type" type="radio" value="{{$type->id}}">&nbsp;{{$type->types_name}}<br>
                                     @endforeach
                                 </ul>
                             </div>

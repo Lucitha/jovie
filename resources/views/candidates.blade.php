@@ -3,7 +3,6 @@
     <section class="candidate-style-two pt-100 pb-70">
         <div class="container">
             <div class="row">
-               
                 @foreach ($candidates as $candidate)
                 <div class="col-lg-3 col-sm-6">
                     <div class="candidate-card">
@@ -12,11 +11,11 @@
                         </div>
                         <div class="candidate-text">
                             <h3>
-                                <a href="candidate-details.html">{{$candidate->name}}</a>
+                                <a href="candidate-details.html">{{$candidate->users_name}}</a>
                             </h3>
                             <ul>
                                 <li>
-                                    {{$candidate->username}}
+                                    {{$candidate->users_jobs}}
                                 </li>
                             </ul>
                         </div>
@@ -30,23 +29,9 @@
                 @endforeach
             </div>
             
-            <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-center">
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
-                            <i class='bx bx-chevrons-left bx-fade-left'></i>
-                        </a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link active" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">
-                            <i class='bx bx-chevrons-right bx-fade-right'></i>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+            <div style="text-align: center; justify-content:center; margin:50px 0px 0px;">
+                {{$candidates->links("pagination::bootstrap-4")}}
+            </div>
         </div>
     </section>    
 @endsection

@@ -16,16 +16,17 @@ class Users extends Migration
         //
         Schema::create('users', function (Blueprint $table) {            
             $table->id();             
-            $table->string('users_name');             
+            $table->string('users_name')->nullable();             
             $table->string('users_email');             
-            $table->string('users_address');             
-            $table->string('users_jobs');             
-            $table->string('users_phone');             
+            $table->string('users_address')->nullable();             
+            $table->string('users_jobs')->nullable();             
+            $table->string('users_phone')->nullable();             
             $table->string('users_password');             
-            $table->string('users_post_office_box');             
-            $table->string('users_social_link');             
-            $table->string('users_description');             
-            $table->string('users_picture');             
+            $table->string('users_post_office_box')->nullable();             
+            $table->string('users_social_link')->nullable();             
+            $table->string('users_description')->nullable();             
+            $table->string('users_picture')->nullable();             
+            $table->string('users_flag');             
             $table->foreignId('roles_id')->references('id')->on('roles');             
             $table->dateTime('created_at');         
             $table->dateTime('updated_at')->nullable();             

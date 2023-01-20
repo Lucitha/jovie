@@ -22,6 +22,7 @@ class Jobs extends Migration
             $table->string('jobs_salary')->nullable();
             $table->string('jobs_contacts');
             $table->string('jobs_location');
+            $table->string('jobs_apply_url');
             $table->string('jobs_company_name');
             $table->string('jobs_status');
             $table->dateTime('jobs_start_at');

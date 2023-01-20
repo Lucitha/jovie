@@ -33,13 +33,13 @@ class userController extends Controller
         ]);
         if($request->passwordCompany == $request->pConfirm){
             $password=password_hash($request->passwordCompany, PASSWORD_DEFAULT);
-            $table = ['email' => $request->emailCompany, 'name' => $request->nameCompany];
-            
+                        
             Users::create([
-                'name'=>json_encode($table),
-                'email'=>$request->emailCompany,
-                'password'=>$password,
-                'tag'=>1,
+                'users_name'=>$request->nameCompany,
+                'users_email'=>$request->emailCompany,
+                'users_password'=>$password,
+                'users_flag'=>0,
+                'roles_id'=>1,
             ]);
         }
        
@@ -48,7 +48,7 @@ class userController extends Controller
     public function saveCandidate(Request $request){
         session()->put('currentTab', '');
         session()->save();
-        $validate= $this->validate($request, [
+        $validate = $this->validate($request, [
             'nameCandidate'=> "required",
             'emailCandidate' => "required|email",
             'passwordCandidate' => "min:6|required_with:passwordConfirm|same:passwordConfirm",
@@ -57,10 +57,11 @@ class userController extends Controller
         if($request->passwordCandidate == $request->passwordConfirm){
             $password=password_hash($request->passwordCandidate, PASSWORD_DEFAULT);
             Users::create([
-                'name'=>$request->nameCandidate,
-                'email'=>$request->emailCandidate,
-                'password'=>$password,
-                'tag'=>0,
+                'users_name'=>$request->nameCandidate,
+                'users_email'=>$request->emailCandidate,
+                'users_password'=>$password,
+                'users_flag'=>0,
+                'roles_id'=>2,
             ]);
         }
         
@@ -73,7 +74,7 @@ class userController extends Controller
             'password' => "required|min:6'",
         ]);
 
-        $user=Users::where('email',$request->email)
+        $user=Users::where('users_email',$request->email)
             ->first();
         if(!$user){
             return back()->with('warning','Veuillez créer un compte pour avoir accès à cette plateforme');
@@ -84,9 +85,10 @@ class userController extends Controller
             $tab=[];
             
             session()->put('id',$user->id);
-            session()->put('email',$user->email);
-            session()->put('name',$user->name);
-            session()->put('tag',$user->tag);
+            session()->put('users_email',$user->users_email);
+            session()->put('users_name',$user->users_name);
+            session()->put('users_flag',$user->users_flag);
+            session()->put('roles_id',$user->roles_id);
             session()->save();
 
             if($user->tag == 0 || $user->tag == 1){
@@ -99,10 +101,12 @@ class userController extends Controller
 
     public function showProfil(){
         $info=Users::where('id',session()->get('id'))->first();
-        if($info->tag==0){
+        if($info->users_flag==1){
             return view('/candidats/profils', compact('info'));
-        }else{
+        }elseif($info->users_flag==1){
             return view('/company/profil', compact('info'));
+        }else{
+            return view('/admin/settings');
         }  
     }
     public function updateProfil(Request $request){
@@ -154,11 +158,11 @@ class userController extends Controller
         return back();
     }
     public function showCandidates(){
-        $candidates= Users::where('tag',0)->paginate(1);
+        $candidates= Users::where('roles_id',1)->paginate(1);
         return view('candidates', compact('candidates'));
     }
     public function showCompanies(){
-        $companies= Users::where('tag',1)->paginate(1);
+        $companies= Users::where('roles_id',2)->paginate(1);
         return view('companies', compact('companies'));
     }
     public function resetView($id,$link){

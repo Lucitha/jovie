@@ -41,7 +41,7 @@
                             </div>
 
                             <div class="col-lg-4">
-                                <div class="job-save" style="margin-buttom= ;position:absolute">
+                                <div class="job-save" style="position:absolute">
                                     <a  href="/editPost/{{$job->jID}}"><span style="background-color: black; color:white; ">Edit</span></a>
                                 </div>
                             </div>
@@ -49,6 +49,9 @@
                     </div>
                 </div>
             @endforeach
+        </div>
+        <div>
+            {{$jobs->links("pagination::bootstrap-4")}}
         </div>
     </div>
 </section>

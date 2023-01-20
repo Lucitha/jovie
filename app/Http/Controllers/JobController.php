@@ -18,23 +18,22 @@ class JobController extends Controller
         $end=date('Y-m-d H:i:s', strtotime($request->end_at));
 
         Job::create([
-            'posted_by'=>session()->get('id'),
-            'job_title'=>$request->title,
+            'jobs_name'=>$request->title,
+            'jobs_description'=>$request->description,
+            'jobs_conditions'=>$request->conditions,
+            'jobs_salary'=>$salary,
+            'jobs_contacts'=>$request->contact,
+            'jobs_location'=>$request->location,
+            'jobs_company_name'=>$request->company_name,
+            'jobs_status'=>$request->company_email,
+            'jobs_start_at'=>$start,
+            'jobs_end_at'=>$end,
             'type_id'=>$request->type_id,
             'category_id'=>$request->category_id,
-            'location'=>$request->location,
-            'job_contact'=>$request->contact,
-            'company_name'=>$request->company_name,
-            'company_email'=>$request->company_email,
-            'job_description'=>$request->description,
-            'job_conditions'=>$request->conditions,
-            'salary_range'=>$salary,
-            'start_at'=>$start,
-            'end_at'=>$end,
+            'posted_by'=>session()->get('id'),
+            'jobs_apply_url'=>$request->company_email,
         ]);
         return back();
-        
-
     }   
     public function newJob(Request $request){
         $categories=\DB::table('categories')
@@ -89,13 +88,13 @@ class JobController extends Controller
     public function showJob(Request $request){
         
         $date=date('Y-m-d H:i:s');
-        $where = [['jobs.start_at', '<=', date('Y-m-d H:i:s')], ['jobs.end_at', '>=', date('Y-m-d H:i:s')]];
+        $where = [['jobs.jobs_start_at', '<=', date('Y-m-d H:i:s')], ['jobs.jobs_end_at', '>=', date('Y-m-d H:i:s')]];
         $jobs= Job::select('jobs.*','types.id as typeID','types.type_title','categories.id as catID','categories.category_title','users.name')
             ->join('users','posted_by','=','users.id')
             ->join('types','type_id','=','types.id')
             ->join('categories','category_id','=','categories.id')
             ->where($where)
-            ->get();
+            ->paginate(1);
         return view('jobList', compact('jobs'));
     } 
     public function detailsJob($id){
@@ -120,7 +119,7 @@ class JobController extends Controller
         ->join('categories','category_id','=','categories.id')
         ->join('users','posted_by','=','users.id')
         ->where('posted_by',session()->get('id'))
-        ->get();
+        ->paginate(1);
         return view('company/listJob', compact('jobs'));
     } 
     public function editPost($id){
@@ -166,10 +165,10 @@ class JobController extends Controller
     public function searching(){
         $output = '';
         if(!request()){
-
+            $where1 = '';
         }elseif (request('job_title') && !request('type') && !request('category')) {
 
-            $where1 = [['jobs.job_title','LIKE', '%'.request('job_title').'%']];
+            $where1 = [['jobs.jobs_name','LIKE', '%'.request('job_title').'%']];
 
         }elseif (!request('job_title') && request('type') && !request('category')) {
 
@@ -185,25 +184,24 @@ class JobController extends Controller
 
         }elseif (request('job_title') && !request('type') && request('category')) {  
 
-            $where1 = [['jobs.job_title','LIKE', '%'.request('job_title').'%'], ['jobs.category_id', request('category')]]; 
+            $where1 = [['jobs.jobs_name','LIKE', '%'.request('job_title').'%'], ['jobs.category_id', request('category')]]; 
 
         }elseif ( request('job_title') && !request('type') && !request('category')) {
 
-            $where1 = [['jobs.job_title', 'LIKE', '%'.request('job_title').'%'], ['jobs.category_id', request('category')]];
+            $where1 = [['jobs.jobs_name', 'LIKE', '%'.request('job_title').'%'], ['jobs.category_id', request('category')]];
 
         }else{
 
-            $where1 = [['jobs.job_title', request('job_title')], ['jobs.type_id', request('type')], ['categories.id', request('category')]];
+            $where1 = [['jobs.jobs_name', request('job_title')], ['jobs.type_id', request('type')], ['categories.id', request('category')]];
         }
-        $where2 = [['jobs.start_at', '<=', date('Y-m-d H:i:s')], ['jobs.end_at', '>=', date('Y-m-d H:i:s')]];
+        $where2 = [['jobs.jobs_start_at', '<=', date('Y-m-d H:i:s')], ['jobs.jobs_end_at', '>=', date('Y-m-d H:i:s')]];
         $where = array_merge($where1,$where2);
-        // dd($where);
             $filters= \DB::table('jobs')
             ->select('jobs.*','types.*')
             ->join('types','type_id','=','types.id')
             ->join('categories','category_id','=','categories.id')
             ->where($where)
-            ->paginate(2);
+            ->paginate(1);
  
         if (count($filters) > 0) {
             foreach ($filters as $filter) {
@@ -211,13 +209,13 @@ class JobController extends Controller
                                 <article class="popular-post">
                                     <div class="info">
                                         <h4>
-                                            <a href="/details/' . $filter->id . '">' . $filter->job_title . '</a>
+                                            <a href="/details/' . $filter->id . '">' . $filter->jobs_name . '</a>
                                         </h4>                                
                                         <ul>
                                             <i class="bx bx-location-plus"></i>
-                                              ' . $filter->location . '
+                                              ' . $filter->jobs_location . '
                                             <i class="bx bx-briefcase"></i>
-                                            ' . $filter->type_title . '
+                                            ' . $filter->types_name . '
                                         </ul>
                                     </div>
                                 </article>
@@ -238,13 +236,10 @@ class JobController extends Controller
                             </article>
                         </div>';
         }
-        return json_encode($output);
-    //    return(compact('output'));
-    
-   
+        return json_encode($output);       
     } 
     public function search(){
-        $where = [['jobs.start_at', '<=', date('Y-m-d H:i:s')], ['jobs.end_at', '>=', date('Y-m-d H:i:s')]];
+        $where = [['jobs.jobs_start_at', '<=', date('Y-m-d H:i:s')], ['jobs.jobs_end_at', '>=', date('Y-m-d H:i:s')]];
         $categories=\DB::table('categories')
         ->select('*')
         ->get();
@@ -258,10 +253,7 @@ class JobController extends Controller
             ->join('categories','category_id','=','categories.id')
             ->where($where)
             ->paginate(1);
-        // dd($jobs);
-        return view('/search', compact('categories','types','jobs'));
+        return view('search', compact('categories','types','jobs'));
     }
-
-
 
 }
