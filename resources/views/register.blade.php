@@ -116,7 +116,7 @@
                             <div class="form-group">
                                 <label>Enter Password</label>
                                 <div class="input-group">
-                                    <input type="password" id='passwordCompany' name='passwordCompany' class="form-control @error('passwordCompany') is-invalid @enderror" style="border-radius:0px; border-top-left-radius: 50px; border-bottom-left-radius: 50px;">
+                                    <input type="password" id='passwordCompany' name='passwordCompany' class="form-control @error('passwordCompany') is-invalid @enderror" placeholder="Enter Your Password" style="border-radius:0px; border-top-left-radius: 50px; border-bottom-left-radius: 50px;">
                                     <div class="input-group-append">
                                         <button class="input-group-text" id="my-addon" type="button" onclick="companyPassword()" style="border-top-right-radius: 50px; border-bottom-right-radius: 50px; background-color:#fd1616; border-block: none;">
                                             <i id="picon"  style='color:white' class='far fa-eye-slash'></i></button>
@@ -131,7 +131,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Confirm Password</label>
-                                <input type="password" id="pConfirm" name="pConfirm" class="form-control" placeholder="Enter Your Password" required>
+                                <input type="password" id="pConfirm" name="pConfirm" class="form-control" placeholder="Confirm Your Password" required>
                             </div>      
     
                             <div class="signup-btn text-center">

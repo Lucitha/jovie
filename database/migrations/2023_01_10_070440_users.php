@@ -21,8 +21,10 @@ class Users extends Migration
             $table->string('users_address')->nullable();             
             $table->string('users_jobs')->nullable();             
             $table->string('users_phone')->nullable();             
+            $table->string('username')->nullable();             
             $table->string('users_password');             
             $table->string('users_post_office_box')->nullable();             
+            $table->string('business_number')->nullable();             
             $table->string('users_social_link')->nullable();             
             $table->string('users_description')->nullable();             
             $table->string('users_picture')->nullable();             

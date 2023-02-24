@@ -95,7 +95,7 @@
                                     <a href="/" class="nav-link">Home</a>
                                 </li>
                                 @php
-                                    if(!session()->get('tag')==0){
+                                    if(session()->get('roles_id')==2){
                                     echo'<li class="nav-item">
                                         <a href="#" class="nav-link dropdown-toggle">Jobs</a>
                                         <ul class="dropdown-menu">
@@ -107,10 +107,16 @@
                                             </li>
                                         </ul>
                                     </li>';}
-                                    if(session()->get('tag')==0 && session()->get('id') ){
+                                    if(session()->get('roles_id')==3 && session()->get('id') ){
                                     echo'
                                         <li class="nav-item">
                                             <a href="/applications" class="nav-link">My Apply</a>
+                                        </li>
+                                           ';}
+                                    if(session()->get('roles_id')==1 && session()->get('id') ){
+                                    echo'
+                                        <li class="nav-item">
+                                            <a href="/admin/settings" class="nav-link">Settings</a>
                                         </li>
                                            ';}
                                     

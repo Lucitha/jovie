@@ -43,8 +43,8 @@
                                         <?php if($categories){?>
                                         @foreach ($categories as $categorie)
                                             <tr>
-                                            <td>{{$categorie->category_title}}</td>
-                                            <td>{{$categorie->category_description}}</td>
+                                            <td>{{$categorie->categories_name}}</td>
+                                            <td>{{$categorie->categories_description}}</td>
                                             <td>
                                                 <a class="account-btn"  style="color: red" href="/admin/deleteC/{{$categorie->id}}" onclick=" return confirm('Voulez vous vraiment le supprimer ?');">Delete</a>
                                                 <a class="account-btn" href="/admin/editC/{{$categorie->id}}">Edit</a>
@@ -72,6 +72,7 @@
                                         <div class="reset-btn text-center">
                                             <button type="submit">Save</button>
                                         </div>
+                                        
                                     </form>
                                 </div>  
                                 <div class="form-group">
@@ -85,8 +86,8 @@
                                             <?php if($types){?>
                                                 @foreach ($types as $type)
                                                 <tr>
-                                                    <td>{{$type->type_title}}</td>
-                                                    <td>{{$type->type_description}}</td>
+                                                    <td>{{$type->types_name}}</td>
+                                                    <td>{{$type->types_description}}</td>
                                                     <td>
                                                         <a  style="color: red" href="/admin/deleteT/{{$type->id}}" onclick=" return confirm('Voulez vous vraiment le supprimer ?');">Delete</a>
                                                         <a  href="/admin/ediT/{{$type->id}}">Edit</a>
@@ -107,9 +108,7 @@
                       </div>
 
                 </div>
-                <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">...
-                    
-                </div>
+                
             </div> 
             
         </div>

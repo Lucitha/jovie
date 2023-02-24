@@ -92,27 +92,27 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Name</label>
-                                            <input type="text" name="name" value="{{$info->name}}" id="name" class="form-control" placeholder="Your Name">
+                                            <input type="text" name="name" value="{{$info->users_name}}" id="name" class="form-control" placeholder="Your Name">
                                         </div>
                                     </div>
         
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Job</label>
-                                            <input type="text" name="job" id="job" value="{{$info->username}}" class="form-control" placeholder="Your Job">
+                                            <input type="text" name="job" id="job" value="{{$info->users_username}}" class="form-control" placeholder="Your Job">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Email</label>
-                                            <input type="email" name="email" id="email" value="{{$info->email}}" class="form-control" placeholder="Your Username">
+                                            <input type="email" name="email" id="email" value="{{$info->users_email}}" class="form-control" placeholder="Your Username">
                                         </div>
                                     </div>
         
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Phone</label>
-                                            <input type="number" name="phone_number" id="phone_number" value="" class="form-control" placeholder="Your Phone">
+                                            <input type="number" name="phone_number" id="phone_number" value="{{$info->users_phone}}" class="form-control" placeholder="Your Phone">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
