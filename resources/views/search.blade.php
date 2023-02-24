@@ -9,6 +9,7 @@
             <div class="col-lg-9" id="result">
                 @php
                     if ($jobs) {
+
                         foreach ($jobs as $job){
                             echo 
                             '<div class="account-details">  
@@ -27,10 +28,10 @@
                                 </article>
                             </div>';
                         }
-                        // echo
-                        // '<div style="align-content: center; margin:50px 0px 0px;">
-                        //     '.$jobs->links("pagination::bootstrap-4").'
-                        // </div>';
+                        echo
+                        '<div style="align-content: center; margin:50px 0px 0px;">
+                            '.$jobs->links("pagination::bootstrap-4").'
+                        </div>';
                     }else{
                            echo
                            '<div class="account-details" style="text-align:center;">  

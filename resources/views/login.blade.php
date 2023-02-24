@@ -15,7 +15,7 @@
                         <div class="form-group">
                             
                             <label>Enter Email</label>
-                            <input type="email" name="email" id="email" class="form-control" placeholder="Enter Your Email" required>
+                            <input type="email" name="email" value="{{ old('email')}}" id="email" class="form-control" placeholder="Enter Your Email" required>
                         </div>
 
                         <div class="form-group">

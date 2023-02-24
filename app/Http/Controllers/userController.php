@@ -38,8 +38,7 @@ class userController extends Controller
                 'users_name'=>$request->nameCompany,
                 'users_email'=>$request->emailCompany,
                 'users_password'=>$password,
-                'users_flag'=>0,
-                'roles_id'=>1,
+                'roles_id'=>2,
             ]);
         }
        
@@ -61,7 +60,7 @@ class userController extends Controller
                 'users_email'=>$request->emailCandidate,
                 'users_password'=>$password,
                 'users_flag'=>0,
-                'roles_id'=>2,
+                'roles_id'=>3,
             ]);
         }
         
@@ -78,7 +77,7 @@ class userController extends Controller
             ->first();
         if(!$user){
             return back()->with('warning','Veuillez créer un compte pour avoir accès à cette plateforme');
-        } elseif (!password_verify($request->password,$user->password)) {
+        } elseif (!password_verify($request->password,$user->users_password)) {
             return back()->with('error','Veuillez vérifier vos identifiants de connexion');
         }else{
             // dd(json_decode($user->name)->email );
@@ -87,23 +86,23 @@ class userController extends Controller
             session()->put('id',$user->id);
             session()->put('users_email',$user->users_email);
             session()->put('users_name',$user->users_name);
-            session()->put('users_flag',$user->users_flag);
+            // session()->put('users_flag',$user->users_flag);
             session()->put('roles_id',$user->roles_id);
             session()->save();
 
-            if($user->tag == 0 || $user->tag == 1){
-              return redirect('/profil')->with('info','Connexion établie avec succès'); ;
+            if($user->roles_id ==1){
+                return redirect('/admin/settings')->with('info','Connexion établie avec succès');
             }else{
-                 return redirect('/admin/settings');
+                return redirect('/profil')->with('info','Connexion établie avec succès'); 
             }
         }
     }
 
     public function showProfil(){
         $info=Users::where('id',session()->get('id'))->first();
-        if($info->users_flag==1){
+        if($info->roles_id==3){
             return view('/candidats/profils', compact('info'));
-        }elseif($info->users_flag==1){
+        }elseif($info->roles_id==2){
             return view('/company/profil', compact('info'));
         }else{
             return view('/admin/settings');
@@ -112,7 +111,7 @@ class userController extends Controller
     public function updateProfil(Request $request){
         // dd($request);
         $infos= Users::where('id',session()->get('id'))->first();
-        if($infos->tag==1){
+        if($infos->roles_id==2){
             $infos->username=$request->job;
             $infos->name=$request->company_name;
             $infos->email=$request->company_email;

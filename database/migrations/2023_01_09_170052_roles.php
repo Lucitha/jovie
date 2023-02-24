@@ -21,6 +21,32 @@ class Roles extends Migration
             $table->dateTime('updated_at')->nullable();
             $table->dateTime('created_at');
         });
+
+        DB::table('roles')->insert(
+            array(
+                'id'=>1,
+                'roles_name' => 'Admin',
+                'roles_description' => 'User owner',
+                'created_at'=>date('Y-m-d H:i:s'),
+            ),
+        );
+        DB::table('roles')->insert(
+            array(
+                'id'=>2,
+                'roles_name' => 'Company',
+                'roles_description' => 'User who can post an offer',
+                'created_at'=>date('Y-m-d H:i:s'),
+                )
+        );
+        DB::table('roles')->insert(
+            array(
+                'id'=>3,
+                'roles_name' => 'Candidate',
+                'roles_description' => 'User who can apply for an offer',
+                'created_at'=>date('Y-m-d H:i:s'),
+            ),
+
+        );
     }
 
     /**

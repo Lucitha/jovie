@@ -26,11 +26,22 @@ class Users extends Migration
             $table->string('users_social_link')->nullable();             
             $table->string('users_description')->nullable();             
             $table->string('users_picture')->nullable();             
-            $table->string('users_flag');             
+            $table->tinyInteger('users_flag')->default(0);             
             $table->foreignId('roles_id')->references('id')->on('roles');             
             $table->dateTime('created_at');         
             $table->dateTime('updated_at')->nullable();             
         });
+
+        DB::table('users')->insert(
+            array(
+                'users_name'=>'Admin',
+                'users_email' => 'admin@gmail.com',
+                'users_flag'=>1,
+                'roles_id'=>1,
+                'users_password' => '$2y$10$cn0RmUfTr0LoSSArZu3FJeL7jc.MeweJsVcFbveHjCpe2r5BgQ.Ei',
+                'created_at' => date('Y-m-d H:i:s'),
+            )
+        );
     }
 
     /**

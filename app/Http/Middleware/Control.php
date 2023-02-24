@@ -16,7 +16,7 @@ class Control
      */
     public function handle(Request $request, Closure $next)
     {
-        if (session()->get('id') && session()->get('email')) {
+        if (session()->get('id') && session()->get('users_email')) {
 
             return $next($request);
         } else {

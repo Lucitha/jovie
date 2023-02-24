@@ -38,6 +38,8 @@ Route::get('/reset', function () {
 Route::post('/login', [ userController::class, 'connexion' ]);
 Route::post('/newPassword', [userController::class, 'reset']);
 Route::post('/resetAsk', [userController::class, 'resetPassword']);
+Route::post('/save_candidate', [userController::class, 'saveCandidate']);
+Route::post('/save_company', [userController::class, 'saveCompany']);
 Route::get('/candidates', [userController::class, 'showCandidates']);
 Route::get('/companies', [userController::class, 'showCompanies']);
 Route::get('/search',[JobController::class,'search']);
@@ -68,9 +70,6 @@ Route::middleware([Control::class])->group(function () {
     Route::get('/applications',[CandidacyController::class,'showApply']);
     Route::post('/resum/{id}',[CandidacyController::class,'resum']);
     Route::post('/apply/{id}',[CandidacyController::class,'saveCandidacy']);
-    
-    Route::post('/save_candidate', [userController::class, 'saveCandidate']);
-    Route::post('/save_company', [userController::class, 'saveCompany']);
     Route::get('/reset/{id}/{link}', [userController::class, 'resetView']);
     Route::get('/disconnect', [userController::class, 'deconnection']);
     Route::get('/allCandidates', [userController::class, 'showCandidate' ]);
