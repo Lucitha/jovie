@@ -113,16 +113,16 @@ class userController extends Controller
     public function updateProfil(Request $request){
         // dd($request);
         $infos= Users::where('id',session()->get('id'))->first();
+        
+        $infos->username=$request->job;
+        $infos->name=$request->company_name;
+        $infos->email=$request->company_email;
+        $infos->region=$request->region;
+        $infos->city=$request->city;
         if($infos->roles_id==2){
-            // $infos->username=$request->job;
-            // $infos->name=$request->company_name;
-            // $infos->email=$request->company_email;
-            // $infos->region=$request->region;
-            // $infos->city=$request->city;
             $infos->business_number=$request->business_number;
             $infos->post_office_box=$request->post_office_box;
-            $infos->country=$request->country;
-            $infos->save();
+            $infos->country=$request->country;    
         }else{
             $infos->name=$request->name;
             $infos->username=$request->job;
@@ -131,8 +131,8 @@ class userController extends Controller
             $infos->country=$request->country;
             $infos->city=$request->city;
             $infos->region=$request->region;
-            $infos->save();
         }
+        $infos->save();
         return back();
     }
     public function socialLink(Request $request){

@@ -92,54 +92,54 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Name</label>
-                                            <input type="text" name="name" value="{{$info->users_name}}" id="name" class="form-control" placeholder="Your Name">
+                                            <input type="text" name="users_name" value="{{$info->users_name}}" id="users_name" class="form-control" placeholder="Your Name">
                                         </div>
                                     </div>
         
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Job</label>
-                                            <input type="text" name="job" id="job" value="{{$info->users_username}}" class="form-control" placeholder="Your Job">
+                                            <input type="text" name="users_job" id="users_job" value="{{$info->users_username}}" class="form-control" placeholder="Your Job">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Email</label>
-                                            <input type="email" name="email" id="email" value="{{$info->users_email}}" class="form-control" placeholder="Your Username">
+                                            <input type="email" name="users_email" id="users_email" value="{{$info->users_email}}" class="form-control" placeholder="Your Username">
                                         </div>
                                     </div>
         
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Phone</label>
-                                            <input type="number" name="phone_number" id="phone_number" value="{{$info->users_phone}}" class="form-control" placeholder="Your Phone">
+                                            <input type="number" name="users_phone" id="users_phone" value="{{$info->users_phone}}" class="form-control" placeholder="Your Phone">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Country</label>
-                                            <input type="text" name="country" id="country" value="{{$info->country}}" class="form-control" placeholder="Your Country">
+                                            <input type="text" name="users_country" id="users_country" value="{{$info->country}}" class="form-control" placeholder="Your Country">
                                         </div>
                                     </div>
         
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>City</label>
-                                            <input type="text" name="city" id="city" value="{{$info->city}}" class="form-control" placeholder="Your City">
+                                            <input type="text" name="users_city" id="users_city" value="{{$info->city}}" class="form-control" placeholder="Your City">
                                         </div>
                                     </div>
         
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Post Office Box</label>
-                                            <input type="text" name="post_office_box" id="post_office_box" value="{{$info->post_office_box}}" class="form-control" placeholder="Your Post office Box Here">
+                                            <input type="text" name="users_post_office_box" id="users_post_office_box" value="{{$info->post_office_box}}" class="form-control" placeholder="Your Post office Box Here">
                                         </div>
                                     </div>
         
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Region</label>
-                                            <input type="text" name="region" id="region" value="{{$info->region}}"class="form-control" placeholder="Your Region">
+                                            <input type="text" name="users_region" id="users_region" value="{{$info->region}}"class="form-control" placeholder="Your Region">
                                         </div>
                                     </div>
                                     

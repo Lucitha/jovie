@@ -87,7 +87,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Company Name</label>
-                                            <input type="text" name="company_name" value="{{$info->name}}" id="company_name" class="form-control" placeholder="Your Name">
+                                            <input type="text" name="users_name" value="{{$info->name}}" id="company_name" class="form-control" placeholder="Your Name">
                                             {{-- <input type="text" name="company_name" value="{{json_decode($info->name)->name}}" id="company_name" class="form-control" placeholder="Your Name"> --}}
                                         </div>
                                     </div>
