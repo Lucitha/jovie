@@ -28,7 +28,7 @@ class userController extends Controller
             'nameCompany'=> "required",
             'emailCompany' => "required|email",
             'business_number' => "required",
-            'passwordCompany' => "min:6|required_with:passwordConfirm|same:passwordConfirm",
+            'passwordCompany' => "min:6|required_with:pConfirm|same:pConfirm",
             'pConfirm' => "required|min:6",
         ]);
         if($request->passwordCompany == $request->pConfirm){
@@ -37,7 +37,9 @@ class userController extends Controller
             Users::create([
                 'users_name'=>$request->nameCompany,
                 'users_email'=>$request->emailCompany,
+                'business_number'=>$request->business_number,
                 'users_password'=>$password,
+                'users_flag'=>0,
                 'roles_id'=>2,
             ]);
         }
@@ -112,14 +114,14 @@ class userController extends Controller
         // dd($request);
         $infos= Users::where('id',session()->get('id'))->first();
         if($infos->roles_id==2){
-            $infos->username=$request->job;
-            $infos->name=$request->company_name;
-            $infos->email=$request->company_email;
+            // $infos->username=$request->job;
+            // $infos->name=$request->company_name;
+            // $infos->email=$request->company_email;
+            // $infos->region=$request->region;
+            // $infos->city=$request->city;
             $infos->business_number=$request->business_number;
             $infos->post_office_box=$request->post_office_box;
             $infos->country=$request->country;
-            $infos->city=$request->city;
-            $infos->region=$request->region;
             $infos->save();
         }else{
             $infos->name=$request->name;
@@ -157,13 +159,17 @@ class userController extends Controller
         return back();
     }
     public function showCandidates(){
-        $candidates= Users::where('roles_id',1)->paginate(1);
+        $candidates= Users::where('roles_id',3)->paginate(1);
         return view('candidates', compact('candidates'));
     }
     public function showCompanies(){
         $companies= Users::where('roles_id',2)->paginate(1);
         return view('companies', compact('companies'));
     }
+    // public function showAdmins(){
+    //     $admins= Users::where('roles_id',1)->paginate(1);
+    //     return view('candidates', compact('admins'));
+    // }
     public function resetView($id,$link){
         $user=Users::where('id',$id)->first();
         return view('reset',compact('id','link','user'));
