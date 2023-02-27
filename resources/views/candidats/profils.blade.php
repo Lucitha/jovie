@@ -8,7 +8,7 @@
                 <div class="account-information">
                     <div class="profile-thumb">
                         <img src="assets/img/account.jpg" alt="account holder image">
-                        <h3>{{$info->name}}</h3>
+                        <h3>{{$info->users_name}}</h3>
                         <p>{{$info->username}}</p>
                     </div>
                     <div class="d-flex align-items-start">
@@ -26,12 +26,7 @@
                                         My Profile
                                     </a>
                                 </li>
-                                {{-- <li>
-                                    <a href="#">
-                                        <i class='bx bx-briefcase'></i>
-                                        Jobs
-                                    </a>
-                                </li> --}}
+                               
                                 <li>
                                     <a href="#">
                                         <i class='bx bx-envelope'></i>
@@ -99,7 +94,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Job</label>
-                                            <input type="text" name="users_job" id="users_job" value="{{$info->users_username}}" class="form-control" placeholder="Your Job">
+                                            <input type="text" name="users_jobs" id="users_jobs" value="{{$info->users_jobs}}" class="form-control" placeholder="Your Job">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -117,29 +112,15 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Country</label>
-                                            <input type="text" name="users_country" id="users_country" value="{{$info->country}}" class="form-control" placeholder="Your Country">
-                                        </div>
-                                    </div>
-        
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>City</label>
-                                            <input type="text" name="users_city" id="users_city" value="{{$info->city}}" class="form-control" placeholder="Your City">
-                                        </div>
-                                    </div>
-        
-                                    <div class="col-md-6">
-                                        <div class="form-group">
                                             <label>Post Office Box</label>
-                                            <input type="text" name="users_post_office_box" id="users_post_office_box" value="{{$info->post_office_box}}" class="form-control" placeholder="Your Post office Box Here">
+                                            <input type="text" name="users_post_office_box" id="users_post_office_box" value="{{$info->users_post_office_box}}" class="form-control" placeholder="Your Post office Box Here">
                                         </div>
                                     </div>
         
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Region</label>
-                                            <input type="text" name="users_region" id="users_region" value="{{$info->region}}"class="form-control" placeholder="Your Region">
+                                            <label>Address</label>
+                                            <input type="text" name="users_address" id="users_address" value="{{$info->users_address}}"class="form-control" placeholder="Contry,city,address">
                                         </div>
                                     </div>
                                     
@@ -154,44 +135,45 @@
                             <br/>
                             <h3>Social link</h3>
                             <form class="-candidate-address" action="/socialLink" method="POST">
+                                @csrf
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Web site</label>
-                                            <input type="text" class="form-control" placeholder="Your portfolio web site here">
+                                            <input type="text" id="webSite" name="webSite" class="form-control" value="{{json_decode($info->users_social_link)->webSite}}" placeholder="Your portfolio web site here">
                                         </div>
                                     </div>
         
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Facebook</label>
-                                            <input type="text" id="facebook" name="facebook" class="form-control" placeholder="Your Linkedin account">
+                                            <input type="text" id="facebook" name="facebook" value="{{json_decode($info->users_social_link)->facebook}}" class="form-control" placeholder="Your Linkedin account">
                                         </div>
                                     </div>
         
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Twitter</label>
-                                            <input type="text" id="twitter" name="twitter" class="form-control" placeholder="Your Twitter account">
+                                            <input type="text" id="twitter" name="twitter" value="{{json_decode($info->users_social_link)->twitter}}" class="form-control" placeholder="Your Twitter account">
                                         </div>
                                     </div>
         
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Linkedin</label>
-                                            <input type="text" id="linkedin" name="linkedin" class="form-control" placeholder="Your Linkedin account">
+                                            <input type="text" id="linkedin" name="linkedin" value="{{json_decode($info->users_social_link)->linkedin}}" class="form-control" placeholder="Your Linkedin account">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Github</label>
-                                            <input type="text" id="github" name="github" class="form-control" placeholder="Your Github account">
+                                            <input type="text" id="github" name="github" class="form-control" value="{{json_decode($info->users_social_link)->github}}" placeholder="Your Github account">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Other</label>
-                                            <input type="text" id="other" name="other" class="form-control" placeholder="Describe yourself">
+                                            <input type="text" id="other" name="other" value="{{json_decode($info->users_social_link)->other}}" class="form-control" placeholder="Other link">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
@@ -202,12 +184,13 @@
                         </div>
                         <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...
                             <h3>Other information</h3>
-                            <form class="cadidate-others">
+                            <form class="cadidate-others" action="" method="POST">
+                                @csrf
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Describe Yourself</label>
-                                            <textarea class="form-control" name="" id="" cols="60" rows="20"></textarea>
+                                            <textarea class="form-control" name="description" id="description" cols="60" rows="20"></textarea>
                                         </div>
                                     </div>
 

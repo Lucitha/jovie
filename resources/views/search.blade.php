@@ -46,10 +46,7 @@
                             
                         } 
                 @endphp
-                
-                {{-- <div style="display: flex"></div> --}}
-               
-                
+  
             </div>
 
             <div class="col-lg-3">
@@ -108,7 +105,6 @@
             data: formData,
             success: function (response) {
                 var element = JSON.parse(response);
-                // $('#result').JSON parse(response);
                 $("#result").html(element);
                 console.log(response);
             }

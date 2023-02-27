@@ -33,11 +33,20 @@ class userController extends Controller
         ]);
         if($request->passwordCompany == $request->pConfirm){
             $password=password_hash($request->passwordCompany, PASSWORD_DEFAULT);
+            $link=[];
+            $link['webSite']="";
+            $link['facebook']="";
+            $link['twitter']="";
+            $link['linkedin']="";
+            $link['github']="";
+            $link['other']="";
+            $social=json_encode($link);
                         
             Users::create([
                 'users_name'=>$request->nameCompany,
                 'users_email'=>$request->emailCompany,
                 'business_number'=>$request->business_number,
+                'users_social_link'=>$social,
                 'users_password'=>$password,
                 'users_flag'=>0,
                 'roles_id'=>2,
@@ -57,9 +66,18 @@ class userController extends Controller
         ]);
         if($request->passwordCandidate == $request->passwordConfirm){
             $password=password_hash($request->passwordCandidate, PASSWORD_DEFAULT);
+            $link=[];
+            $link['webSite']="";
+            $link['facebook']="";
+            $link['twitter']="";
+            $link['linkedin']="";
+            $link['github']="";
+            $link['other']="";
+            $social=json_encode($link);
             Users::create([
                 'users_name'=>$request->nameCandidate,
                 'users_email'=>$request->emailCandidate,
+                'users_social_link'=>$social,
                 'users_password'=>$password,
                 'users_flag'=>0,
                 'roles_id'=>3,
@@ -82,13 +100,11 @@ class userController extends Controller
         } elseif (!password_verify($request->password,$user->users_password)) {
             return back()->with('error','Veuillez vérifier vos identifiants de connexion');
         }else{
-            // dd(json_decode($user->name)->email );
             $tab=[];
             
             session()->put('id',$user->id);
             session()->put('users_email',$user->users_email);
             session()->put('users_name',$user->users_name);
-            // session()->put('users_flag',$user->users_flag);
             session()->put('roles_id',$user->roles_id);
             session()->save();
 
@@ -111,42 +127,44 @@ class userController extends Controller
         }  
     }
     public function updateProfil(Request $request){
-        // dd($request);
+
         $infos= Users::where('id',session()->get('id'))->first();
-        
-        $infos->username=$request->job;
-        $infos->name=$request->company_name;
-        $infos->email=$request->company_email;
-        $infos->region=$request->region;
-        $infos->city=$request->city;
+        $infos->users_name=$request->users_name;
+        $infos->users_email=$request->users_email;
+        $infos->username=$request->username;
+        $infos->users_phone=$request->users_phone;
+        $infos->users_address=$request->users_address;
+        $infos->users_jobs=$request->users_jobs;
+        $infos->users_post_office_box=$request->users_post_office_box;
         if($infos->roles_id==2){
             $infos->business_number=$request->business_number;
-            $infos->post_office_box=$request->post_office_box;
-            $infos->country=$request->country;    
         }else{
-            $infos->name=$request->name;
-            $infos->username=$request->job;
-            $infos->email=$request->email;
-            $infos->post_office_box=$request->post_office_box;
-            $infos->country=$request->country;
-            $infos->city=$request->city;
-            $infos->region=$request->region;
+            $infos->username=$request->username;
         }
         $infos->save();
         return back();
     }
     public function socialLink(Request $request){
+        $social= Users::where('id',session()->get('id'))->first();
+        
         $link=[];
+        $link['webSite']=$request->webSite;
         $link['facebook']=$request->facebook;
         $link['twitter']=$request->twitter;
         $link['linkedin']=$request->linkedin;
         $link['github']=$request->github;
         $link['other']=$request->other;
-        //     $link->save();
-        // }
+        $social->users_social_link=json_encode($link);
+        // dd($social);
+        $social->save();
+
         return back();
     }
     public function updatePass(Request $request){
+        $this->validate($request, [
+            'password' => "min:6|required_with:confirm_password|same:confirm_password",
+            'confirm_password' => "required|min:6",
+        ]);
         $infos= Users::where('id',session()->get('id'))->first();
         if(!password_verify($request->old_password,$infos->password)){
            
@@ -166,10 +184,7 @@ class userController extends Controller
         $companies= Users::where('roles_id',2)->paginate(1);
         return view('companies', compact('companies'));
     }
-    // public function showAdmins(){
-    //     $admins= Users::where('roles_id',1)->paginate(1);
-    //     return view('candidates', compact('admins'));
-    // }
+   
     public function resetView($id,$link){
         $user=Users::where('id',$id)->first();
         return view('reset',compact('id','link','user'));
@@ -181,7 +196,6 @@ class userController extends Controller
         ]);
         $user=Users::where('id',$request->token)
         ->first();
-        // Hash::check($request->token, $user->email, []);
 
         $password=password_hash($request->password, PASSWORD_DEFAULT);
         $user->password=$password;
@@ -196,8 +210,6 @@ class userController extends Controller
         ->first();
         
         $info = [];
-
-        // $hash=hash('md5', $request->email);
         $hash=Crypt::encryptString($request->email);
 
         $info = [
@@ -208,7 +220,6 @@ class userController extends Controller
         
         if($user){
             \Mail::to($user->email)->send(new Notif($info));
-            // dd("Email is Sent.");
         }
         
         return back()->with('info','Veuillez consulter vos mails pour réinitialiser votre mot de passe. Merci !');

@@ -51,16 +51,14 @@ class CandidacyController extends Controller
                         ->get();
         return view('company/candidacies',compact('infos'));
     }
-        //show all job applying by candidate
+
     public function showApply() {
         $candidacies=Candidacy::select('*','users.*','jobs.*','users.id as uID','jobs.id as jID')
         ->join('jobs','job_id','=','jobs.id')
         ->join('users','candidate_id','=','users.id')
         ->where('candidate_id',session()->get('id'))
         ->get();
-        // dd($candidacies->apply_date);
-        // $apply_date=$candidacies->apply_date;
-        return view('candidats/myApply',compact('candidacies',));
+        return view('candidats/myApply',compact('candidacies'));
     }
     public function resum($id){
         $candidacy = Candidacy::select('*')
@@ -70,7 +68,6 @@ class CandidacyController extends Controller
         
         echo $resum;
         exit;
-        // return response()->json(['statut' => 0, 'path' => $resum]);
         
     }
     

@@ -113,6 +113,12 @@
                                             <a href="/applications" class="nav-link">My Apply</a>
                                         </li>
                                            ';}
+                                    if(session()->get('roles_id')==3|| session()->get('roles_id')==2 && session()->get('id') ){
+                                    echo'
+                                        <li class="nav-item">
+                                            <a href="/profil" class="nav-link">Me</a>
+                                        </li>
+                                           ';}
                                     if(session()->get('roles_id')==1 && session()->get('id') ){
                                     echo'
                                         <li class="nav-item">

@@ -12,14 +12,6 @@
                 <div class="col-md-6">
                     <div class="job-card">
                         <div class="row align-items-center">
-                            {{-- <div class="col-lg-3">
-                                <div class="thumb-img">
-                                    <a href="job-details.html">
-                                        <img src="{{asset('assets/img/company-logo/2.png')}}" alt="company logo">
-                                    </a>
-                                </div>
-                            </div> --}}
-
                             <div class="col-lg-8">
                                 <div class="job-info">
                                     <h3>
