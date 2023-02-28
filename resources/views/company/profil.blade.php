@@ -73,7 +73,7 @@
                                 <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Home</button>
                                 <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</button>
                                 <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</button>
-                                <button class="nav-link" id="nav-v-tab" data-bs-toggle="tab" data-bs-target="#nav-v" type="button" role="tab" aria-controls="nav-v" aria-selected="false">Account (password</button>
+                                <button class="nav-link" id="nav-v-tab" data-bs-toggle="tab" data-bs-target="#nav-v" type="button" role="tab" aria-controls="nav-v" aria-selected="false">Password</button>
                             </div>
                         </nav>
                         <div class="tab-content" id="nav-tabContent">
@@ -208,22 +208,39 @@
                                 <div class="row">
                                     <div class="col-lg-8">
                                         <div class="form-group">
-                                            <label>Old password</label>
-                                            <input type="password" name="old_password" id="old_password" class="form-control" placeholder="Your old password here">
+                                            <label>New Password</label>
+                                            <div class="input-group">
+                                                <input class="form-control" type="password" name="old_password" id="old_password" placeholder="Your old password here" style="border-radius:0px; border-top-left-radius: 50px; border-bottom-left-radius: 50px;">
+                                                <div class="input-group-append">
+                                                    <button class="input-group-text" id="my-addon" type="button" onclick="oldPassword()" style="border-top-right-radius: 50px; border-bottom-right-radius: 50px; background-color:#fd1616; border-block: none;">
+                                                        <i id="icon"  style='color:white' class='far fa-eye-slash'></i></button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label>New Password</label>
-                                            <input type="password" name="password" id="password" class="form-control" placeholder="Enter your new password">
+                                            <div class="input-group">
+                                                <input class="form-control" type="password" name="password" id="password" placeholder="Enter your password" style="border-radius:0px; border-top-left-radius: 50px; border-bottom-left-radius: 50px;">
+                                                <div class="input-group-append">
+                                                    <button class="input-group-text" id="my-addon" type="button" onclick="newPassword()" style="border-top-right-radius: 50px; border-bottom-right-radius: 50px; background-color:#fd1616; border-block: none;">
+                                                        <i id="con"  style='color:white' class='far fa-eye-slash'></i></button>
+                                                </div>
+                                            </div>   
                                         </div>
                                     </div>
 
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label>Confirm new password</label>
-                                            <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Confirm your new password">
+                                            <div class="form-group">
+                                                <label>Confirm new password</label>
+                                                <div class="input-group">
+                                                    <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Confirm your new password" style="border-radius:0px; border-top-left-radius: 50px; border-bottom-left-radius: 50px;border-top-right-radius: 50px; border-bottom-right-radius: 50px;">
+                                                    
+                                                </div>   
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
@@ -238,5 +255,34 @@
         </div>
     </div>
 </section>
+<script>
+    function oldPassword() {
+       var showPassword = document.getElementById("old_password");
+       var iconPassword = document.getElementById("icon");
+       //   console.log(iconPassword.class); 
+       if (showPassword.type === "password" ) {
+           showPassword.type = "text";
+           $('#icon').attr('class','far fa-eye');
+       } else {
+           showPassword.type = "password";
+           $('#icon').attr('class','far fa-eye-slash');
+       }
+       }
+    function newPassword() {
+       var showPassword = document.getElementById("password");
+       var showCPassword = document.getElementById("confirm_password");
+       var iconPassword = document.getElementById("icon");
+       //   console.log(iconPassword.class); 
+       if (showPassword.type === "password" ) {
+           showCPassword.type = "text";
+           showPassword.type = "text";
+           $('#con').attr('class','far fa-eye');
+       } else {
+           showPassword.type = "password";
+           showCPassword.type = "password";
+           $('#con').attr('class','far fa-eye-slash');
+       }
+       }
+</script>
     
 @endsection

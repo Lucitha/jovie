@@ -155,26 +155,24 @@ class userController extends Controller
         $link['github']=$request->github;
         $link['other']=$request->other;
         $social->users_social_link=json_encode($link);
-        // dd($social);
         $social->save();
 
         return back();
     }
     public function updatePass(Request $request){
+        
         $this->validate($request, [
+            'old_password' => "required|min:6",
             'password' => "min:6|required_with:confirm_password|same:confirm_password",
             'confirm_password' => "required|min:6",
         ]);
         $infos= Users::where('id',session()->get('id'))->first();
-        if(!password_verify($request->old_password,$infos->password)){
-           
-        }elseif(password_verify($request->old_password,$infos->password) && ($infos->confirm_password ==  $infos->password)){
+        if(password_verify($request->old_password,$infos->users_password) && ($infos->confirm_password ==  $infos->users_password)){
             $password=password_hash($request->password, PASSWORD_DEFAULT);
-            $infos->password=$password;
+            $infos->users_password=$password;
             $infos->save();
+            return back()->with('success','Mot de passe modifié avec succès');
         }
- 
-        return back();
     }
     public function showCandidates(){
         $candidates= Users::where('roles_id',3)->paginate(1);
