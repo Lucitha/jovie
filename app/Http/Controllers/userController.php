@@ -31,30 +31,39 @@ class userController extends Controller
             'passwordCompany' => "min:6|required_with:pConfirm|same:pConfirm",
             'pConfirm' => "required|min:6",
         ]);
-        if($request->passwordCompany == $request->pConfirm){
-            $password=password_hash($request->passwordCompany, PASSWORD_DEFAULT);
-            $link=[];
-            $link['webSite']="";
-            $link['facebook']="";
-            $link['twitter']="";
-            $link['linkedin']="";
-            $link['github']="";
-            $link['other']="";
-            $social=json_encode($link);
-                        
-            Users::create([
-                'users_name'=>$request->nameCompany,
-                'users_email'=>$request->emailCompany,
-                'business_number'=>$request->business_number,
-                'users_social_link'=>$social,
-                'users_password'=>$password,
-                'users_flag'=>0,
-                'roles_id'=>2,
-            ]);
+        $user=Users::where('users_email',$request->emailCompany);
+        // dd($user);
+
+        if(!$user){
+
+            if($request->passwordCompany == $request->pConfirm){
+                $password=password_hash($request->passwordCompany, PASSWORD_DEFAULT);
+                $link=[];
+                $link['webSite']="";
+                $link['facebook']="";
+                $link['twitter']="";
+                $link['linkedin']="";
+                $link['github']="";
+                $link['other']="";
+                $social=json_encode($link);
+                            
+                Users::create([
+                    'users_name'=>$request->nameCompany,
+                    'users_email'=>$request->emailCompany,
+                    'business_number'=>$request->business_number,
+                    'users_social_link'=>$social,
+                    'users_password'=>$password,
+                    'users_flag'=>0,
+                    'roles_id'=>2,
+                ]);
+            }
+           
+            return redirect('/connexion');
+        }else{
+            return back()->with("error", "Cet email existe. Impossible de l'utiliser à nouveau");
         }
-       
-        return redirect('/connexion');
     }
+
     public function saveCandidate(Request $request){
         session()->put('currentTab', '');
         session()->save();
@@ -64,37 +73,44 @@ class userController extends Controller
             'passwordCandidate' => "min:6|required_with:passwordConfirm|same:passwordConfirm",
             'passwordConfirm' => "required|min:6",
         ]);
-        if($request->passwordCandidate == $request->passwordConfirm){
-            $password=password_hash($request->passwordCandidate, PASSWORD_DEFAULT);
-            $link=[];
-            $link['webSite']="";
-            $link['facebook']="";
-            $link['twitter']="";
-            $link['linkedin']="";
-            $link['github']="";
-            $link['other']="";
-            $social=json_encode($link);
-            Users::create([
-                'users_name'=>$request->nameCandidate,
-                'users_email'=>$request->emailCandidate,
-                'users_social_link'=>$social,
-                'users_password'=>$password,
-                'users_flag'=>0,
-                'roles_id'=>3,
-            ]);
+        $user=Users::where('users_email',$request->emailCandidate);
+        // dd($user);
+        if(!$user){
+            if($request->passwordCandidate == $request->passwordConfirm){
+                $password=password_hash($request->passwordCandidate, PASSWORD_DEFAULT);
+                $link=[];
+                $link['webSite']="";
+                $link['facebook']="";
+                $link['twitter']="";
+                $link['linkedin']="";
+                $link['github']="";
+                $link['other']="";
+                $social=json_encode($link);
+                Users::create([
+                    'users_name'=>$request->nameCandidate,
+                    'users_email'=>$request->emailCandidate,
+                    'users_social_link'=>$social,
+                    'users_password'=>$password,
+                    'users_flag'=>0,
+                    'roles_id'=>3,
+                ]);
+            }
+            
+            return redirect('/connexion');
+        }else{
+            return back()->with("error", "Cet email existe. Impossible de l'utiliser à nouveau");
         }
-        
-        return redirect('/connexion');
     }
+
     public function connexion(Request $request){
+ 
 
         $this->validate($request, [
             'email' => "required|email",
             'password' => "required|min:6'",
         ]);
 
-        $user=Users::where('users_email',$request->email)
-            ->first();
+        $user=Users::where('users_email',$request->email)->first();
         if(!$user){
             return back()->with('warning','Veuillez créer un compte pour avoir accès à cette plateforme');
         } elseif (!password_verify($request->password,$user->users_password)) {
@@ -126,6 +142,7 @@ class userController extends Controller
             return view('/admin/settings');
         }  
     }
+
     public function updateProfil(Request $request){
 
         $infos= Users::where('id',session()->get('id'))->first();
@@ -144,6 +161,7 @@ class userController extends Controller
         $infos->save();
         return back();
     }
+
     public function socialLink(Request $request){
         $social= Users::where('id',session()->get('id'))->first();
         
@@ -159,6 +177,15 @@ class userController extends Controller
 
         return back();
     }
+
+    public function descriptionSave(Request $request){
+        $user= Users::where('id',session()->get('id'))->first();
+        $user->users_description=$request->description;
+        $user->save();
+
+        return back();
+    }
+
     public function updatePass(Request $request){
         
         $this->validate($request, [
@@ -167,17 +194,22 @@ class userController extends Controller
             'confirm_password' => "required|min:6",
         ]);
         $infos= Users::where('id',session()->get('id'))->first();
-        if(password_verify($request->old_password,$infos->users_password) && ($infos->confirm_password ==  $infos->users_password)){
+        if(password_verify($request->old_password,$infos->users_password) && ($infos->confirm_password == $infos->password)){
             $password=password_hash($request->password, PASSWORD_DEFAULT);
             $infos->users_password=$password;
             $infos->save();
             return back()->with('success','Mot de passe modifié avec succès');
+        }else{
+            return back()->with('error','Les données saisies sont erronnées');
+
         }
     }
+
     public function showCandidates(){
         $candidates= Users::where('roles_id',3)->paginate(1);
         return view('candidates', compact('candidates'));
     }
+
     public function showCompanies(){
         $companies= Users::where('roles_id',2)->paginate(1);
         return view('companies', compact('companies'));
@@ -187,6 +219,7 @@ class userController extends Controller
         $user=Users::where('id',$id)->first();
         return view('reset',compact('id','link','user'));
     }
+
     public function reset(Request $request){
         $this->validate($request, [
             'password' => "min:6|required_with:passwordConfirm|same:passwordConfirm",
@@ -200,6 +233,7 @@ class userController extends Controller
         $user->save();
         return redirect('/connexion')->with('info','Mot de passe réinitialisé avec succès. Utilisez vos nouveaux identifiants pour vous connecter !');
     }
+
     public function resetPassword(Request $request){
         $this->validate($request, [
             'email' => "required|email",
@@ -222,6 +256,7 @@ class userController extends Controller
         
         return back()->with('info','Veuillez consulter vos mails pour réinitialiser votre mot de passe. Merci !');
     }
+
     public function deconnection(){
         session()->flush();
         return redirect('/');
@@ -276,3 +311,4 @@ class userController extends Controller
     // }
 
 }
+?>

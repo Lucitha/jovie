@@ -6,6 +6,18 @@
             @csrf
             <h2>Fill Up Your Job information</h2>
             <div class="row">
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label>Job Title</label>
+                        <input disabled type="text" name="title" id="title" class="form-control" id="exampleInput1" placeholder="Job Title or Keyword" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Job Title</label>
+                        <input type="text" name="title" id="title" class="form-control" id="exampleInput1" placeholder="Job Title or Keyword" required>
+                    </div>
+                </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Job Title</label>
@@ -19,7 +31,7 @@
                         <select class="category" name="category_id" id="category_id">
                         <option data-display="Category">Category</option>
                         @foreach ($categories as $categorie)
-                            <option value="{{$categorie->id}}">{{$categorie->category_title}}</option>
+                            <option value="{{$categorie->id}}">{{$categorie->categories_name}}</option>
                         @endforeach
                             
                         </select>
@@ -31,7 +43,7 @@
                         <select class="category" name="type_id" id="type_id">
                             <option data-display="Job Type">Job Type</option>
                             @foreach ($types as $type)
-                              <option value="{{$type->id}}">{{$type->type_title}}</option>
+                              <option value="{{$type->id}}">{{$type->types_name}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -40,14 +52,14 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Company Name</label>
-                        <input type="text" class="form-control" value="{{$company->name}}" name="company_name" id="company_name" placeholder="e.g. London" required>
+                        <input type="text" class="form-control" value="{{$company->users_name}}" name="company_name" id="company_name" placeholder="e.g. London" required>
                     </div>
                 </div>
   
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Phone Contact</label>
-                        <input type="tel" class="form-control" name="contact" id="contact" placeholder="+000 0000000000" required>
+                        <input type="tel" class="form-control" name="contact" id="contact" value="{{$company->users_phone}}" placeholder="+000 0000000000" required>
                     </div>
                 </div>
 
@@ -61,7 +73,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Email Contact</label>
-                        <input type="email" class="form-control" value="{{$company->email}}"  name="company_email" id="company_email" placeholder="e.g. hello@company.com" required>
+                        <input type="email" class="form-control" value="{{$company->users_email}}"  name="company_email" id="company_email" placeholder="e.g. hello@company.com" required>
                     </div>
                 </div>
 

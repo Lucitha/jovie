@@ -75,6 +75,7 @@ Route::middleware([Control::class])->group(function () {
     Route::get('/allCandidates', [userController::class, 'showCandidate' ]);
     Route::get('/profil', [userController::class, 'showProfil']);
     Route::post('/save_profil', [userController::class, 'updateProfil']);
+    Route::post('/userDescription', [userController::class, 'descriptionSave']);
     Route::post('/socialLink', [userController::class, 'socialLink']);
     Route::post('/update_password', [userController::class, 'updatePass']);
 });

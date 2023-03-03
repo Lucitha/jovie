@@ -184,13 +184,13 @@
                         </div>
                         <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...
                             <h3>Other information</h3>
-                            <form class="cadidate-others" action="" method="POST">
+                            <form class="cadidate-others" action="/userDescription" method="POST">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Describe Yourself</label>
-                                            <textarea class="form-control" name="description" id="description" width="50%" height="50%" cols="60" rows="20"></textarea>
+                                            <textarea class="form-control" name="description" id="description"  cols="60" rows="20">{{$info->users_description}}</textarea>
                                         </div>
                                     </div>
 

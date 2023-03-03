@@ -73,3 +73,6 @@ class CandidacyController extends Controller
     
   
 }
+
+
+?>

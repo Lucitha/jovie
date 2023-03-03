@@ -12,7 +12,6 @@ class AdminController extends Controller
         $categories=\DB::table('categories')
                     ->select('*')
                     ->get();
-                    // dd($categories);
         $types=\DB::table('types')
                     ->select('*')
                     ->get();
@@ -73,3 +72,5 @@ class AdminController extends Controller
         return back();
     }
 }
+
+?>

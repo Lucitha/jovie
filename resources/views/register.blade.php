@@ -4,6 +4,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-8 offset-md-2 offset-lg-3" >
+                    <div class="" style="margin-bottom:20px;">
+                        @include('flashMessage')
+                    </div>
                     <!-- Tabs navs -->
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
@@ -13,6 +16,7 @@
                           <button class="nav-link {{ ( session()->get('currentTab') == 'company' ) ? 'active' : '' }}" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Company</button>
                         </li>
                     </ul>
+                    
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade {{ ( session()->get('currentTab') == '' ) ? 'show active' : '' }}" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <form class="signup-form" id='Candidats' action="/save_candidate" method="POST" >
@@ -46,7 +50,6 @@
                                             <i id="icon"  style='color:white' class='far fa-eye-slash'></i></button>
                                     </div>
                                 </div>
-                                {{-- <input type="password" id='passwordCandidate' name='passwordCandidate' class="form-control @error('passwordCandidate') is-invalid @enderror" placeholder="Enter Your Password" required> --}}
                                 @error('passwordCandidate')
                                 <div class="invalid-feedback">
                                     {{ $errors->first('passwordCandidate') }}
@@ -55,13 +58,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Confirm Password</label>
-                                {{-- <div class="input-group">
-                                    <input type="password" id='passwordConfirm' name='passwordConfirm' class="form-control" placeholder="Enter Your Password" required class="form-control @error('passwordCandidate') is-invalid @enderror" style="border-radius:0px; border-top-left-radius: 50px; border-bottom-left-radius: 50px;">
-                                    <div class="input-group-append">
-                                        <button class="input-group-text" id="my-addon" type="button" onclick="companyPassword()" style="border-top-right-radius: 50px; border-bottom-right-radius: 50px; background-color:#fd1616; border-block: none;">
-                                            <i id="picon"  style='color:white' class='far fa-eye-slash'></i></button>
-                                    </div>
-                                </div> --}}
+                 
                                 <input type="password" id='passwordConfirm' name='passwordConfirm' class="form-control" placeholder="Enter Your Password" required>
                             </div>
 
@@ -122,7 +119,6 @@
                                             <i id="picon"  style='color:white' class='far fa-eye-slash'></i></button>
                                     </div>
                                 </div>
-                                {{-- <input type="password" id='passwordCompany' name='passwordCompany' class="form-control @error('passwordCompany') is-invalid @enderror" placeholder="Enter Your Password" required> --}}
                                 @error('passwordCompany')
                                     <div class="invalid-feedback">
                                         {{ $errors->first('passwordCompany') }}
@@ -159,7 +155,7 @@
     function candidatePassword() {
   var showCandidate = document.getElementById("passwordCandidate");
   var verifCandidate = document.getElementById("passwordConfirm");
-//   console.log(iconPassword.class); 
+
   if (showCandidate.type === "password") {
     showCandidate.type = "text";
     verifCandidate.type = "text";
@@ -174,7 +170,7 @@
   var showCompany = document.getElementById("passwordCompany");
   var verifCompany = document.getElementById("pConfirm");
 
-//   console.log(iconPassword.class); 
+
   if (showCompany.type === "password" ) {
     showCompany.type = "text";
     verifCompany.type = "text";

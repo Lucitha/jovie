@@ -184,13 +184,13 @@
                         </div>
                         <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
                             <h3>Other information</h3>
-                            <form class="cadidate-others">
+                            <form class="cadidate-others" action="/userDescription" method="POST">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Company description</label>
-                                            <textarea class="form-control" name="description" id="description" cols="60" rows="20"></textarea>
+                                            <textarea class="form-control" name="description" id="description"  cols="60" rows="20">{{$info->users_description}}</textarea>
                                         </div>
                                     </div>
 
@@ -259,7 +259,6 @@
     function oldPassword() {
        var showPassword = document.getElementById("old_password");
        var iconPassword = document.getElementById("icon");
-       //   console.log(iconPassword.class); 
        if (showPassword.type === "password" ) {
            showPassword.type = "text";
            $('#icon').attr('class','far fa-eye');
@@ -272,7 +271,6 @@
        var showPassword = document.getElementById("password");
        var showCPassword = document.getElementById("confirm_password");
        var iconPassword = document.getElementById("icon");
-       //   console.log(iconPassword.class); 
        if (showPassword.type === "password" ) {
            showCPassword.type = "text";
            showPassword.type = "text";
