@@ -17,14 +17,14 @@ class Jobs extends Migration
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
             $table->string('jobs_name');
-            $table->string('jobs_description');
-            $table->string('jobs_conditions');
+            $table->string('jobs_description')->nullable();
+            $table->string('jobs_conditions')->nullable();
             $table->string('jobs_salary')->nullable();
             $table->string('jobs_contacts');
-            $table->string('jobs_location');
-            $table->string('jobs_apply_url');
+            $table->string('jobs_location')->nullable();
+            $table->string('jobs_apply_url')->nullable();
             $table->string('jobs_company_name');
-            $table->string('jobs_status');
+            $table->string('jobs_status')->nullable();
             $table->dateTime('jobs_start_at');
             $table->dateTime('jobs_end_at');
             $table->foreignId('type_id')->references('id')->on('types');

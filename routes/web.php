@@ -43,6 +43,7 @@ Route::post('/save_company', [userController::class, 'saveCompany']);
 Route::get('/candidates', [userController::class, 'showCandidates']);
 Route::get('/companies', [userController::class, 'showCompanies']);
 
+Route::get('/company/{id}',[JobController::class,'jobByCompany']);
 Route::get('/search',[JobController::class,'search']);
 Route::get('/jobs',[JobController::class,'showJob']);
 Route::get('/details/{id}',[JobController::class,'detailsJob']);
@@ -60,7 +61,6 @@ Route::middleware([Control::class])->group(function () {
     Route::get('/jobList',[JobController::class,'companyJob']);
     Route::get('/postDelete/{id}',[JobController::class,'deletePost']);
     Route::get('/editPost/{id}',[JobController::class,'editPost']);
-    Route::get('/company/{id}',[JobController::class,'jobByCompany']);
     Route::get('/typeJob/{id}',[JobController::class,'jobtype']);
     Route::post('/save_job',[JobController::class,'saveJob']);
     Route::post('/updateJob/{id}',[JobController::class,'updatePost']);

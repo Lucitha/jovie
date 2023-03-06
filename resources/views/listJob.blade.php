@@ -3,7 +3,7 @@
 <section class="job-section jobs-grid-section pt-100 pb-70">
     <div class="container">
         <div class="section-title text-center">
-            <h2>All job posted by {{$company->name}}</h2>
+            <h2>All job posted by {{$company->users_name}}</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus</p>
         </div>
 
@@ -46,8 +46,6 @@
                                     <p>
                                         <i class='bx bx-stopwatch'></i>
                                     </p>
-                                    {{-- {{-- <a href="/editPost/{{$job->jID}}">Edit</a> --}}
-                                    {{-- <a href={{$job->jID}}">View</a>  --}}
                                 </div>
                             </div>
                         </div>

@@ -12,16 +12,19 @@
                         <input disabled type="text" name="title" id="title" class="form-control" id="exampleInput1" placeholder="Job Title or Keyword" required>
                     </div>
                 </div>
+                <div class="col-md-3">
+                    <a  href="javascript:void"  onclick="redOnly()">Url redirecting</a>
+                </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Job Title</label>
-                        <input type="text" name="title" id="title" class="form-control" id="exampleInput1" placeholder="Job Title or Keyword" required>
+                        <input type="text" name="title" id="title" class="form-control"  placeholder="Job Title or Keyword" required>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Job Title</label>
-                        <input type="text" name="title" id="title" class="form-control" id="exampleInput1" placeholder="Job Title or Keyword" required>
+                        <input type="text" name="title" id="title" class="form-control" placeholder="Job Title or Keyword" required>
                     </div>
                 </div>
 
@@ -126,3 +129,16 @@
     </div>
 </div>
 @endsection
+<script>
+    function redOnly(){
+      
+            document.getElementById("category_id").readOnly=true;
+            document.getElementById("type_id").readOnly=true;
+            document.getElementById("company_name").readOnly=true;
+            document.getElementById("contact").readOnly=true;
+            document.getElementById("location").readOnly=true;
+            document.getElementById("description").readOnly=true;
+            document.getElementById("conditions").readOnly=true;
+        
+    }
+</script>

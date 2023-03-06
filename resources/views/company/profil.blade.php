@@ -237,8 +237,7 @@
                                             <div class="form-group">
                                                 <label>Confirm new password</label>
                                                 <div class="input-group">
-                                                    <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Confirm your new password" style="border-radius:0px; border-top-left-radius: 50px; border-bottom-left-radius: 50px;border-top-right-radius: 50px; border-bottom-right-radius: 50px;">
-                                                    
+                                                    <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Confirm your new password" style="border-radius:0px; border-top-left-radius: 50px; border-bottom-left-radius: 50px;border-top-right-radius: 50px; border-bottom-right-radius: 50px;">   
                                                 </div>   
                                             </div>
                                         </div>
