@@ -9,6 +9,7 @@ class JobController extends Controller
 {
 
     public function saveJob(Request $request){
+        // dd($request);
         if( $request->salary_min && $request->salary_max){
             $salary=$request->salary_min.'-'.$request->salary_max;
         }else{

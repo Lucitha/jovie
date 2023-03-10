@@ -31,8 +31,7 @@ class userController extends Controller
             'passwordCompany' => "min:6|required_with:pConfirm|same:pConfirm",
             'pConfirm' => "required|min:6",
         ]);
-        $user=Users::where('users_email',$request->emailCompany);
-        // dd($user);
+        $user=Users::where('users_email',$request->emailCompany)->get();
 
         if(!$user){
 
@@ -73,9 +72,10 @@ class userController extends Controller
             'passwordCandidate' => "min:6|required_with:passwordConfirm|same:passwordConfirm",
             'passwordConfirm' => "required|min:6",
         ]);
-        $user=Users::where('users_email',$request->emailCandidate);
-        // dd($user);
-        if(!$user){
+        $user=Users::where('users_email',$request->emailCandidate)->get();
+        if($user){
+            return back()->with("error", "Cet email existe. Impossible de l'utiliser à nouveau");
+        }else{
             if($request->passwordCandidate == $request->passwordConfirm){
                 $password=password_hash($request->passwordCandidate, PASSWORD_DEFAULT);
                 $link=[];
@@ -97,8 +97,6 @@ class userController extends Controller
             }
             
             return redirect('/connexion');
-        }else{
-            return back()->with("error", "Cet email existe. Impossible de l'utiliser à nouveau");
         }
     }
 
@@ -272,8 +270,8 @@ class userController extends Controller
     //     $mail->isSMTP();                                            //Send using SMTP
     //     $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
     //     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-    //     $mail->Username   = 'koukeprince@gmail.com';                     //SMTP username
-    //     $mail->Password   = 'axlofgzaanrcnoop';                               //SMTP password
+    //     $mail->Username   = '';                     //SMTP username
+    //     $mail->Password   = '';                               //SMTP password
     //     $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
     //     $mail->Port       = 587;                                //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
@@ -285,7 +283,7 @@ class userController extends Controller
        
 
         //Recipients
-        // $mail->setFrom('koukeprince@gmail.com' , 'JOVIE');
+        // $mail->setFrom('email@gmail.com' , 'JOVIE');
         // $mail->addAddress($user->email);     //Add a recipient
         // $mail->addAddress('ellen@example.com');               //Name is optional
         // $mail->addReplyTo('info@example.com', 'Information');
